@@ -36,15 +36,16 @@ public class Filter {
         List<Statistics> all = new ArrayList<>(csvRows.size());
         for (final ParsedCSVRow row : csvRows) {
             final long total = row.getCount();
+            final double time = row.getOwnTime();
             if (row.isConstructor()) {
-                all.add(Statistics.constructor(total));
+                all.add(Statistics.constructor(total, time));
             } else if (methods.get(row.shortMethodName()) == null) {
                 System.out.println("Method not found: " + row.fullMethodName());
-                all.add(Statistics.notFound(total));
+                all.add(Statistics.notFound(total, time));
             } else if (methods.get(row.shortMethodName()).booleanValue()) {
-                all.add(Statistics.staticMethod(total));
+                all.add(Statistics.staticMethod(total, time));
             } else {
-                all.add(Statistics.instanceMethod(total));
+                all.add(Statistics.instanceMethod(total, time));
             }
         }
         final Statistics common = all.stream().reduce(Statistics.empty(), Statistics::sum);
