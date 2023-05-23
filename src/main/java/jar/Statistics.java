@@ -1,10 +1,7 @@
 package jar;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.math.RoundingMode;
-import java.text.NumberFormat;
-import java.util.Objects;
 
 public class Statistics {
 

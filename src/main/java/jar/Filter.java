@@ -30,7 +30,7 @@ public class Filter {
             )
             ,
             new StatisticsCase(
-                "Spring Framework",
+                "Spring Framework 5.3.27",
                 "/Users/lombrozo/Workspace/OpenSource/oop/results/spring-mvc-5.3.27/method-list-cpu.csv",
                 "/Users/lombrozo/Workspace/OpenSource/spring-framework",
                 "org.springframework"
