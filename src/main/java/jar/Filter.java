@@ -35,15 +35,16 @@ public class Filter {
         final Map<String, Boolean> methods = Filter.methods();
         List<Statistics> all = new ArrayList<>(csvRows.size());
         for (final ParsedCSVRow row : csvRows) {
+            final long total = row.getCount();
             if (row.isConstructor()) {
-                all.add(Statistics.constructor());
+                all.add(Statistics.constructor(total));
             } else if (methods.get(row.shortMethodName()) == null) {
                 System.out.println("Method not found: " + row.fullMethodName());
-                all.add(Statistics.notFound());
+                all.add(Statistics.notFound(total));
             } else if (methods.get(row.shortMethodName()).booleanValue()) {
-                all.add(Statistics.staticMethod());
+                all.add(Statistics.staticMethod(total));
             } else {
-                all.add(Statistics.instanceMethod());
+                all.add(Statistics.instanceMethod(total));
             }
         }
         final Statistics common = all.stream().reduce(Statistics.empty(), Statistics::sum);

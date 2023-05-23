@@ -23,20 +23,20 @@ public class Statistics {
         return new Statistics(0, 0, 0, 0);
     }
 
-    public static Statistics notFound() {
-        return new Statistics(1, 0, 0, 0);
+    public static Statistics notFound(final long total) {
+        return new Statistics(total, 0, 0, 0);
     }
 
-    public static Statistics staticMethod() {
-        return new Statistics(1, 1, 0, 0);
+    public static Statistics staticMethod(final long total) {
+        return new Statistics(total, total, 0, 0);
     }
 
-    public static Statistics instanceMethod() {
-        return new Statistics(1, 0, 1, 0);
+    public static Statistics instanceMethod(final long total) {
+        return new Statistics(total, 0, total, 0);
     }
 
-    public static Statistics constructor() {
-        return new Statistics(1, 0, 0, 1);
+    public static Statistics constructor(final long total) {
+        return new Statistics(total, 0, 0, total);
     }
 
 
