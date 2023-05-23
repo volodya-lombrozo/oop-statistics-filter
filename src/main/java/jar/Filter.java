@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -30,10 +32,22 @@ public class Filter {
 
     public static void main(final String[] args) {
         final Set<ParsedCSVRow> csvRows = Filter.parseCSV();
-        final Map<String, ParsedClass> classes = Filter.parseClasses();
-
-
-
+        final Map<String, Boolean> methods = Filter.methods();
+        List<Statistics> all = new ArrayList<>(csvRows.size());
+        for (final ParsedCSVRow row : csvRows) {
+            if (row.isConstructor()) {
+                all.add(Statistics.constructor());
+            } else if (methods.get(row.shortMethodName()) == null) {
+                System.out.println("Method not found: " + row.fullMethodName());
+                all.add(Statistics.notFound());
+            } else if (methods.get(row.shortMethodName()).booleanValue()) {
+                all.add(Statistics.staticMethod());
+            } else {
+                all.add(Statistics.instanceMethod());
+            }
+        }
+        final Statistics common = all.stream().reduce(Statistics.empty(), Statistics::sum);
+        System.out.println(common);
     }
 
     private static Set<ParsedCSVRow> parseCSV() {
@@ -48,10 +62,18 @@ public class Filter {
                 new FileReader(Filter.csvPath.toFile())
             );
             return parse.getRecords().stream().map(ParsedCSVRow::new)
-                .filter(ParsedCSVRow::isNotHeader).collect(Collectors.toSet());
+                .filter(ParsedCSVRow::isNotHeader)
+                .filter(row -> row.withinPackage(Filter.pckg))
+                .collect(Collectors.toSet());
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
+    }
+
+    private static Map<String, Boolean> methods() {
+        final Map<String, ParsedClass> all = Filter.parseClasses();
+        return all.values().stream().flatMap(parsed -> parsed.methods().stream())
+            .collect(Collectors.toMap(ParsedMethod::name, ParsedMethod::isStatic, (a, b) -> a));
     }
 
     private static Map<String, ParsedClass> parseClasses() {

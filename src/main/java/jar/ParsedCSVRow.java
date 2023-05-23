@@ -11,16 +11,30 @@ public class ParsedCSVRow {
     }
 
     public boolean isNotHeader() {
-        return !this.getMethod().equals("Method");
+        return !this.fullMethodName().equals("Method");
     }
 
-    public boolean isConstructor(){
-        return this.getMethod().contains("<init>");
+    public boolean withinPackage(final String pckg) {
+        return this.fullMethodName().contains(pckg);
     }
 
-    public String getMethod() {
+    public boolean isConstructor() {
+        return this.fullMethodName().contains("<init>");
+    }
+
+    public String shortMethodName() {
+        final String full = fullMethodName();
+        final int endIndex = full.lastIndexOf(" ");
+        if(endIndex == -1){
+            return full;
+        }
+        return full.substring(0, endIndex);
+    }
+
+    String fullMethodName() {
         return this.record.get("Method");
     }
+
 
     public double getOwnTime() {
         final String raw = this.record.get("Own Time (ms)");
