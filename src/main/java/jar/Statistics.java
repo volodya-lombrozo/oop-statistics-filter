@@ -1,7 +1,10 @@
 package jar;
 
+import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.text.NumberFormat;
+import java.util.Objects;
 
 public class Statistics {
 
@@ -96,6 +99,10 @@ public class Statistics {
         );
     }
 
+    private double time(double value) {
+        return BigDecimal.valueOf(value).setScale(2, RoundingMode.HALF_UP).doubleValue();
+    }
+
     private String percent(double value) {
         return String.format("%.2f", value * 100);
     }
@@ -113,22 +120,64 @@ public class Statistics {
         );
     }
 
+    public static String[] headers() {
+        return new String[]{
+            "Application",
+            "Total Methods",
+            "Static Methods",
+            "Instance Methods",
+            "Constructors",
+            "Not Found Methods (lambdas)",
+            "Total Time (ms)",
+            "Time in Static Methods (ms)",
+            "Time in Intense Methods (ms)",
+            "Time in Constructors Methods (ms)",
+            "Percent of Static Methods",
+            "Percent of Instance Methods",
+            "Percent of Constructors",
+            "Percent Not Found Methods",
+            "Percent Dirty Static Methods",
+            "Percent Dirty Instance Methods",
+        };
+    }
+
+    public Object[] csvRow(final String title) {
+        return new Object[]{
+            title,
+            this.totalMethods,
+            this.staticMethods,
+            this.instanceMethods,
+            this.constructors,
+            this.totalNotFound(),
+            this.time(this.totalTime),
+            this.time(this.staticTime),
+            this.time(this.instanceTime),
+            this.time(this.constructorTime),
+            this.pStatic(),
+            this.pInstance(),
+            this.pConstructors(),
+            this.pNotFound(),
+            this.pDirtyStatic(),
+            this.pDirtyInstance()
+        };
+    }
+
     @Override
     public String toString() {
         return "Statistics{" +
-            "total=" + totalMethods +
-            ", staticMethods=" + staticMethods +
-            ", instanceMethods=" + instanceMethods +
-            ", constructors=" + constructors +
+            "total=" + this.totalMethods +
+            ", staticMethods=" + this.staticMethods +
+            ", instanceMethods=" + this.instanceMethods +
+            ", constructors=" + this.constructors +
             ", notFound=" + this.totalNotFound() +
-            ", totalTime=" + totalTime +
-            ", staticTime=" + staticTime +
-            ", instanceTime=" + instanceTime +
-            ", constructorsTime=" + constructorTime +
+            ", totalTime=" + this.time(this.totalTime) +
+            ", staticTime=" + this.time(this.staticTime) +
+            ", instanceTime=" + this.time(this.instanceTime) +
+            ", constructorsTime=" + this.time(this.constructorTime) +
             ", Static Percent=" + this.pStatic() +
             ", Instance Percent=" + this.pInstance() +
-            ", Not Found Percent=" + this.pNotFound() +
             ", Constructors Percent=" + this.pConstructors() +
+            ", Not Found Percent=" + this.pNotFound() +
             ", Static Dirty Percent=" + this.pDirtyStatic() +
             ", Instance Dirty Percent=" + this.pDirtyInstance() +
             '}';
