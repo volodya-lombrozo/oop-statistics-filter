@@ -1,4 +1,4 @@
-package jar;
+package filter;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -7,30 +7,35 @@ import java.util.Collection;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 
-public class Report {
+class Report {
 
-    private final Collection<StatisticsCase> cases;
+    private final Collection<? extends StatisticsCase> cases;
 
-    public Report(StatisticsCase... cases) {
-        this(Arrays.asList(cases));
+    Report(final StatisticsCase... all) {
+        this(Arrays.asList(all));
     }
 
-    public Report(final Collection<StatisticsCase> cases) {
-        this.cases = cases;
+    private Report(final Collection<? extends StatisticsCase> all) {
+        this.cases = all;
     }
 
-    public void make() throws IOException {
+    void make() throws IOException {
         final FileWriter appendable = new FileWriter("report.csv");
         final CSVPrinter printer = new CSVPrinter(
             appendable,
             CSVFormat.RFC4180.withHeader(Statistics.headers())
         );
-        for (final StatisticsCase statisticsCase : cases) {
+        Statistics total = Statistics.empty();
+        for (final StatisticsCase statisticsCase : this.cases) {
             final Statistics statistics = statisticsCase.statistics();
             System.out.println(statistics);
+            total = total.sum(statistics);
             final String title = statisticsCase.title();
             printer.printRecord(statistics.csvRow(title));
         }
+        System.out.println("Total:");
+        System.out.println(total);
+        printer.printRecord(total.csvRow("Total"));
         appendable.flush();
         appendable.close();
     }

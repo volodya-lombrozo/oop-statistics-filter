@@ -1,4 +1,4 @@
-package jar;
+package filter;
 
 import com.github.javaparser.ParseProblemException;
 import java.io.FileReader;

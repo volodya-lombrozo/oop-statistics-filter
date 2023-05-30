@@ -1,29 +1,29 @@
-package jar;
+package filter;
 
 import org.apache.commons.csv.CSVRecord;
 
-public class ParsedCSVRow {
+class ParsedCSVRow {
 
     private final CSVRecord record;
 
-    public ParsedCSVRow(final CSVRecord record) {
+    ParsedCSVRow(final CSVRecord record) {
         this.record = record;
     }
 
-    public boolean isNotHeader() {
+    boolean isNotHeader() {
         return !this.fullMethodName().equals("Method");
     }
 
-    public boolean withinPackage(final String pckg) {
+    boolean withinPackage(final String pckg) {
         return this.fullMethodName().contains(pckg);
     }
 
-    public boolean isConstructor() {
+    boolean isConstructor() {
         return this.fullMethodName().contains("<init>");
     }
 
-    public String shortMethodName() {
-        final String full = fullMethodName();
+    String shortMethodName() {
+        final String full = this.fullMethodName();
         final int endIndex = full.lastIndexOf(" ");
         if(endIndex == -1){
             return full;
@@ -36,7 +36,7 @@ public class ParsedCSVRow {
     }
 
 
-    public double getOwnTime() {
+    double getOwnTime() {
         final String raw = this.record.get("Own Time (ms)");
         final double res;
         if (raw.contains("<")) {
@@ -47,7 +47,7 @@ public class ParsedCSVRow {
         return res;
     }
 
-    public long getCount() {
+    long getCount() {
         return Long.valueOf(this.record.get("Count"));
     }
 }
