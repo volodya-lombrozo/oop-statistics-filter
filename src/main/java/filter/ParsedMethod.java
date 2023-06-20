@@ -17,9 +17,8 @@ final class ParsedMethod {
 
     String name() {
         return String.format(
-            "%s.%s.%s",
-            this.klass.pckg().orElse(""),
-            this.klass.definedName(),
+            "%s.%s",
+            this.klass.name(),
             this.method.getSignature().asString()
         );
     }

@@ -1,6 +1,5 @@
 package filter;
 
-import com.github.javaparser.ParseProblemException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -9,7 +8,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -55,7 +53,10 @@ final class StatisticsCase {
             if (row.isConstructor()) {
                 all.add(Statistics.constructor(total, time));
             } else if (methods.get(row.shortMethodName()) == null) {
-                System.out.println("Method not found: " + row.fullMethodName());
+                Logger.getLogger("PARSER")
+                    .warning(
+                        () -> String.format("Method not found: %s", row.fullMethodName())
+                    );
                 all.add(Statistics.notFound(total, time));
             } else if (methods.get(row.shortMethodName()).booleanValue()) {
                 all.add(Statistics.staticMethod(total, time));
@@ -65,7 +66,6 @@ final class StatisticsCase {
         }
         return all.stream().reduce(Statistics.empty(), Statistics::sum);
     }
-
 
     private Set<ParsedCSVRow> parseCSV() {
         try {
@@ -82,11 +82,15 @@ final class StatisticsCase {
                 .filter(ParsedCSVRow::isNotHeader)
                 .filter(row -> row.withinPackage(this.filters[0]))
                 .collect(Collectors.toSet());
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
+        } catch (final IOException ex) {
+            throw new IllegalStateException(ex);
         }
     }
 
+    /**
+     * Parses methods from entire project.
+     * @return Map of methods.
+     */
     private Map<String, Boolean> methods() {
         final Map<String, ParsedClass> all = this.parseClasses();
         return all.values().stream().flatMap(parsed -> parsed.methods().stream())
@@ -94,35 +98,22 @@ final class StatisticsCase {
     }
 
     private Map<String, ParsedClass> parseClasses() {
-        try (Stream<Path> files = Files.walk(this.project)) {
+        try (final Stream<Path> files = Files.walk(this.project)) {
             final Map<String, ParsedClass> classes = files
                 .filter(Files::exists)
                 .filter(Files::isRegularFile)
                 .parallel()
                 .filter(path -> path.toString().endsWith(".java"))
-                .map(StatisticsCase::parse)
-                .filter(Optional::isPresent)
-                .map(Optional::get)
-                .filter(parsed -> parsed.pckg().isPresent())
+                .flatMap(ParsedClass::parse)
                 .collect(
                     Collectors.toMap(
                         parsed -> parsed.name(),
                         parsed -> parsed
                     )
                 );
-
             return classes;
         } catch (final IOException exception) {
             throw new IllegalStateException(exception);
-        }
-    }
-
-    private static Optional<ParsedClass> parse(final Path path) {
-        try {
-            return Optional.of(new ParsedClass(path));
-        } catch (IOException | ParseProblemException ex) {
-            Logger.getLogger("PARSER").warning(ex.getMessage());
-            return Optional.empty();
         }
     }
 

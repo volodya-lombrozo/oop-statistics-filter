@@ -25,10 +25,10 @@ final class ParsedCSVRow {
     String shortMethodName() {
         final String full = this.fullMethodName();
         final int endIndex = full.lastIndexOf(" ");
-        if(endIndex == -1){
+        if (endIndex == -1) {
             return full;
         }
-        return full.substring(0, endIndex);
+        return full.substring(0, endIndex).replaceAll("\\$", ".");
     }
 
     String fullMethodName() {

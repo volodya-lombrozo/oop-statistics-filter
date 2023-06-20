@@ -42,24 +42,25 @@ public class FilterApplication {
 //                "/Users/lombrozo/Workspace/OpenSource/takes",
 //                "org.takes"
 //            ),
-            new StatisticsCase(
-                "Verification Half",
-                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/verification-half/method-list-cpu.csv",
-                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/java/verification/half",
-                "verification.half"
-            ),
+//            new StatisticsCase(
+//                "Verification Half",
+//                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/verification-half/method-list-cpu.csv",
+//                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/java/verification/half",
+//                "verification.half"
+//            ),
             new StatisticsCase(
                 "Verification Instance",
                 "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/verification-instance/method-list-cpu.csv",
                 "/Users/lombrozo/Workspace/OpenSource/oop/src/main/java/verification/instances",
                 "verification.instances"
-            ),
-            new StatisticsCase(
-                "Verification Static",
-                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/verification-static/method-list-cpu.csv",
-                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/java/verification/statics",
-                "verification.statics"
             )
+//            ,
+//            new StatisticsCase(
+//                "Verification Static",
+//                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/verification-static/method-list-cpu.csv",
+//                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/java/verification/statics",
+//                "verification.statics"
+//            )
         ).make();
     }
 
