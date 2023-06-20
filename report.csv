@@ -1,7 +1,5 @@
 Application,Total Methods,Static Methods,Instance Methods,Constructors,Not Found Methods (lambdas),Total Time (ms),Time in Static Methods (ms),Time in Intense Methods (ms),Time in Constructors Methods (ms),Percent of Static Methods,Percent of Instance Methods,Percent of Constructors,Percent Not Found Methods,Percent Dirty Static Methods,Percent Dirty Instance Methods
-Apache Derby,56138367,1620495,52920211,464090,1133571,256137.0,6072.6,243788.2,1606.2,2.89,94.27,0.83,2.02,4.91,96.29
-Apache Kafka,1810372,108538,808657,172526,720651,10767.9,624.6,4249.9,687.1,6.00,44.67,9.53,39.81,45.80,84.47
-Apache Tomcat,697025,36436,555410,10432,94747,3500.3,510.2,2280.6,51.4,5.23,79.68,1.50,13.59,18.82,93.28
-Spring Framework 5.3.27,1045850,225081,483003,87796,249970,5924.4,920.0,3123.0,423.6,21.52,46.18,8.39,23.90,45.42,70.08
-Takes Framework,47851,16445,7316,20680,3410,469.8,185.1,41.7,56.0,34.37,15.29,43.22,7.13,41.49,22.42
-Total,59739465,2006995,54774597,755524,2202349,276799.4,8312.5,253483.4,2824.3,3.36,91.69,1.26,3.69,7.05,95.38
+Verification Half,15940,5314,0,5313,5313,292.0,241.0,0.0,29.0,33.34,0.00,33.33,33.33,66.67,33.33
+Verification Instance,26316,1,0,15789,10526,418.0,271.0,0.0,78.0,0.00,0.00,60.00,40.00,40.00,40.00
+Verification Static,10671,10671,0,0,0,233.0,233.0,0.0,0.0,100.00,0.00,0.00,0.00,100.00,0.00
+Total,52927,15986,0,21102,15839,943.0,745.0,0.0,107.0,30.20,0.00,39.87,29.93,60.13,29.93
