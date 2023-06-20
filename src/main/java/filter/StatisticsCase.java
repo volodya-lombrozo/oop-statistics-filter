@@ -99,7 +99,7 @@ final class StatisticsCase {
 
     private Map<String, ParsedClass> parseClasses() {
         try (final Stream<Path> files = Files.walk(this.project)) {
-            final Map<String, ParsedClass> classes = files
+            return files
                 .filter(Files::exists)
                 .filter(Files::isRegularFile)
                 .parallel()
@@ -107,11 +107,11 @@ final class StatisticsCase {
                 .flatMap(ParsedClass::parse)
                 .collect(
                     Collectors.toMap(
-                        parsed -> parsed.name(),
-                        parsed -> parsed
+                        ParsedClass::name,
+                        parsed -> parsed,
+                        ParsedClass::add
                     )
                 );
-            return classes;
         } catch (final IOException exception) {
             throw new IllegalStateException(exception);
         }
