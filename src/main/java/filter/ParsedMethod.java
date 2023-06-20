@@ -2,7 +2,7 @@ package filter;
 
 import com.github.javaparser.ast.body.MethodDeclaration;
 
-class ParsedMethod {
+final class ParsedMethod {
 
     private final MethodDeclaration method;
     private final ParsedClass klass;

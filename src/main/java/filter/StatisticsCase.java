@@ -17,14 +17,14 @@ import java.util.stream.Stream;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 
-public class StatisticsCase {
+final class StatisticsCase {
 
     private final String title;
     private final Path csv;
     private final Path project;
     private final String[] filters;
 
-    public StatisticsCase(
+    StatisticsCase(
         final String title,
         final String csv,
         final String project,
@@ -33,7 +33,7 @@ public class StatisticsCase {
         this(title, Paths.get(csv), Paths.get(project), filters);
     }
 
-    public StatisticsCase(
+    private StatisticsCase(
         final String title,
         final Path csv,
         final Path project,
@@ -45,7 +45,7 @@ public class StatisticsCase {
         this.filters = filters;
     }
 
-    public Statistics statistics() {
+    Statistics statistics() {
         final Set<ParsedCSVRow> csvRows = this.parseCSV();
         final Map<String, Boolean> methods = this.methods();
         List<Statistics> all = new ArrayList<>(csvRows.size());
@@ -126,7 +126,7 @@ public class StatisticsCase {
         }
     }
 
-    public String title() {
+    String title() {
         return this.title;
     }
 }

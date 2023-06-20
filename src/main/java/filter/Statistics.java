@@ -3,20 +3,18 @@ package filter;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class Statistics {
+final class Statistics {
 
-    final long totalMethods;
-    final long staticMethods;
-    final long instanceMethods;
-    final long constructors;
-    final double totalTime;
-    final double staticTime;
-    final double instanceTime;
+    private final long totalMethods;
+    private final long staticMethods;
+    private final long instanceMethods;
+    private final long constructors;
+    private final double totalTime;
+    private final double staticTime;
+    private final double instanceTime;
+    private final double constructorTime;
 
-    final double constructorTime;
-
-
-    public Statistics(
+    private Statistics(
         final long totalMethods,
         final long staticMethods,
         final long instanceMethods,
@@ -36,23 +34,23 @@ public class Statistics {
         this.constructorTime = constructorTime;
     }
 
-    public static Statistics empty() {
+    static Statistics empty() {
         return new Statistics(0, 0, 0, 0, 0, 0, 0, 0);
     }
 
-    public static Statistics notFound(final long total, final double time) {
+    static Statistics notFound(final long total, final double time) {
         return new Statistics(total, 0, 0, 0, time, 0, 0, 0);
     }
 
-    public static Statistics staticMethod(final long total, final double time) {
+    static Statistics staticMethod(final long total, final double time) {
         return new Statistics(total, total, 0, 0, time, time, 0, 0);
     }
 
-    public static Statistics instanceMethod(final long total, final double time) {
+    static Statistics instanceMethod(final long total, final double time) {
         return new Statistics(total, 0, total, 0, time, 0, time, 0);
     }
 
-    public static Statistics constructor(final long total, final double time) {
+    static Statistics constructor(final long total, final double time) {
         return new Statistics(total, 0, 0, total, time, 0, 0, time);
     }
 
@@ -60,51 +58,51 @@ public class Statistics {
         return this.totalMethods - this.constructors - this.instanceMethods - this.staticMethods;
     }
 
-    public String pStatic() {
+    private String pStatic() {
         return this.percent(
             (double) this.staticMethods / this.totalMethods
         );
     }
 
-    public String pInstance() {
+    private String pInstance() {
         return this.percent(
             (double) this.instanceMethods / this.totalMethods
         );
     }
 
-    public String pNotFound() {
+    private String pNotFound() {
         return this.percent(
             (double) this.totalNotFound() / this.totalMethods
         );
     }
 
-    public String pDirtyStatic() {
+    private String pDirtyStatic() {
         return this.percent(
             (double) (this.staticMethods + this.totalNotFound()) / this.totalMethods
         );
     }
 
-    public String pDirtyInstance() {
+    private String pDirtyInstance() {
         return this.percent(
             (double) (this.instanceMethods + this.totalNotFound()) / this.totalMethods
         );
     }
 
-    public String pConstructors() {
+    private String pConstructors() {
         return this.percent(
             (double) this.constructors / this.totalMethods
         );
     }
 
-    private double time(double value) {
+    private double time(final double value) {
         return BigDecimal.valueOf(value).setScale(2, RoundingMode.HALF_UP).doubleValue();
     }
 
-    private String percent(double value) {
+    private String percent(final double value) {
         return String.format("%.2f", value * 100);
     }
 
-    Statistics sum(Statistics other) {
+    Statistics sum(final Statistics other) {
         return new Statistics(
             this.totalMethods + other.totalMethods,
             this.staticMethods + other.staticMethods,
@@ -117,7 +115,7 @@ public class Statistics {
         );
     }
 
-    public static String[] headers() {
+    static String[] headers() {
         return new String[]{
             "Application",
             "Total Methods",
@@ -138,7 +136,7 @@ public class Statistics {
         };
     }
 
-    public Object[] csvRow(final String title) {
+    Object[] csvRow(final String title) {
         return new Object[]{
             title,
             this.totalMethods,

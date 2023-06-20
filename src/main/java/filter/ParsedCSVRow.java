@@ -2,7 +2,7 @@ package filter;
 
 import org.apache.commons.csv.CSVRecord;
 
-class ParsedCSVRow {
+final class ParsedCSVRow {
 
     private final CSVRecord record;
 
@@ -11,7 +11,7 @@ class ParsedCSVRow {
     }
 
     boolean isNotHeader() {
-        return !this.fullMethodName().equals("Method");
+        return !"Method".equals(this.fullMethodName());
     }
 
     boolean withinPackage(final String pckg) {
@@ -34,7 +34,6 @@ class ParsedCSVRow {
     String fullMethodName() {
         return this.record.get("Method");
     }
-
 
     double getOwnTime() {
         final String raw = this.record.get("Own Time (ms)");

@@ -7,7 +7,7 @@ import java.util.Collection;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 
-class Report {
+final class Report {
 
     private final Collection<? extends StatisticsCase> cases;
 

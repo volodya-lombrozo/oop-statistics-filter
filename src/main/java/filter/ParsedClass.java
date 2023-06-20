@@ -13,7 +13,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-class ParsedClass {
+final class ParsedClass {
 
     private final String name;
     private final CompilationUnit unit;
@@ -28,7 +28,7 @@ class ParsedClass {
     }
 
     String name() {
-        return name;
+        return this.name;
     }
 
     String definedName() {
