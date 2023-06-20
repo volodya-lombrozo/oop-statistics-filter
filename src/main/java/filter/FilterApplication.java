@@ -42,6 +42,12 @@ public class FilterApplication {
                 "org.takes"
             ),
             new StatisticsCase(
+                "Struts Framework",
+                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/struts/method-list-cpu.csv",
+                "/Users/lombrozo/Workspace/OpenSource/struts",
+                "org.apache.struts2"
+            ),
+            new StatisticsCase(
                 "Verification Half",
                 "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/verification-half/method-list-cpu.csv",
                 "/Users/lombrozo/Workspace/OpenSource/oop/src/main/java/verification/half",
