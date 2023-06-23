@@ -66,6 +66,16 @@ public class FilterApplication {
 //                "verification.statics"
 //            )
             new StatisticsCase(
+                "Struts 6.1.2",
+                new RemoteCSV("struts/method-list-cpu.csv"),
+                new GitHubApplication(
+                    "https://github.com/apache/struts.git",
+                    "STRUTS_6_1_2"
+                ),
+                "org.apache.struts2"
+            ),
+
+            new StatisticsCase(
                 "Micronaut 3.9.3",
                 new RemoteCSV("micronaut/method-list-cpu.csv"),
                 new GitHubApplication(
