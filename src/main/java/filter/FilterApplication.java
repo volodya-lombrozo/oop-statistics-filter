@@ -53,18 +53,33 @@ public class FilterApplication {
 //                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/java/verification/half",
 //                "verification.half"
 //            ),
-//            new StatisticsCase(
-//                "Verification Instance",
-//                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/verification-instance/method-list-cpu.csv",
-//                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/java/verification/instances",
-//                "verification.instances"
-//            ),
-//            new StatisticsCase(
-//                "Verification Static",
-//                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/verification-static/method-list-cpu.csv",
-//                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/java/verification/statics",
-//                "verification.statics"
-//            )
+            new StatisticsCase(
+                "Verification Half",
+                new RemoteCSV("verification-half/method-list-cpu.csv"),
+                new GitHubApplication(
+                    "https://github.com/volodya-lombrozo/cost-of-oop.git",
+                    "main"
+                ),
+                "verification.half"
+            ),
+            new StatisticsCase(
+                "Verification Instance",
+                new RemoteCSV("verification-instance/method-list-cpu.csv"),
+                new GitHubApplication(
+                    "https://github.com/volodya-lombrozo/cost-of-oop.git",
+                    "main"
+                ),
+                "verification.instances"
+            ),
+            new StatisticsCase(
+                "Verification Statics",
+                new RemoteCSV("verification-static/method-list-cpu.csv"),
+                new GitHubApplication(
+                    "https://github.com/volodya-lombrozo/cost-of-oop.git",
+                    "main"
+                ),
+                "verification.statics"
+            ),
             new StatisticsCase(
                 "Struts 6.1.2",
                 new RemoteCSV("struts/method-list-cpu.csv"),
