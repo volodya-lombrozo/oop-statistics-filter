@@ -24,6 +24,15 @@ public class FilterApplication {
 //                "kafka"
 //            ),
             new StatisticsCase(
+                "Apache Kafka 3.4.0",
+                new RemoteCSV("kafka/method-list-cpu.csv"),
+                new GitHubApplication(
+                    "https://github.com/apache/kafka.git",
+                    "3.4.0"
+                ),
+                "kafka"
+            ),
+            new StatisticsCase(
                 "Apache Tomcat 10.1.8",
                 new RemoteCSV("tomcat/method-list-cpu.csv"),
                 new GitHubApplication(
@@ -86,7 +95,6 @@ public class FilterApplication {
                 ),
                 "org.apache.struts2"
             ),
-
             new StatisticsCase(
                 "Micronaut 3.9.3",
                 new RemoteCSV("micronaut/method-list-cpu.csv"),
