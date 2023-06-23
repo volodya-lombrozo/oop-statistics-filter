@@ -1,6 +1,7 @@
 package filter;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 
 /**
  * CSV profiling filter.
@@ -11,59 +12,70 @@ public class FilterApplication {
 
     public static void main(final String[] args) throws IOException {
         new Report(
+//            new StatisticsCase(
+//                "Apache Derby",
+//                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/derby/method-list-cpu.csv",
+//                "/Users/lombrozo/Workspace/OpenSource/derby",
+//                "org.apache.derby"
+//            ),
+//            new StatisticsCase(
+//                "Apache Kafka",
+//                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/kafka/method-list-cpu.csv",
+//                "/Users/lombrozo/Workspace/OpenSource/kafka",
+//                "kafka"
+//            ),
+//            new StatisticsCase(
+//                "Apache Tomcat",
+//                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/tomcat/method-list-cpu.csv",
+//                "/Users/lombrozo/Workspace/OpenSource/tomcat",
+//                "org.apache.tomcat"
+//            ),
+//            new StatisticsCase(
+//                "Spring Framework 5.3.27",
+//                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/spring-mvc/method-list-cpu.csv",
+//                "/Users/lombrozo/Workspace/OpenSource/spring-framework",
+//                "org.springframework"
+//            ),
+//            new StatisticsCase(
+//                "Takes Framework",
+//                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/takes/method-list-cpu.csv",
+//                "/Users/lombrozo/Workspace/OpenSource/takes",
+//                "org.takes"
+//            ),
+//            new StatisticsCase(
+//                "Struts Framework",
+//                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/struts/method-list-cpu.csv",
+//                "/Users/lombrozo/Workspace/OpenSource/struts",
+//                "org.apache.struts2"
+//            ),
+//            new StatisticsCase(
+//                "Verification Half",
+//                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/verification-half/method-list-cpu.csv",
+//                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/java/verification/half",
+//                "verification.half"
+//            ),
+//            new StatisticsCase(
+//                "Verification Instance",
+//                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/verification-instance/method-list-cpu.csv",
+//                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/java/verification/instances",
+//                "verification.instances"
+//            ),
+//            new StatisticsCase(
+//                "Verification Static",
+//                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/verification-static/method-list-cpu.csv",
+//                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/java/verification/statics",
+//                "verification.statics"
+//            )
             new StatisticsCase(
-                "Apache Derby",
-                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/derby/method-list-cpu.csv",
-                "/Users/lombrozo/Workspace/OpenSource/derby",
-                "org.apache.derby"
-            ),
-            new StatisticsCase(
-                "Apache Kafka",
-                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/kafka/method-list-cpu.csv",
-                "/Users/lombrozo/Workspace/OpenSource/kafka",
-                "kafka"
-            ),
-            new StatisticsCase(
-                "Apache Tomcat",
-                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/tomcat/method-list-cpu.csv",
-                "/Users/lombrozo/Workspace/OpenSource/tomcat",
-                "org.apache.tomcat"
-            ),
-            new StatisticsCase(
-                "Spring Framework 5.3.27",
-                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/spring-mvc/method-list-cpu.csv",
-                "/Users/lombrozo/Workspace/OpenSource/spring-framework",
-                "org.springframework"
-            ),
-            new StatisticsCase(
-                "Takes Framework",
-                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/takes/method-list-cpu.csv",
-                "/Users/lombrozo/Workspace/OpenSource/takes",
-                "org.takes"
-            ),
-            new StatisticsCase(
-                "Struts Framework",
-                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/struts/method-list-cpu.csv",
-                "/Users/lombrozo/Workspace/OpenSource/struts",
-                "org.apache.struts2"
-            ),
-            new StatisticsCase(
-                "Verification Half",
-                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/verification-half/method-list-cpu.csv",
-                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/java/verification/half",
-                "verification.half"
-            ),
-            new StatisticsCase(
-                "Verification Instance",
-                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/verification-instance/method-list-cpu.csv",
-                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/java/verification/instances",
-                "verification.instances"
-            ),
-            new StatisticsCase(
-                "Verification Static",
-                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/verification-static/method-list-cpu.csv",
-                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/java/verification/statics",
-                "verification.statics"
+                "Micronaut",
+                Paths.get(
+                    "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/micronaut/method-list-cpu.csv"
+                ),
+                new GitHubApplication(
+                    "https://github.com/micronaut-projects/micronaut-core.git",
+                    "v3.9.3"
+                ),
+                "io.micronaut"
             )
         ).make();
     }

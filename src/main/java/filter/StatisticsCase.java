@@ -19,7 +19,7 @@ final class StatisticsCase {
 
     private final String title;
     private final Path csv;
-    private final Path project;
+    private final Application project;
     private final String[] filters;
 
     StatisticsCase(
@@ -28,13 +28,13 @@ final class StatisticsCase {
         final String project,
         final String... filters
     ) {
-        this(title, Paths.get(csv), Paths.get(project), filters);
+        this(title, Paths.get(csv), new LocalApplication(project), filters);
     }
 
-    private StatisticsCase(
+    StatisticsCase(
         final String title,
         final Path csv,
-        final Path project,
+        final Application project,
         final String... filters
     ) {
         this.title = title;
@@ -98,7 +98,7 @@ final class StatisticsCase {
     }
 
     private Map<String, ParsedClass> parseClasses() {
-        try (final Stream<Path> files = Files.walk(this.project)) {
+        try (final Stream<Path> files = Files.walk(this.project.path())) {
             return files
                 .filter(Files::exists)
                 .filter(Files::isRegularFile)
