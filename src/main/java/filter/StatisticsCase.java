@@ -18,7 +18,7 @@ import org.apache.commons.csv.CSVParser;
 final class StatisticsCase {
 
     private final String title;
-    private final Path csv;
+    private final CSV csv;
     private final Application project;
     private final String[] filters;
 
@@ -28,12 +28,12 @@ final class StatisticsCase {
         final String project,
         final String... filters
     ) {
-        this(title, Paths.get(csv), new LocalApplication(project), filters);
+        this(title, new LocalCSV(csv), new LocalApplication(project), filters);
     }
 
     StatisticsCase(
         final String title,
-        final Path csv,
+        final CSV csv,
         final Application project,
         final String... filters
     ) {
@@ -75,9 +75,7 @@ final class StatisticsCase {
                 "Avg. Time (ms)",
                 "Own Time (ms)",
                 "Count"
-            ).parse(
-                new FileReader(this.csv.toFile())
-            );
+            ).parse(this.csv.reader());
             return parse.getRecords().stream().map(ParsedCSVRow::new)
                 .filter(ParsedCSVRow::isNotHeader)
                 .filter(row -> row.withinPackage(this.filters[0]))

@@ -1,3 +1,3 @@
 Application,Total Methods,Static Methods,Instance Methods,Constructors,Not Found Methods (lambdas),Total Time (ms),Time in Static Methods (ms),Time in Intense Methods (ms),Time in Constructors Methods (ms),Percent of Static Methods,Percent of Instance Methods,Percent of Constructors,Percent Not Found Methods,Percent Dirty Static Methods,Percent Dirty Instance Methods
-Micronaut,597590,106715,338171,55585,97119,3225.6,481.1,2018.7,211.6,17.86,56.59,9.30,16.25,34.11,72.84
+Micronaut 3.9.3,597590,106715,338171,55585,97119,3225.6,481.1,2018.7,211.6,17.86,56.59,9.30,16.25,34.11,72.84
 Total,597590,106715,338171,55585,97119,3225.6,481.1,2018.7,211.6,17.86,56.59,9.30,16.25,34.11,72.84

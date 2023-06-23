@@ -67,8 +67,8 @@ public class FilterApplication {
 //                "verification.statics"
 //            )
             new StatisticsCase(
-                "Micronaut",
-                Paths.get(
+                "Micronaut 3.9.3",
+                new LocalCSV(
                     "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/micronaut/method-list-cpu.csv"
                 ),
                 new GitHubApplication(
