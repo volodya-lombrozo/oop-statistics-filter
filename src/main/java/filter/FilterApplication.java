@@ -35,7 +35,15 @@ public class FilterApplication {
 //                "/Users/lombrozo/Workspace/OpenSource/spring-framework",
 //                "org.springframework"
 //            ),
-
+            new StatisticsCase(
+                "Spring Framework 5.3.27",
+                new RemoteCSV("spring-mvc/method-list-cpu.csv"),
+                new GitHubApplication(
+                    "https://github.com/spring-projects/spring-framework.git",
+                    "v5.3.27"
+                ),
+                "org.springframework"
+            ),
             new StatisticsCase(
                 "Takes 1.24.4",
                 new RemoteCSV("takes/method-list-cpu.csv"),
