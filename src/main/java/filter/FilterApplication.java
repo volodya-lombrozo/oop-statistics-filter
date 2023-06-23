@@ -17,12 +17,14 @@ public class FilterApplication {
 //                "/Users/lombrozo/Workspace/OpenSource/derby",
 //                "org.apache.derby"
 //            ),
-//            new StatisticsCase(
-//                "Apache Kafka",
-//                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/kafka/method-list-cpu.csv",
-//                "/Users/lombrozo/Workspace/OpenSource/kafka",
-//                "kafka"
-//            ),
+            new StatisticsCase(
+                "Apache Derby 10.16.1.1",
+                new RemoteCSV("derby/method-list-cpu.csv"),
+                new RemoteZipApplication(
+                    "https://dlcdn.apache.org//db/derby/db-derby-10.16.1.1/db-derby-10.16.1.1-src.zip"
+                ),
+                "org.apache.derby"
+            ),
             new StatisticsCase(
                 "Apache Kafka 3.4.0",
                 new RemoteCSV("kafka/method-list-cpu.csv"),

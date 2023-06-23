@@ -47,7 +47,7 @@ public class GitHubApplication implements Application {
                     )
                 );
             }
-            markDownloadedFilesForDelete(destination);
+            this.markDownloadedFilesForDelete(destination);
             return destination;
         } catch (final IOException ex) {
             throw new IllegalStateException(
