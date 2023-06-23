@@ -23,18 +23,15 @@ public class FilterApplication {
 //                "/Users/lombrozo/Workspace/OpenSource/kafka",
 //                "kafka"
 //            ),
-//            new StatisticsCase(
-//                "Apache Tomcat",
-//                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/tomcat/method-list-cpu.csv",
-//                "/Users/lombrozo/Workspace/OpenSource/tomcat",
-//                "org.apache.tomcat"
-//            ),
-//            new StatisticsCase(
-//                "Spring Framework 5.3.27",
-//                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/spring-mvc/method-list-cpu.csv",
-//                "/Users/lombrozo/Workspace/OpenSource/spring-framework",
-//                "org.springframework"
-//            ),
+            new StatisticsCase(
+                "Apache Tomcat 10.1.8",
+                new RemoteCSV("tomcat/method-list-cpu.csv"),
+                new GitHubApplication(
+                    "https://github.com/apache/tomcat.git",
+                    "10.1.8"
+                ),
+                "org.apache.tomcat"
+            ),
             new StatisticsCase(
                 "Spring Framework 5.3.27",
                 new RemoteCSV("spring-mvc/method-list-cpu.csv"),
