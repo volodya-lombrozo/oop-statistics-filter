@@ -1,13 +1,16 @@
 package filter;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
+import java.util.stream.Stream;
 
 public class GitHubApplication implements Application {
 
-    private static final int TIMEOUT = 20;
+    private static final int TIMEOUT = 30;
     private final String url;
     private final String tag;
 
@@ -22,9 +25,17 @@ public class GitHubApplication implements Application {
     @Override
     public Path path() {
         try {
-            final Path destination = Files.createTempDirectory("github-app");
+            final Path destination = Files.createTempDirectory("github-app-");
             destination.toFile().deleteOnExit();
-            System.out.println("Absolute file:" + destination.toAbsolutePath());
+            Logger.getLogger("GitHub Downloader")
+                .info(
+                    () -> String.format(
+                        "Downloading the git repo %s with tag %s into %s",
+                        this.url,
+                        this.tag,
+                        destination.toAbsolutePath()
+                    )
+                );
             Runtime runtime = Runtime.getRuntime();
             final Process process = runtime.exec(this.command(destination));
             process.waitFor(GitHubApplication.TIMEOUT, TimeUnit.SECONDS);
@@ -36,8 +47,9 @@ public class GitHubApplication implements Application {
                     )
                 );
             }
+            markDownloadedFilesForDelete(destination);
             return destination;
-        } catch (IOException ex) {
+        } catch (final IOException ex) {
             throw new IllegalStateException(
                 String.format(
                     "Some problems encountered while working with temporary directory and downloading %s",
@@ -45,10 +57,25 @@ public class GitHubApplication implements Application {
                 ),
                 ex
             );
-        } catch (InterruptedException ex) {
+        } catch (final InterruptedException ex) {
             Thread.currentThread().interrupt();
             throw new IllegalStateException(
-                "",
+                "Timeout while cloning the repository",
+                ex
+            );
+        }
+    }
+
+    private void markDownloadedFilesForDelete(final Path destination) {
+        destination.toFile().deleteOnExit();
+        try (final Stream<Path> walk = Files.walk(destination)) {
+            walk.map(Path::toFile).forEach(File::deleteOnExit);
+        } catch (final IOException ex) {
+            throw new IllegalStateException(
+                String.format(
+                    "Some problems encountered while marking files for deletion in the folder %s",
+                    destination
+                ),
                 ex
             );
         }
