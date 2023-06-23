@@ -1,3 +1,3 @@
 Application,Total Methods,Static Methods,Instance Methods,Constructors,Not Found Methods (lambdas),Total Time (ms),Time in Static Methods (ms),Time in Intense Methods (ms),Time in Constructors Methods (ms),Percent of Static Methods,Percent of Instance Methods,Percent of Constructors,Percent Not Found Methods,Percent Dirty Static Methods,Percent Dirty Instance Methods
-Verification Half,15940,5314,5313,5313,0,292.0,241.0,22.0,29.0,33.34,33.33,33.33,0.00,33.34,33.33
-Verification Instance,26316,1,10526,15789,
+Takes 1.24.4,47851,16665,8911,20680,1595,469.8,186.9,164.3,56.0,34.83,18.62,43.22,3.33,38.16,21.96
+Verification Half,15940,5314,5313,5313,0,

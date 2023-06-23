@@ -35,24 +35,16 @@ public class FilterApplication {
 //                "/Users/lombrozo/Workspace/OpenSource/spring-framework",
 //                "org.springframework"
 //            ),
-//            new StatisticsCase(
-//                "Takes Framework",
-//                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/takes/method-list-cpu.csv",
-//                "/Users/lombrozo/Workspace/OpenSource/takes",
-//                "org.takes"
-//            ),
-//            new StatisticsCase(
-//                "Struts Framework",
-//                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/struts/method-list-cpu.csv",
-//                "/Users/lombrozo/Workspace/OpenSource/struts",
-//                "org.apache.struts2"
-//            ),
-//            new StatisticsCase(
-//                "Verification Half",
-//                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/verification-half/method-list-cpu.csv",
-//                "/Users/lombrozo/Workspace/OpenSource/oop/src/main/java/verification/half",
-//                "verification.half"
-//            ),
+
+            new StatisticsCase(
+                "Takes 1.24.4",
+                new RemoteCSV("takes/method-list-cpu.csv"),
+                new GitHubApplication(
+                    "https://github.com/yegor256/takes.git",
+                    "1.24.4"
+                ),
+                "org.takes"
+            ),
             new StatisticsCase(
                 "Verification Half",
                 new RemoteCSV("verification-half/method-list-cpu.csv"),
