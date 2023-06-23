@@ -1,7 +1,6 @@
 package filter;
 
 import java.io.IOException;
-import java.nio.file.Paths;
 
 /**
  * CSV profiling filter.
@@ -68,9 +67,7 @@ public class FilterApplication {
 //            )
             new StatisticsCase(
                 "Micronaut 3.9.3",
-                new LocalCSV(
-                    "/Users/lombrozo/Workspace/OpenSource/oop/src/main/profiling/micronaut/method-list-cpu.csv"
-                ),
+                new RemoteCSV("micronaut/method-list-cpu.csv"),
                 new GitHubApplication(
                     "https://github.com/micronaut-projects/micronaut-core.git",
                     "v3.9.3"
