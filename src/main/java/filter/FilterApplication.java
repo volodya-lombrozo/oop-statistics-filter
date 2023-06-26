@@ -169,17 +169,24 @@ public class FilterApplication {
 //                ),
 //                "org.eclipse.jetty"
 //            ),
-//            new StatisticsCase(
-//                "Struts 6.1.2",
-//                new RemoteCSV("struts/method-list-cpu.csv"),
-//                new GitHubApplication(
-//                    "https://github.com/apache/struts.git",
-//                    "STRUTS_6_1_2"
-//                ),
-//                "org.apache.struts2"
-//            )
-//            ,
-
+            new StatisticsCase(
+                "Struts 6.1.2",
+                new RemoteCSV("struts/method-list-cpu.csv"),
+                new GitHubApplication(
+                    "https://github.com/apache/struts.git",
+                    "STRUTS_6_1_2"
+                ),
+                "org.apache.struts2"
+            ),
+            new StatisticsCase(
+                "OGNL 3.3.4",
+                new RemoteCSV("struts/method-list-cpu.csv"),
+                new GitHubApplication(
+                    "https://github.com/orphan-oss/ognl.git",
+                    "OGNL_3_3_4"
+                ),
+                "ognl"
+            )
 //
 //            new StatisticsCase(
 //                "Project Reactor 3.5.0",
