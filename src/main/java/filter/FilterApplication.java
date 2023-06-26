@@ -18,7 +18,9 @@ public class FilterApplication {
 //                    "https://dlcdn.apache.org//db/derby/db-derby-10.16.1.1/db-derby-10.16.1.1-src.zip"
 //                ),
 //                "org.apache.derby"
-//            ),
+//            )
+
+//            ,
 //            new StatisticsCase(
 //                "Apache Kafka 3.4.0",
 //                new RemoteCSV("kafka/method-list-cpu.csv"),
@@ -37,15 +39,52 @@ public class FilterApplication {
 //                ),
 //                "org.apache.tomcat"
 //            ),
-//            new StatisticsCase(
-//                "Spring Framework 5.3.27",
-//                new RemoteCSV("spring-mvc/method-list-cpu.csv"),
-//                new GitHubApplication(
-//                    "https://github.com/spring-projects/spring-framework.git",
-//                    "v5.3.27"
-//                ),
-//                "org.springframework"
-//            ),
+
+            new StatisticsCase(
+                "Spring Framework 5.3.27",
+                new RemoteCSV("spring-mvc/method-list-cpu.csv"),
+                new GitHubApplication(
+                    "https://github.com/spring-projects/spring-framework.git",
+                    "v5.3.27"
+                ),
+                "org.springframework"
+            ),
+            new StatisticsCase(
+                "Jackson Databind 2.13.5",
+                new RemoteCSV("spring-mvc/method-list-cpu.csv"),
+                new GitHubApplication(
+                    "https://github.com/FasterXML/jackson-databind.git",
+                    "jackson-databind-2.13.5"
+                ),
+                "com.fasterxml.jackson.databind"
+            ),
+            new StatisticsCase(
+                "Jackson Core 2.13.5",
+                new RemoteCSV("spring-mvc/method-list-cpu.csv"),
+                new GitHubApplication(
+                    "https://github.com/FasterXML/jackson-core.git",
+                    "jackson-core-2.13.5"
+                ),
+                "com.fasterxml.jackson.core"
+            ),
+            new StatisticsCase(
+                "Apache Tomcat 9.0.75",
+                new RemoteCSV("spring-mvc/method-list-cpu.csv"),
+                new GitHubApplication(
+                    "https://github.com/apache/tomcat.git",
+                    "9.0.75"
+                ),
+                "org.apache.catalina"
+            ),
+            new StatisticsCase(
+                "Apache Coyote 9.0.75",
+                new RemoteCSV("spring-mvc/method-list-cpu.csv"),
+                new GitHubApplication(
+                    "https://github.com/apache/tomcat.git",
+                    "9.0.75"
+                ),
+                "org.apache.coyote"
+            )
 //            new StatisticsCase(
 //                "Takes 1.24.4",
 //                new RemoteCSV("takes/method-list-cpu.csv"),
@@ -83,33 +122,33 @@ public class FilterApplication {
 //                "verification.statics"
 //            ),
 
-            new StatisticsCase(
-                "Opensymphony 2.4.2",
-                new RemoteCSV("struts/method-list-cpu.csv"),
-                new GitHubApplication(
-                    "https://github.com/apache/struts.git",
-                    "STRUTS_6_1_2"
-                ),
-                "com.opensymphony"
-            ),
-            new StatisticsCase(
-                "Jetty 10.0.15",
-                new RemoteCSV("struts/method-list-cpu.csv"),
-                new GitHubApplication(
-                    "https://github.com/eclipse/jetty.project.git",
-                    "jetty-10.0.15"
-                ),
-                "org.eclipse.jetty"
-            ),
-            new StatisticsCase(
-                "Struts 6.1.2",
-                new RemoteCSV("struts/method-list-cpu.csv"),
-                new GitHubApplication(
-                    "https://github.com/apache/struts.git",
-                    "STRUTS_6_1_2"
-                ),
-                "org.apache.struts2"
-            )
+//            new StatisticsCase(
+//                "Opensymphony 2.4.2",
+//                new RemoteCSV("struts/method-list-cpu.csv"),
+//                new GitHubApplication(
+//                    "https://github.com/apache/struts.git",
+//                    "STRUTS_6_1_2"
+//                ),
+//                "com.opensymphony"
+//            ),
+//            new StatisticsCase(
+//                "Jetty 10.0.15",
+//                new RemoteCSV("struts/method-list-cpu.csv"),
+//                new GitHubApplication(
+//                    "https://github.com/eclipse/jetty.project.git",
+//                    "jetty-10.0.15"
+//                ),
+//                "org.eclipse.jetty"
+//            ),
+//            new StatisticsCase(
+//                "Struts 6.1.2",
+//                new RemoteCSV("struts/method-list-cpu.csv"),
+//                new GitHubApplication(
+//                    "https://github.com/apache/struts.git",
+//                    "STRUTS_6_1_2"
+//                ),
+//                "org.apache.struts2"
+//            )
 //            ,
 
 //
