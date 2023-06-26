@@ -1,5 +1,8 @@
 package filter;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.apache.commons.csv.CSVRecord;
 
 final class ParsedCSVRow {
@@ -15,7 +18,7 @@ final class ParsedCSVRow {
     }
 
     boolean withinPackage(final String pckg) {
-        return this.fullMethodName().contains(pckg);
+        return this.fullMethodName().startsWith(pckg);
     }
 
     boolean isConstructor() {
@@ -30,6 +33,40 @@ final class ParsedCSVRow {
         }
         return full.substring(0, endIndex).replaceAll("\\$", ".");
     }
+
+    /**
+     * Converts
+     *  ognl.OgnlRuntime.isTypeCompatible(Class, Class, int, OgnlRuntime$ArgsCompatbilityReport) OgnlRuntime.java
+     * Into
+     *  ognl.OgnlRuntime.isTypeCompatible(Class, Class, int, ArgsCompatbilityReport)
+     * @return
+     */
+    String shortMethodNameWithoutFQNForParameters() {
+        final String full = this.fullMethodName();
+        final int endIndex = full.lastIndexOf(" ");
+        if (endIndex == -1) {
+            return full;
+        }
+        final String withParams = full.substring(0, endIndex);
+        final int startParams = withParams.indexOf("(");
+        final String name = withParams.substring(0, startParams);
+        final List<String> params = Arrays.stream(withParams.substring(startParams + 1,
+                withParams.length() - 1
+            ).split(","))
+            .map(String::trim)
+            .map(
+                param -> {
+                    if (param.contains("$")) {
+                        return param.substring(param.lastIndexOf("$") + 1);
+                    } else {
+                        return param;
+                    }
+                }
+            )
+            .collect(Collectors.toList());
+        return String.format("%s(%s)", name, String.join(", ", params));
+    }
+
 
     String fullMethodName() {
         return this.record.get("Method");

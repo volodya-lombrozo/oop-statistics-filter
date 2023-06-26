@@ -53,11 +53,20 @@ final class StatisticsCase {
             if (row.isConstructor()) {
                 all.add(Statistics.constructor(total, time));
             } else if (methods.get(row.shortMethodName()) == null) {
-                Logger.getLogger("PARSER")
-                    .warning(
-                        () -> String.format("Method not found: %s", row.fullMethodName())
-                    );
-                all.add(Statistics.notFound(total, time));
+                final String alternative = row.shortMethodNameWithoutFQNForParameters();
+                if (methods.get(alternative) != null) {
+                    if (methods.get(alternative).booleanValue()) {
+                        all.add(Statistics.staticMethod(total, time));
+                    } else {
+                        all.add(Statistics.instanceMethod(total, time));
+                    }
+                } else {
+                    Logger.getLogger("PARSER")
+                        .warning(
+                            () -> String.format("Method not found: %s", row.fullMethodName())
+                        );
+                    all.add(Statistics.notFound(total, time));
+                }
             } else if (methods.get(row.shortMethodName()).booleanValue()) {
                 all.add(Statistics.staticMethod(total, time));
             } else {
