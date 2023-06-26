@@ -40,60 +40,70 @@ public class FilterApplication {
 //                "org.apache.tomcat"
 //            ),
 
-            new StatisticsCase(
-                "Spring Framework 5.3.27",
-                new RemoteCSV("spring-mvc/method-list-cpu.csv"),
-                new GitHubApplication(
-                    "https://github.com/spring-projects/spring-framework.git",
-                    "v5.3.27"
-                ),
-                "org.springframework"
-            ),
-            new StatisticsCase(
-                "Jackson Databind 2.13.5",
-                new RemoteCSV("spring-mvc/method-list-cpu.csv"),
-                new GitHubApplication(
-                    "https://github.com/FasterXML/jackson-databind.git",
-                    "jackson-databind-2.13.5"
-                ),
-                "com.fasterxml.jackson.databind"
-            ),
-            new StatisticsCase(
-                "Jackson Core 2.13.5",
-                new RemoteCSV("spring-mvc/method-list-cpu.csv"),
-                new GitHubApplication(
-                    "https://github.com/FasterXML/jackson-core.git",
-                    "jackson-core-2.13.5"
-                ),
-                "com.fasterxml.jackson.core"
-            ),
-            new StatisticsCase(
-                "Apache Tomcat 9.0.75",
-                new RemoteCSV("spring-mvc/method-list-cpu.csv"),
-                new GitHubApplication(
-                    "https://github.com/apache/tomcat.git",
-                    "9.0.75"
-                ),
-                "org.apache.catalina"
-            ),
-            new StatisticsCase(
-                "Apache Coyote 9.0.75",
-                new RemoteCSV("spring-mvc/method-list-cpu.csv"),
-                new GitHubApplication(
-                    "https://github.com/apache/tomcat.git",
-                    "9.0.75"
-                ),
-                "org.apache.coyote"
-            )
 //            new StatisticsCase(
-//                "Takes 1.24.4",
-//                new RemoteCSV("takes/method-list-cpu.csv"),
+//                "Spring Framework 5.3.27",
+//                new RemoteCSV("spring-mvc/method-list-cpu.csv"),
 //                new GitHubApplication(
-//                    "https://github.com/yegor256/takes.git",
-//                    "1.24.4"
+//                    "https://github.com/spring-projects/spring-framework.git",
+//                    "v5.3.27"
 //                ),
-//                "org.takes"
+//                "org.springframework"
 //            ),
+//            new StatisticsCase(
+//                "Jackson Databind 2.13.5",
+//                new RemoteCSV("spring-mvc/method-list-cpu.csv"),
+//                new GitHubApplication(
+//                    "https://github.com/FasterXML/jackson-databind.git",
+//                    "jackson-databind-2.13.5"
+//                ),
+//                "com.fasterxml.jackson.databind"
+//            ),
+//            new StatisticsCase(
+//                "Jackson Core 2.13.5",
+//                new RemoteCSV("spring-mvc/method-list-cpu.csv"),
+//                new GitHubApplication(
+//                    "https://github.com/FasterXML/jackson-core.git",
+//                    "jackson-core-2.13.5"
+//                ),
+//                "com.fasterxml.jackson.core"
+//            ),
+//            new StatisticsCase(
+//                "Apache Tomcat 9.0.75",
+//                new RemoteCSV("spring-mvc/method-list-cpu.csv"),
+//                new GitHubApplication(
+//                    "https://github.com/apache/tomcat.git",
+//                    "9.0.75"
+//                ),
+//                "org.apache.catalina"
+//            ),
+//            new StatisticsCase(
+//                "Apache Coyote 9.0.75",
+//                new RemoteCSV("spring-mvc/method-list-cpu.csv"),
+//                new GitHubApplication(
+//                    "https://github.com/apache/tomcat.git",
+//                    "9.0.75"
+//                ),
+//                "org.apache.coyote"
+//            )
+            new StatisticsCase(
+                "Takes 1.24.4",
+                new RemoteCSV("takes/method-list-cpu.csv"),
+                new GitHubApplication(
+                    "https://github.com/yegor256/takes.git",
+                    "1.24.4"
+                ),
+                "org.takes"
+            ),
+            new StatisticsCase(
+                "Cactoos 0.54.0",
+                new RemoteCSV("takes/method-list-cpu.csv"),
+                new GitHubApplication(
+                    "https://github.com/yegor256/cactoos.git",
+                    "0.54.0"
+                ),
+                "org.cactoos"
+            )
+
 //            new StatisticsCase(
 //                "Verification Half",
 //                new RemoteCSV("verification-half/method-list-cpu.csv"),
