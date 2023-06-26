@@ -1,4 +1,5 @@
 Application,Total Methods,Static Methods,Instance Methods,Constructors,Not Found Methods (lambdas),Total Time (ms),Time in Static Methods (ms),Time in Intense Methods (ms),Time in Constructors Methods (ms),Percent of Static Methods,Percent of Instance Methods,Percent of Constructors,Percent Not Found Methods,Percent Dirty Static Methods,Percent Dirty Instance Methods
+Opensymphony 2.4.2,200728,34397,125839,15281,25211,1140.5,212.2,784.2,32.3,17.14,62.69,7.61,12.56,29.70,75.25
 Jetty 10.0.15,329007,15318,204818,7899,100972,53713.5,139.7,53173.8,39.7,4.66,62.25,2.40,30.69,35.35,92.94
 Struts 6.1.2,25085,3789,16029,5161,106,125.1,18.5,92.8,13.5,15.10,63.90,20.57,0.42,15.53,64.32
-Total,354092,19107,220847,13060,101078,53838.6,158.2,53266.6,53.2,5.40,62.37,3.69,28.55,33.94,90.92
+Total,554820,53504,346686,28341,126289,54979.1,370.4,54050.8,85.5,9.64,62.49,5.11,22.76,32.41,85.25
