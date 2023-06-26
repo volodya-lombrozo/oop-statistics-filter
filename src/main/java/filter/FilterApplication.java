@@ -26,7 +26,7 @@ public class FilterApplication {
                     "https://github.com/apache/kafka.git",
                     "3.4.0"
                 ),
-                "kafka"
+                "org.apache.kafka"
             ),
             new StatisticsCase(
                 "Apache Tomcat 10.1.8",
@@ -81,6 +81,15 @@ public class FilterApplication {
                     "jackson-core-2.13.5"
                 ),
                 "com.fasterxml.jackson.core"
+            ),
+            new StatisticsCase(
+                "Apache Tomcat 9.0.75",
+                new RemoteCSV("spring-mvc/method-list-cpu.csv"),
+                new GitHubApplication(
+                    "https://github.com/apache/tomcat.git",
+                    "9.0.75"
+                ),
+                "org.apache.tomcat"
             ),
             new StatisticsCase(
                 "Apache Catalina 9.0.75",
