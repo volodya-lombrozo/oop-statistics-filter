@@ -9,18 +9,28 @@ import org.apache.commons.csv.CSVPrinter;
 
 final class Report {
 
-    private final Collection<? extends StatisticsCase> cases;
+    private final Collection<StatisticsCase> cases;
+    private final String filename;
+
+    Report(final String filename, final StatisticsCase... all) {
+        this(Arrays.asList(all), filename);
+    }
 
     Report(final StatisticsCase... all) {
         this(Arrays.asList(all));
     }
 
-    private Report(final Collection<? extends StatisticsCase> all) {
+    Report(final Collection<StatisticsCase> all) {
+        this(all, "report.csv");
+    }
+
+    Report(final Collection<StatisticsCase> all, final String filename) {
         this.cases = all;
+        this.filename = filename;
     }
 
     void make() throws IOException {
-        final FileWriter appendable = new FileWriter("report.csv");
+        final FileWriter appendable = new FileWriter(this.filename);
         final CSVPrinter printer = new CSVPrinter(
             appendable,
             CSVFormat.RFC4180.withHeader(Statistics.headers())

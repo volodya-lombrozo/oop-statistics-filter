@@ -5,12 +5,13 @@ import java.io.IOException;
 /**
  * CSV profiling filter.
  * Application that generates a report by a CSV data which was received during profiling different
- * Java applications.
+ * Java libraries.
  */
-public class FilterApplication {
+public class FilterLibraries {
 
     public static void main(final String[] args) throws IOException {
         new Report(
+            "libraries.csv",
             new StatisticsCase(
                 "Apache Derby 10.16.1.1",
                 new RemoteCSV("derby/method-list-cpu.csv"),
@@ -190,33 +191,6 @@ public class FilterApplication {
                 ),
                 "io.micronaut"
             )
-//            new StatisticsCase(
-//                "Verification Half",
-//                new RemoteCSV("verification-half/method-list-cpu.csv"),
-//                new GitHubApplication(
-//                    "https://github.com/volodya-lombrozo/cost-of-oop.git",
-//                    "main"
-//                ),
-//                "verification.half"
-//            ),
-//            new StatisticsCase(
-//                "Verification Instance",
-//                new RemoteCSV("verification-instance/method-list-cpu.csv"),
-//                new GitHubApplication(
-//                    "https://github.com/volodya-lombrozo/cost-of-oop.git",
-//                    "main"
-//                ),
-//                "verification.instances"
-//            ),
-//            new StatisticsCase(
-//                "Verification Statics",
-//                new RemoteCSV("verification-static/method-list-cpu.csv"),
-//                new GitHubApplication(
-//                    "https://github.com/volodya-lombrozo/cost-of-oop.git",
-//                    "main"
-//                ),
-//                "verification.statics"
-//            )
         ).make();
     }
 
