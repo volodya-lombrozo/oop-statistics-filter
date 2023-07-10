@@ -1,6 +1,8 @@
 package filter;
 
 import com.github.javaparser.ast.body.MethodDeclaration;
+import java.util.HashSet;
+import java.util.Set;
 
 final class ParsedMethod {
 
@@ -23,7 +25,27 @@ final class ParsedMethod {
         );
     }
 
+    Modifiers modifiers() {
+        final Set<Modifier> modifiers = new HashSet<>();
+        if (this.method.isStatic()) {
+            modifiers.add(Modifier.STATIC);
+        } else {
+            modifiers.add(Modifier.INSTANCE);
+        }
+        if (this.method.getAnnotationByClass(Override.class).isPresent()) {
+            modifiers.add(Modifier.OVERRIDDEN);
+        }
+        if (this.method.isPublic()) {
+            modifiers.add(Modifier.PUBLIC);
+        } else if (this.method.isPrivate()) {
+            modifiers.add(Modifier.PRIVATE);
+        } else {
+            modifiers.add(Modifier.PACKAGE_PRIVATE);
+        }
+        return new Modifiers(modifiers);
+    }
+
     boolean isStatic() {
-        return this.method.isStatic();
+        return this.modifiers().isStatic();
     }
 }
