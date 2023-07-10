@@ -11,4 +11,7 @@ public enum Modifier {
     INSTANCE,
     STATIC,
     OVERRIDDEN,
+    CONSTRUCTOR,
+
+    NOT_FOUND,
 }
