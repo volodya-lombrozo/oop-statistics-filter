@@ -9,9 +9,9 @@ import java.io.IOException;
  */
 public class FilterVerificationApplications {
     public static void main(final String[] args) throws IOException {
-        new Report(
+        new ReportOld(
             "verification.csv",
-            new StatisticsCase(
+            new StatisticsCaseOld(
                 "Verification Half",
                 new RemoteCSV("verification-half/method-list-cpu.csv"),
                 new GitHubApplication(
@@ -20,7 +20,7 @@ public class FilterVerificationApplications {
                 ),
                 "verification.half"
             ),
-            new StatisticsCase(
+            new StatisticsCaseOld(
                 "Verification Instance",
                 new RemoteCSV("verification-instance/method-list-cpu.csv"),
                 new GitHubApplication(
@@ -29,7 +29,7 @@ public class FilterVerificationApplications {
                 ),
                 "verification.instances"
             ),
-            new StatisticsCase(
+            new StatisticsCaseOld(
                 "Verification Statics",
                 new RemoteCSV("verification-static/method-list-cpu.csv"),
                 new GitHubApplication(

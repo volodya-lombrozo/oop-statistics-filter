@@ -10,9 +10,9 @@ import java.io.IOException;
 public class FilterLibraries {
 
     public static void main(final String[] args) throws IOException {
-        new Report(
+        new ReportOld(
             "libraries.csv",
-            new StatisticsCase(
+            new StatisticsCaseOld(
                 "Apache Derby 10.16.1.1",
                 new RemoteCSV("derby/method-list-cpu.csv"),
                 new RemoteZipApplication(
@@ -20,7 +20,7 @@ public class FilterLibraries {
                 ),
                 "org.apache.derby"
             ),
-            new StatisticsCase(
+            new StatisticsCaseOld(
                 "Apache Kafka 3.4.0",
                 new RemoteCSV("kafka/method-list-cpu.csv"),
                 new GitHubApplication(
@@ -29,7 +29,7 @@ public class FilterLibraries {
                 ),
                 "org.apache.kafka"
             ),
-            new StatisticsCase(
+            new StatisticsCaseOld(
                 "Apache Tomcat 10.1.8",
                 new RemoteCSV("tomcat/method-list-cpu.csv"),
                 new GitHubApplication(
@@ -38,7 +38,7 @@ public class FilterLibraries {
                 ),
                 "org.apache.tomcat"
             ),
-            new StatisticsCase(
+            new StatisticsCaseOld(
                 "Apache Catalina 10.1.8",
                 new RemoteCSV("tomcat/method-list-cpu.csv"),
                 new GitHubApplication(
@@ -47,7 +47,7 @@ public class FilterLibraries {
                 ),
                 "org.apache.catalina"
             ),
-            new StatisticsCase(
+            new StatisticsCaseOld(
                 "Apache Coyote 10.1.8",
                 new RemoteCSV("tomcat/method-list-cpu.csv"),
                 new GitHubApplication(
@@ -56,7 +56,7 @@ public class FilterLibraries {
                 ),
                 "org.apache.coyote"
             ),
-            new StatisticsCase(
+            new StatisticsCaseOld(
                 "Spring Framework 5.3.27",
                 new RemoteCSV("spring-mvc/method-list-cpu.csv"),
                 new GitHubApplication(
@@ -65,7 +65,7 @@ public class FilterLibraries {
                 ),
                 "org.springframework"
             ),
-            new StatisticsCase(
+            new StatisticsCaseOld(
                 "Jackson Databind 2.13.5",
                 new RemoteCSV("spring-mvc/method-list-cpu.csv"),
                 new GitHubApplication(
@@ -74,7 +74,7 @@ public class FilterLibraries {
                 ),
                 "com.fasterxml.jackson.databind"
             ),
-            new StatisticsCase(
+            new StatisticsCaseOld(
                 "Jackson Core 2.13.5",
                 new RemoteCSV("spring-mvc/method-list-cpu.csv"),
                 new GitHubApplication(
@@ -83,7 +83,7 @@ public class FilterLibraries {
                 ),
                 "com.fasterxml.jackson.core"
             ),
-            new StatisticsCase(
+            new StatisticsCaseOld(
                 "Apache Tomcat 9.0.75",
                 new RemoteCSV("spring-mvc/method-list-cpu.csv"),
                 new GitHubApplication(
@@ -92,7 +92,7 @@ public class FilterLibraries {
                 ),
                 "org.apache.tomcat"
             ),
-            new StatisticsCase(
+            new StatisticsCaseOld(
                 "Apache Catalina 9.0.75",
                 new RemoteCSV("spring-mvc/method-list-cpu.csv"),
                 new GitHubApplication(
@@ -101,7 +101,7 @@ public class FilterLibraries {
                 ),
                 "org.apache.catalina"
             ),
-            new StatisticsCase(
+            new StatisticsCaseOld(
                 "Apache Coyote 9.0.75",
                 new RemoteCSV("spring-mvc/method-list-cpu.csv"),
                 new GitHubApplication(
@@ -110,7 +110,7 @@ public class FilterLibraries {
                 ),
                 "org.apache.coyote"
             ),
-            new StatisticsCase(
+            new StatisticsCaseOld(
                 "Takes 1.24.4",
                 new RemoteCSV("takes/method-list-cpu.csv"),
                 new GitHubApplication(
@@ -119,7 +119,7 @@ public class FilterLibraries {
                 ),
                 "org.takes"
             ),
-            new StatisticsCase(
+            new StatisticsCaseOld(
                 "Cactoos 0.54.0",
                 new RemoteCSV("takes/method-list-cpu.csv"),
                 new GitHubApplication(
@@ -128,7 +128,7 @@ public class FilterLibraries {
                 ),
                 "org.cactoos"
             ),
-            new StatisticsCase(
+            new StatisticsCaseOld(
                 "Opensymphony 2.4.2",
                 new RemoteCSV("struts/method-list-cpu.csv"),
                 new GitHubApplication(
@@ -137,7 +137,7 @@ public class FilterLibraries {
                 ),
                 "com.opensymphony"
             ),
-            new StatisticsCase(
+            new StatisticsCaseOld(
                 "Jetty 10.0.15",
                 new RemoteCSV("struts/method-list-cpu.csv"),
                 new GitHubApplication(
@@ -146,7 +146,7 @@ public class FilterLibraries {
                 ),
                 "org.eclipse.jetty"
             ),
-            new StatisticsCase(
+            new StatisticsCaseOld(
                 "Struts 6.1.2",
                 new RemoteCSV("struts/method-list-cpu.csv"),
                 new GitHubApplication(
@@ -155,7 +155,7 @@ public class FilterLibraries {
                 ),
                 "org.apache.struts2"
             ),
-            new StatisticsCase(
+            new StatisticsCaseOld(
                 "OGNL 3.3.4",
                 new RemoteCSV("struts/method-list-cpu.csv"),
                 new GitHubApplication(
@@ -164,7 +164,7 @@ public class FilterLibraries {
                 ),
                 "ognl"
             ),
-            new StatisticsCase(
+            new StatisticsCaseOld(
                 "Project Reactor 3.5.0",
                 new RemoteCSV("micronaut/method-list-cpu.csv"),
                 new GitHubApplication(
@@ -173,7 +173,7 @@ public class FilterLibraries {
                 ),
                 "reactor.core"
             ),
-            new StatisticsCase(
+            new StatisticsCaseOld(
                 "Netty 4.1.92.Final",
                 new RemoteCSV("micronaut/method-list-cpu.csv"),
                 new GitHubApplication(
@@ -182,7 +182,7 @@ public class FilterLibraries {
                 ),
                 "io.netty"
             ),
-            new StatisticsCase(
+            new StatisticsCaseOld(
                 "Micronaut 3.9.3",
                 new RemoteCSV("micronaut/method-list-cpu.csv"),
                 new GitHubApplication(

@@ -7,37 +7,40 @@ import java.util.Collection;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 
-final class Report {
+final class ReportOld {
 
-    private final Collection<StatisticsCase> cases;
+    private final Collection<StatisticsCaseOld> cases;
     private final String filename;
 
-    Report(final String filename, final StatisticsCase... all) {
+    ReportOld(final String filename, final StatisticsCaseOld... all) {
         this(Arrays.asList(all), filename);
     }
 
-    Report(final StatisticsCase... all) {
+    ReportOld(final StatisticsCaseOld... all) {
         this(Arrays.asList(all));
     }
 
-    Report(final Collection<StatisticsCase> all) {
+    ReportOld(final Collection<StatisticsCaseOld> all) {
         this(all, "report.csv");
     }
 
-    Report(final Collection<StatisticsCase> all, final String filename) {
+    ReportOld(final Collection<StatisticsCaseOld> all, final String filename) {
         this.cases = all;
         this.filename = filename;
     }
 
     void make() throws IOException {
         final FileWriter appendable = new FileWriter(this.filename);
-        final CSVPrinter printer = new CSVPrinter(
-            appendable,
-            CSVFormat.RFC4180.withHeader(Statistics.headers())
-        );
-        Statistics total = Statistics.empty();
-        for (final StatisticsCase statisticsCase : this.cases) {
+        CSVPrinter printer = null;
+        Statistics total = StatisticsOld.empty();
+        for (final StatisticsCaseOld statisticsCase : this.cases) {
             final Statistics statistics = statisticsCase.statistics();
+            if(printer == null){
+                printer = new CSVPrinter(
+                    appendable,
+                    CSVFormat.RFC4180.withHeader(statistics.headers())
+                );
+            }
             System.out.println(statistics);
             total = total.sum(statistics);
             final String title = statisticsCase.title();
@@ -49,6 +52,4 @@ final class Report {
         appendable.flush();
         appendable.close();
     }
-
-
 }
