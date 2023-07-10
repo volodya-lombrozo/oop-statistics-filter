@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-class StatisticsNew implements Statistics {
+class StatisticsWithModifiers implements Statistics {
 
     private final Collection<MethodStatistics> rows;
 
-    StatisticsNew() {
+    StatisticsWithModifiers() {
         this(new ArrayList<>());
     }
 
-    private StatisticsNew(final Collection<MethodStatistics> rows) {
+    private StatisticsWithModifiers(final Collection<MethodStatistics> rows) {
         this.rows = rows;
     }
 
     @Override
     public Statistics sum(final Statistics original) {
-        StatisticsNew other = (StatisticsNew) original;
+        StatisticsWithModifiers other = (StatisticsWithModifiers) original;
         final List<MethodStatistics> res = new ArrayList<>(this.rows);
         res.addAll(other.rows);
-        return new StatisticsNew(res);
+        return new StatisticsWithModifiers(res);
     }
 
     @Override
@@ -58,13 +58,13 @@ class StatisticsNew implements Statistics {
     }
 
 
-    StatisticsNew add(final StatisticsNew statistics) {
+    StatisticsWithModifiers add(final StatisticsWithModifiers statistics) {
         final List<MethodStatistics> res = new ArrayList<>(this.rows);
         res.addAll(statistics.rows);
-        return new StatisticsNew(res);
+        return new StatisticsWithModifiers(res);
     }
 
-    StatisticsNew add(final MethodStatistics statistics) {
+    StatisticsWithModifiers add(final MethodStatistics statistics) {
         this.rows.add(statistics);
         return this;
     }

@@ -5,4 +5,5 @@ interface StatisticsCase {
     String title();
 
     Statistics statistics();
+
 }

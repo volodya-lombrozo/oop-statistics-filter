@@ -3,8 +3,6 @@ package filter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -13,14 +11,14 @@ import java.util.stream.Stream;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 
-final class StatisticsCaseNew implements StatisticsCase {
+final class StatisticsCaseWithModifiers implements StatisticsCase {
 
     private final String title;
     private final CSV csv;
     private final Application project;
     private final String[] filters;
 
-    StatisticsCaseNew(
+    StatisticsCaseWithModifiers(
         final String title,
         final String csv,
         final String project,
@@ -29,7 +27,7 @@ final class StatisticsCaseNew implements StatisticsCase {
         this(title, new LocalCSV(csv), new LocalApplication(project), filters);
     }
 
-    StatisticsCaseNew(
+    StatisticsCaseWithModifiers(
         final String title,
         final CSV csv,
         final Application project,
@@ -46,10 +44,10 @@ final class StatisticsCaseNew implements StatisticsCase {
     }
 
     @Override
-    public StatisticsNew statistics() {
+    public StatisticsWithModifiers statistics() {
         final Set<ParsedCSVRow> csvRows = this.parseCSV();
         final Map<String, Modifiers> methods = this.methods();
-        StatisticsNew stats = new StatisticsNew();
+        StatisticsWithModifiers stats = new StatisticsWithModifiers();
         for (final ParsedCSVRow row : csvRows) {
             final long total = row.getCount();
             if (row.isConstructor()) {

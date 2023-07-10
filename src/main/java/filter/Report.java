@@ -32,17 +32,21 @@ final class Report {
     void make() throws IOException {
         final FileWriter appendable = new FileWriter(this.filename);
         CSVPrinter printer = null;
-        Statistics total = StatisticsOld.empty();
+        Statistics total = null;
         for (final StatisticsCase statisticsCase : this.cases) {
             final Statistics statistics = statisticsCase.statistics();
-            if(printer == null){
+            if (printer == null) {
                 printer = new CSVPrinter(
                     appendable,
                     CSVFormat.RFC4180.withHeader(statistics.headers())
                 );
             }
+            if(total == null) {
+                total = statistics;
+            } else {
+                total = total.sum(statistics);
+            }
             System.out.println(statistics);
-            total = total.sum(statistics);
             final String title = statisticsCase.title();
             printer.printRecord(statistics.csvRow(title));
         }
