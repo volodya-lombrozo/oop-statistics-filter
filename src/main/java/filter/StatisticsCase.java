@@ -1,10 +1,8 @@
 package filter;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -52,7 +50,7 @@ final class StatisticsCase {
             final double time = row.getOwnTime();
             if (row.isConstructor()) {
                 all.add(Statistics.constructor(total, time));
-            } else if (methods.get(row.shortMethodName()) == null) {
+            } else if (!methods.containsKey(row.shortMethodName())) {
                 final String alternative = row.shortMethodNameWithoutFQNForParameters();
                 if (methods.get(alternative) != null) {
                     if (methods.get(alternative).booleanValue()) {
