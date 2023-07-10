@@ -30,24 +30,24 @@ public class ReportNew {
     }
 
     void make() throws IOException {
-        final FileWriter appendable = new FileWriter(this.filename);
-        final CSVPrinter printer = new CSVPrinter(
-            appendable,
-            CSVFormat.RFC4180.withHeader(StatisticsNew.headers())
-        );
-        StatisticsNew total = new StatisticsNew();
-        for (final StatisticsCaseNew statisticsCase : this.cases) {
-            final StatisticsNew statistics = statisticsCase.statistics();
-            System.out.println(statistics);
-            total = total.add(statistics);
-            final String title = statisticsCase.title();
-            printer.printRecord(statistics.csvRow(title));
-        }
-        System.out.println("Total:");
-        System.out.println(total);
-        printer.printRecord(total.csvRow("Total"));
-        appendable.flush();
-        appendable.close();
+//        final FileWriter appendable = new FileWriter(this.filename);
+//        final CSVPrinter printer = new CSVPrinter(
+//            appendable,
+//            CSVFormat.RFC4180.withHeader(StatisticsNew.headers())
+//        );
+//        StatisticsNew total = new StatisticsNew();
+//        for (final StatisticsCaseNew statisticsCase : this.cases) {
+//            final StatisticsNew statistics = statisticsCase.statistics();
+//            System.out.println(statistics);
+//            total = total.add(statistics);
+//            final String title = statisticsCase.title();
+//            printer.printRecord(statistics.csvRow(title));
+//        }
+//        System.out.println("Total:");
+//        System.out.println(total);
+//        printer.printRecord(total.csvRow("Total"));
+//        appendable.flush();
+//        appendable.close();
     }
 
 }

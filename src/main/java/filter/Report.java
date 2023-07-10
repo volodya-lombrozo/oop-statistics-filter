@@ -7,24 +7,24 @@ import java.util.Collection;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 
-final class ReportOld {
+final class Report {
 
-    private final Collection<StatisticsCaseOld> cases;
+    private final Collection<StatisticsCase> cases;
     private final String filename;
 
-    ReportOld(final String filename, final StatisticsCaseOld... all) {
+    Report(final String filename, final StatisticsCase... all) {
         this(Arrays.asList(all), filename);
     }
 
-    ReportOld(final StatisticsCaseOld... all) {
+    Report(final StatisticsCase... all) {
         this(Arrays.asList(all));
     }
 
-    ReportOld(final Collection<StatisticsCaseOld> all) {
+    Report(final Collection<StatisticsCase> all) {
         this(all, "report.csv");
     }
 
-    ReportOld(final Collection<StatisticsCaseOld> all, final String filename) {
+    Report(final Collection<StatisticsCase> all, final String filename) {
         this.cases = all;
         this.filename = filename;
     }
@@ -33,7 +33,7 @@ final class ReportOld {
         final FileWriter appendable = new FileWriter(this.filename);
         CSVPrinter printer = null;
         Statistics total = StatisticsOld.empty();
-        for (final StatisticsCaseOld statisticsCase : this.cases) {
+        for (final StatisticsCase statisticsCase : this.cases) {
             final Statistics statistics = statisticsCase.statistics();
             if(printer == null){
                 printer = new CSVPrinter(

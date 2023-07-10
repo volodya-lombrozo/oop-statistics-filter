@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 
-final class StatisticsCaseNew {
+final class StatisticsCaseNew implements StatisticsCase {
 
     private final String title;
     private final CSV csv;
@@ -41,7 +41,12 @@ final class StatisticsCaseNew {
         this.filters = filters;
     }
 
-    StatisticsNew statistics() {
+    public String title() {
+        return this.title;
+    }
+
+    @Override
+    public StatisticsNew statistics() {
         final Set<ParsedCSVRow> csvRows = this.parseCSV();
         final Map<String, Modifiers> methods = this.methods();
         StatisticsNew stats = new StatisticsNew();
@@ -114,9 +119,5 @@ final class StatisticsCaseNew {
         } catch (final IOException exception) {
             throw new IllegalStateException(exception);
         }
-    }
-
-    String title() {
-        return this.title;
     }
 }

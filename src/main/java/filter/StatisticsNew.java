@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-class StatisticsNew {
+class StatisticsNew implements Statistics {
 
     private final Collection<MethodStatistics> rows;
 
@@ -16,7 +16,16 @@ class StatisticsNew {
         this.rows = rows;
     }
 
-    static String[] headers() {
+    @Override
+    public Statistics sum(final Statistics original) {
+        StatisticsNew other = (StatisticsNew) original;
+        final List<MethodStatistics> res = new ArrayList<>(this.rows);
+        res.addAll(other.rows);
+        return new StatisticsNew(res);
+    }
+
+    @Override
+    public String[] headers() {
         return new String[]{
             "Application",
             "Total",
@@ -32,7 +41,7 @@ class StatisticsNew {
         };
     }
 
-    Object[] csvRow(final String title) {
+    public Object[] csvRow(final String title) {
         return new Object[]{
             title,
             this.total(),

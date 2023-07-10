@@ -10,7 +10,7 @@ import java.io.IOException;
 public class FilterLibraries {
 
     public static void main(final String[] args) throws IOException {
-        new ReportOld(
+        new Report(
             "libraries.csv",
             new StatisticsCaseOld(
                 "Apache Derby 10.16.1.1",
