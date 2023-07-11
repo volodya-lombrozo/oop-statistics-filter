@@ -25,7 +25,7 @@ public class StatisticsCaseWithoutSources implements StatisticsCase {
     }
 
     @Override
-    public Statistics statistics() {
+    public StatisticsWithoutSources statistics() {
         final Set<ParsedCSVRow> rows = new CSVRows(this.csv, StatisticsCaseWithoutSources.EMPTY,
             this.excluded
         ).toSet();
