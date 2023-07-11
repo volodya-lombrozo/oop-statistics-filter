@@ -2,6 +2,10 @@ package filter;
 
 import java.io.IOException;
 
+/**
+ * Filter libraries and classify them by modifiers.
+ * The new approach comparing with {@link filter.FilterLibraries}.
+ */
 public class FilterLibrariesNew {
 
     public static void main(final String[] args) throws IOException {

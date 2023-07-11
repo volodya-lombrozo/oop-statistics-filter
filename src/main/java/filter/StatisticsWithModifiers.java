@@ -57,13 +57,6 @@ class StatisticsWithModifiers implements Statistics {
         };
     }
 
-
-    StatisticsWithModifiers add(final StatisticsWithModifiers statistics) {
-        final List<MethodStatistics> res = new ArrayList<>(this.rows);
-        res.addAll(statistics.rows);
-        return new StatisticsWithModifiers(res);
-    }
-
     StatisticsWithModifiers add(final MethodStatistics statistics) {
         this.rows.add(statistics);
         return this;

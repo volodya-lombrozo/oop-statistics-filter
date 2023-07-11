@@ -6,6 +6,7 @@ import java.io.IOException;
  * CSV profiling filter.
  * Application that generates a report by a CSV data which was received during profiling different
  * verification applications.
+ * Just checks that profiling tool works as expected.
  */
 public class FilterVerificationApplications {
     public static void main(final String[] args) throws IOException {
