@@ -10,8 +10,6 @@ import java.util.Set;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
 
 final class StatisticsCaseOld implements StatisticsCase {
 
@@ -48,7 +46,7 @@ final class StatisticsCaseOld implements StatisticsCase {
 
     @Override
     public Statistics statistics() {
-        final Set<ParsedCSVRow> csvRows = this.parseCSV();
+        final Set<ParsedCSVRow> csvRows = new CSVRows(this.csv, this.filters).toSet();
         final Map<String, Boolean> methods = this.methods();
         List<StatisticsOld> all = new ArrayList<>(csvRows.size());
         for (final ParsedCSVRow row : csvRows) {
@@ -81,24 +79,6 @@ final class StatisticsCaseOld implements StatisticsCase {
             StatisticsOld.empty(),
             (reducer, next) -> (StatisticsOld) reducer.sum(next)
         );
-    }
-
-    private Set<ParsedCSVRow> parseCSV() {
-        try {
-            final CSVParser parse = CSVFormat.RFC4180.withHeader(
-                "Method",
-                "Time (ms)",
-                "Avg. Time (ms)",
-                "Own Time (ms)",
-                "Count"
-            ).parse(this.csv.reader());
-            return parse.getRecords().stream().map(ParsedCSVRow::new)
-                .filter(ParsedCSVRow::isNotHeader)
-                .filter(row -> row.withinPackage(this.filters[0]))
-                .collect(Collectors.toSet());
-        } catch (final IOException ex) {
-            throw new IllegalStateException(ex);
-        }
     }
 
     /**
