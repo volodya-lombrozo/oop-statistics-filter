@@ -8,7 +8,7 @@ class MethodStatistics {
 
     MethodStatistics(
         final long total,
-        final Modifier modifier
+        final Modifier... modifier
     ) {
         this(total, new Modifiers(modifier));
     }

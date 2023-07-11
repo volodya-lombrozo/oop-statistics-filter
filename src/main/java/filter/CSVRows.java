@@ -35,12 +35,22 @@ final class CSVRows {
             ).parse(this.csv.reader());
             return parse.getRecords().stream().map(ParsedCSVRow::new)
                 .filter(ParsedCSVRow::isNotHeader)
-                .filter(row -> row.withinPackage(this.filters[0]))
+                .filter(this::isFiltered)
                 .filter(this::isNotExcluded)
                 .collect(Collectors.toSet());
         } catch (final IOException ex) {
             throw new IllegalStateException(ex);
         }
+    }
+
+    private boolean isFiltered(final ParsedCSVRow row) {
+        boolean result;
+        if (this.filters.length == 0) {
+            result = true;
+        } else {
+            result = row.withinPackage(this.filters[0]);
+        }
+        return result;
     }
 
     private boolean isNotExcluded(final ParsedCSVRow row) {

@@ -1,18 +1,67 @@
 package filter;
 
-public class StatisticsWithoutSources implements Statistics{
+import java.util.ArrayList;
+import java.util.Collection;
+
+public class StatisticsWithoutSources implements Statistics {
+
+    private final Collection<MethodStatistics> statistics;
+
+    StatisticsWithoutSources() {
+        this(new ArrayList<>(0));
+    }
+
+    private StatisticsWithoutSources(final Collection<MethodStatistics> statistics) {
+        this.statistics = statistics;
+    }
+
     @Override
     public Statistics sum(final Statistics statistics) {
-        return null;
+        StatisticsWithoutSources other = (StatisticsWithoutSources) statistics;
+        final Collection<MethodStatistics> res = new ArrayList<>(this.statistics);
+        res.addAll(other.statistics);
+        return new StatisticsWithoutSources(res);
     }
 
     @Override
     public Object[] csvRow(final String title) {
-        return new Object[0];
+        return new Object[]{
+            title,
+            this.total(),
+            this.methods(),
+            this.constructors(),
+        };
     }
 
     @Override
     public String[] headers() {
-        return new String[0];
+        return new String[]{
+            "Application",
+            "Total",
+            "Methods",
+            "Constructors",
+        };
+    }
+
+    void add(final MethodStatistics methodStatistics) {
+        this.statistics.add(methodStatistics);
+    }
+
+    private long total() {
+        return this.statistics.stream().mapToLong(MethodStatistics::total).sum();
+    }
+
+    private long methods() {
+        return this.statistics.stream()
+            .filter(method -> !method.isConstructor())
+            .mapToLong(MethodStatistics::total)
+            .sum();
+    }
+
+    private long constructors() {
+        return this.statistics.stream()
+            .filter(MethodStatistics::isConstructor)
+            .mapToLong(MethodStatistics::total)
+            .sum();
     }
 }
