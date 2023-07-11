@@ -64,4 +64,14 @@ public class StatisticsWithoutSources implements Statistics {
             .mapToLong(MethodStatistics::total)
             .sum();
     }
+
+    @Override
+    public String toString() {
+        return String.format(
+            "total: %d, methods: %d, constructors: %d",
+            this.total(),
+            this.methods(),
+            this.constructors()
+        );
+    }
 }

@@ -40,4 +40,12 @@ public class StatisticsComposite implements Statistics {
             Arrays.stream(this.rest.headers())
         ).toArray(String[]::new);
     }
+
+    @Override
+    public String toString() {
+        return "StatisticsComposite{" +
+            "application=" + application +
+            ", rest=" + rest +
+            '}';
+    }
 }

@@ -1,5 +1,7 @@
 package filter;
 
+import java.util.Arrays;
+
 public class StatisticCaseComposite implements StatisticsCase {
 
     private final String title;
@@ -7,11 +9,11 @@ public class StatisticCaseComposite implements StatisticsCase {
     private final Application project;
     private final String[] filters;
 
-    public StatisticCaseComposite(
+    StatisticCaseComposite(
         final String title,
         final CSV csv,
         final Application project,
-        final String[] filters
+        final String... filters
     ) {
         this.title = title;
         this.csv = csv;
@@ -30,5 +32,15 @@ public class StatisticCaseComposite implements StatisticsCase {
             new StatisticsCaseWithModifiers(this.title, this.csv, this.project, this.filters).statistics(),
             new StatisticsCaseWithoutSources(this.title, this.csv, this.filters).statistics()
         );
+    }
+
+    @Override
+    public String toString() {
+        return "StatisticCaseComposite{" +
+            "title='" + title + '\'' +
+            ", csv=" + csv +
+            ", project=" + project +
+            ", filters=" + Arrays.toString(filters) +
+            '}';
     }
 }

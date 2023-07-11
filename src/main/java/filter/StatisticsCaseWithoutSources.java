@@ -1,5 +1,6 @@
 package filter;
 
+import java.util.Arrays;
 import java.util.Set;
 
 public class StatisticsCaseWithoutSources implements StatisticsCase {
@@ -38,5 +39,14 @@ public class StatisticsCaseWithoutSources implements StatisticsCase {
             }
         }
         return stat;
+    }
+
+    @Override
+    public String toString() {
+        return "StatisticsCaseWithoutSources{" +
+            "title='" + title + '\'' +
+            ", csv=" + csv +
+            ", excluded=" + Arrays.toString(excluded) +
+            '}';
     }
 }
