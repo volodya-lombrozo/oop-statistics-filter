@@ -8,7 +8,7 @@ public class StatisticsComposite implements Statistics {
     private final StatisticsWithModifiers application;
     private final StatisticsWithoutSources rest;
 
-    public StatisticsComposite(
+    StatisticsComposite(
         final StatisticsWithModifiers application,
         final StatisticsWithoutSources rest
     ) {
@@ -43,9 +43,9 @@ public class StatisticsComposite implements Statistics {
 
     @Override
     public String toString() {
-        return "StatisticsComposite{" +
-            "application=" + application +
-            ", rest=" + rest +
-            '}';
+        return String.format("StatisticsComposite{application=%s, rest=%s}",
+            this.application,
+            this.rest
+        );
     }
 }

@@ -12,7 +12,7 @@ public class FilterVerificationApplications {
     public static void main(final String[] args) throws IOException {
         new Report(
             "verification.csv",
-            new StatisticsCaseOld(
+            new StatisticsCaseWithModifiers(
                 "Verification Half",
                 new RemoteCSV("verification-half/method-list-cpu.csv"),
                 new GitHubApplication(
@@ -21,7 +21,7 @@ public class FilterVerificationApplications {
                 ),
                 "verification.half"
             ),
-            new StatisticsCaseOld(
+            new StatisticsCaseWithModifiers(
                 "Verification Instance",
                 new RemoteCSV("verification-instance/method-list-cpu.csv"),
                 new GitHubApplication(
@@ -30,7 +30,7 @@ public class FilterVerificationApplications {
                 ),
                 "verification.instances"
             ),
-            new StatisticsCaseOld(
+            new StatisticsCaseWithModifiers(
                 "Verification Statics",
                 new RemoteCSV("verification-static/method-list-cpu.csv"),
                 new GitHubApplication(

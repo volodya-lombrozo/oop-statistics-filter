@@ -43,10 +43,10 @@ public class StatisticsCaseWithoutSources implements StatisticsCase {
 
     @Override
     public String toString() {
-        return "StatisticsCaseWithoutSources{" +
-            "title='" + title + '\'' +
-            ", csv=" + csv +
-            ", excluded=" + Arrays.toString(excluded) +
-            '}';
+        return String.format("StatisticsCaseWithoutSources{title='%s', csv=%s, excluded=%s}",
+            this.title,
+            this.csv,
+            Arrays.toString(this.excluded)
+        );
     }
 }

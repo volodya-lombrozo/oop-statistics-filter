@@ -32,7 +32,7 @@ class StatisticsWithModifiers implements Statistics {
             "Instance Private Methods",
             "Instance Package-Private Methods",
             "Instance Public Methods",
-            "Instance Overridden Methods",
+            "Instance Public Overridden Methods",
             "Static Private Methods",
             "Static Package-Private Methods",
             "Static Public Methods",

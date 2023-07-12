@@ -93,11 +93,12 @@ final class StatisticsCaseWithModifiers implements StatisticsCase {
 
     @Override
     public String toString() {
-        return "StatisticsCaseWithModifiers{" +
-            "title='" + title + '\'' +
-            ", csv=" + csv +
-            ", project=" + project +
-            ", filters=" + Arrays.toString(filters) +
-            '}';
+        return String.format(
+            "StatisticsCaseWithModifiers{title='%s', csv=%s, project=%s, filters=%s}",
+            this.title,
+            this.csv,
+            this.project,
+            Arrays.toString(this.filters)
+        );
     }
 }
