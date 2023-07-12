@@ -1,5 +1,5 @@
-Application,Total,Instance Private Methods,Instance Package-Private Methods,Instance Public Methods,Instance Public Overridden Methods,Static Private Methods,Static Package-Private Methods,Static Public Methods,Not Found Methods,Constructors
-Verification Half,15907,0,0,0,5302,5302,0,1,0,5302
-Verification Instance,21545,0,0,0,10772,0,0,1,0,10772
-Verification Statics,10631,0,0,0,0,10630,0,1,0,0
-Total,48083,0,0,0,16074,15932,0,3,0,16074
+Application,Total,Instance Private Methods,Instance Package-Private Methods,Instance Public Methods,Instance Public Overridden Methods,Static Private Methods,Static Package-Private Methods,Static Public Methods,Not Found Methods,Constructors,"Instance Private Methods, %","Instance Package-Private Methods, %","Instance Public Methods, %","Instance Public Overridden Methods, %","Static Private Methods, %","Static Package-Private Methods, %","Static Public Methods, %","Not Found Methods, %","Constructors, %"
+Verification Half,15907,0,0,0,5302,5302,0,1,0,5302,0.00,0.00,0.00,33.33,33.33,0.00,0.01,0.00,33.33
+Verification Instance,21545,0,0,0,10772,0,0,1,0,10772,0.00,0.00,0.00,50.00,0.00,0.00,0.00,0.00,50.00
+Verification Statics,10631,0,0,0,0,10630,0,1,0,0,0.00,0.00,0.00,0.00,99.99,0.00,0.01,0.00,0.00
+Total,48083,0,0,0,16074,15932,0,3,0,16074,0.00,0.00,0.00,33.43,33.13,0.00,0.01,0.00,33.43

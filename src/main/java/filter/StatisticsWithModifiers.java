@@ -38,6 +38,15 @@ class StatisticsWithModifiers implements Statistics {
             "Static Public Methods",
             "Not Found Methods",
             "Constructors",
+            "Instance Private Methods, %",
+            "Instance Package-Private Methods, %",
+            "Instance Public Methods, %",
+            "Instance Public Overridden Methods, %",
+            "Static Private Methods, %",
+            "Static Package-Private Methods, %",
+            "Static Public Methods, %",
+            "Not Found Methods, %",
+            "Constructors, %",
         };
     }
 
@@ -54,6 +63,15 @@ class StatisticsWithModifiers implements Statistics {
             this.staticPublic(),
             this.notFound(),
             this.constructors(),
+            this.instancePrivatePercent(),
+            this.instancePackagePrivatePercent(),
+            this.instancePublicPercent(),
+            this.instancePublicOverriddenPercent(),
+            this.staticPrivatePercent(),
+            this.staticPackagePrivatePercent(),
+            this.staticPublicPercent(),
+            this.notFoundPercent(),
+            this.constructorsPercent(),
         };
     }
 
@@ -130,7 +148,7 @@ class StatisticsWithModifiers implements Statistics {
     @Override
     public String toString() {
         return String.format(
-            "total: %d, instance private: %d, instance package-private: %d, instance public: %d, instance public overridden: %d, static private: %d, static package-private: %d, static public: %d, not found: %d, constructors: %d",
+            "Total: %d, Instance Private Methods: %d, Instance Package-Private Methods: %d, Instance Public Methods: %d, Instance Public Overridden Methods: %d, Static Private Methods: %d, Static Package-Private Methods: %d, Static Public Methods: %d, Not Found Methods: %d, Constructors: %d, Instance Private Methods, %%: %s, Instance Package-Private Methods, %%: %s, Instance Public Methods, %%: %s, Instance Public Overridden Methods, %%: %s, Static Private Methods, %%: %s, Static Package-Private Methods, %%: %s, Static Public Methods, %%: %s, Not Found Methods, %%: %s, Constructors, %%: %s",
             this.total(),
             this.instancePrivate(),
             this.instancePackagePrivate(),
@@ -140,7 +158,56 @@ class StatisticsWithModifiers implements Statistics {
             this.staticPackagePrivate(),
             this.staticPublic(),
             this.notFound(),
-            this.constructors()
+            this.constructors(),
+            this.instancePrivatePercent(),
+            this.instancePackagePrivatePercent(),
+            this.instancePublicPercent(),
+            this.instancePublicOverriddenPercent(),
+            this.staticPrivatePercent(),
+            this.staticPackagePrivatePercent(),
+            this.staticPublicPercent(),
+            this.notFoundPercent(),
+            this.constructorsPercent()
         );
+    }
+
+    private String constructorsPercent() {
+        return StatisticsWithModifiers.percent( this.constructors() / (double) this.total());
+    }
+
+    private String  notFoundPercent() {
+        return StatisticsWithModifiers.percent( this.notFound() / (double) this.total());
+    }
+
+    private String staticPublicPercent() {
+        return StatisticsWithModifiers.percent( this.staticPublic() / (double) this.total());
+    }
+
+    private String staticPackagePrivatePercent() {
+        return StatisticsWithModifiers.percent( this.staticPackagePrivate() / (double) this.total());
+    }
+
+    private String staticPrivatePercent() {
+        return StatisticsWithModifiers.percent(this.staticPrivate() / (double) this.total());
+    }
+
+    private String instancePublicOverriddenPercent() {
+        return StatisticsWithModifiers.percent(this.instancePublicOverridden() / (double) this.total());
+    }
+
+    private String instancePublicPercent() {
+        return StatisticsWithModifiers.percent(this.instancePublic() / (double) this.total());
+    }
+
+    private String  instancePackagePrivatePercent() {
+        return StatisticsWithModifiers.percent( this.instancePackagePrivate() / (double) this.total());
+    }
+
+    private String instancePrivatePercent() {
+        return StatisticsWithModifiers.percent(this.instancePrivate() / (double) this.total());
+    }
+
+    private static String percent(final double value) {
+        return String.format("%.2f", 100 * value);
     }
 }
