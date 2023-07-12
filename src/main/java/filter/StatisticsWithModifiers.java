@@ -208,6 +208,6 @@ class StatisticsWithModifiers implements Statistics {
     }
 
     private static String percent(final double value) {
-        return String.format("%.2f", 100 * value);
+        return String.format("%.4f", 100 * value);
     }
 }
