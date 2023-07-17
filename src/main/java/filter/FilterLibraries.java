@@ -13,7 +13,7 @@ import java.io.IOException;
 public class FilterLibraries {
 
     public static void main(final String[] args) throws IOException {
-        new ReportNew(
+        new Report(
             "libraries-new.csv",
             new StatisticsCaseWithModifiers(
                 "Apache Derby 10.16.1.1",

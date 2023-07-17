@@ -16,7 +16,9 @@ import java.util.Set;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lombok.ToString;
 
+@ToString
 public final class StatisticsCaseWithModifiers implements StatisticsCase {
 
     private final String title;
@@ -36,12 +38,15 @@ public final class StatisticsCaseWithModifiers implements StatisticsCase {
         this.filters = filters;
     }
 
-    public String title() {
-        return this.title;
+    @Override
+    public List<CSVCell> cells() {
+        return Stream.concat(
+            Stream.of(new CSVCell("Application", this.title)),
+            this.statistics().cells().stream()
+        ).collect(Collectors.toList());
     }
 
-    @Override
-    public StatisticsWithModifiers statistics() {
+    StatisticsWithModifiers statistics() {
         final Set<ParsedCSVRow> csvRows = new CSVRows(this.csv, this.filters).toSet();
         final Map<String, Modifiers> methods = this.methods();
         StatisticsWithModifiers stats = new StatisticsWithModifiers();
@@ -65,14 +70,6 @@ public final class StatisticsCaseWithModifiers implements StatisticsCase {
             }
         }
         return stats;
-    }
-
-    @Override
-    public List<CSVCell> cells() {
-        return Stream.concat(
-            Stream.of(new CSVCell("Application", this.title)),
-            this.statistics().cells().stream()
-        ).collect(Collectors.toList());
     }
 
     /**
@@ -104,16 +101,5 @@ public final class StatisticsCaseWithModifiers implements StatisticsCase {
         } catch (final IOException exception) {
             throw new IllegalStateException(exception);
         }
-    }
-
-    @Override
-    public String toString() {
-        return String.format(
-            "StatisticsCaseWithModifiers{title='%s', csv=%s, project=%s, filters=%s}",
-            this.title,
-            this.csv,
-            this.project,
-            Arrays.toString(this.filters)
-        );
     }
 }

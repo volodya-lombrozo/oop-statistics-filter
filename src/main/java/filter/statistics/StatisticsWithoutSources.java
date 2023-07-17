@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import lombok.ToString;
 
+@ToString
 public class StatisticsWithoutSources implements Statistics {
 
     private final Collection<MethodStatistics> statistics;
@@ -17,34 +19,6 @@ public class StatisticsWithoutSources implements Statistics {
 
     private StatisticsWithoutSources(final Collection<MethodStatistics> statistics) {
         this.statistics = statistics;
-    }
-
-    @Override
-    public Statistics add(final Statistics statistics) {
-        StatisticsWithoutSources other = (StatisticsWithoutSources) statistics;
-        final Collection<MethodStatistics> res = new ArrayList<>(this.statistics);
-        res.addAll(other.statistics);
-        return new StatisticsWithoutSources(res);
-    }
-
-    @Override
-    public Object[] csvRow(final String title) {
-        return new Object[]{
-            title,
-            this.total(),
-            this.methods(),
-            this.constructors(),
-        };
-    }
-
-    @Override
-    public String[] headers() {
-        return new String[]{
-            "Application",
-            "Total",
-            "Methods",
-            "Constructors",
-        };
     }
 
     @Override
@@ -76,15 +50,5 @@ public class StatisticsWithoutSources implements Statistics {
             .filter(MethodStatistics::isConstructor)
             .mapToLong(MethodStatistics::total)
             .sum();
-    }
-
-    @Override
-    public String toString() {
-        return String.format(
-            "total: %d, methods: %d, constructors: %d",
-            this.total(),
-            this.methods(),
-            this.constructors()
-        );
     }
 }

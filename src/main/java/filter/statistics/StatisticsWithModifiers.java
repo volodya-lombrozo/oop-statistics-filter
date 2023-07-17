@@ -20,40 +20,6 @@ public class StatisticsWithModifiers implements Statistics {
     }
 
     @Override
-    public Statistics add(final Statistics original) {
-        StatisticsWithModifiers other = (StatisticsWithModifiers) original;
-        final List<MethodStatistics> res = new ArrayList<>(this.rows);
-        res.addAll(other.rows);
-        return new StatisticsWithModifiers(res);
-    }
-
-    @Override
-    public String[] headers() {
-        return new String[]{
-            "Application",
-            "Total",
-            "Instance Private Methods",
-            "Instance Package-Private Methods",
-            "Instance Public Methods",
-            "Instance Public Overridden Methods",
-            "Static Private Methods",
-            "Static Package-Private Methods",
-            "Static Public Methods",
-            "Not Found Methods",
-            "Constructors",
-            "Instance Private Methods, %",
-            "Instance Package-Private Methods, %",
-            "Instance Public Methods, %",
-            "Instance Public Overridden Methods, %",
-            "Static Private Methods, %",
-            "Static Package-Private Methods, %",
-            "Static Public Methods, %",
-            "Not Found Methods, %",
-            "Constructors, %",
-        };
-    }
-
-    @Override
     public List<CSVCell> cells() {
         return Arrays.asList(
             new CSVCell("Total", this.total()),

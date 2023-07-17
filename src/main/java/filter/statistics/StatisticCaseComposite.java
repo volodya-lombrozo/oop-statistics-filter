@@ -12,7 +12,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lombok.ToString;
 
+@ToString
 public class StatisticCaseComposite implements StatisticsCase {
 
     private final String title;
@@ -33,12 +35,14 @@ public class StatisticCaseComposite implements StatisticsCase {
     }
 
     @Override
-    public String title() {
-        return this.title;
+    public List<CSVCell> cells() {
+        return Stream.concat(
+            Stream.of(new CSVCell("Application", this.title)),
+            this.statistics().cells().stream()
+        ).collect(Collectors.toList());
     }
 
-    @Override
-    public Statistics statistics() {
+    private Statistics statistics() {
         return new StatisticsComposite(
             new StatisticsCaseWithModifiers(
                 this.title,
@@ -51,21 +55,6 @@ public class StatisticCaseComposite implements StatisticsCase {
                 this.csv,
                 this.filters
             ).statistics()
-        );
-    }
-
-    @Override
-    public List<CSVCell> cells() {
-        return Stream.concat(
-            Stream.of(new CSVCell("Application", this.title)),
-            this.statistics().cells().stream()
-        ).collect(Collectors.toList());
-    }
-
-    @Override
-    public String toString() {
-        return String.format("StatisticCaseComposite{title='%s', csv=%s, project=%s, filters=%s}",
-            this.title, this.csv, this.project, Arrays.toString(this.filters)
         );
     }
 }

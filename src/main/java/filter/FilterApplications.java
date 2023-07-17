@@ -9,7 +9,7 @@ import java.io.IOException;
 public class FilterApplications {
 
     public static void main(String[] args) throws IOException {
-        new ReportNew(
+        new Report(
             "entire.csv",
             new StatisticCaseComposite(
                 "Apache Derby 10.16.1.1",

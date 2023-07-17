@@ -5,12 +5,13 @@ import filter.StatisticsCase;
 import filter.csv.CSVCell;
 import filter.csv.CSVRows;
 import filter.csv.ParsedCSVRow;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lombok.ToString;
 
+@ToString
 public class StatisticsCaseWithoutSources implements StatisticsCase {
 
     private static final String[] EMPTY = {};
@@ -29,12 +30,14 @@ public class StatisticsCaseWithoutSources implements StatisticsCase {
     }
 
     @Override
-    public String title() {
-        return this.title;
+    public List<CSVCell> cells() {
+        return Stream.concat(
+            Stream.of(new CSVCell("Application", this.title)),
+            this.statistics().cells().stream()
+        ).collect(Collectors.toList());
     }
 
-    @Override
-    public StatisticsWithoutSources statistics() {
+    StatisticsWithoutSources statistics() {
         final Set<ParsedCSVRow> rows = new CSVRows(this.csv, StatisticsCaseWithoutSources.EMPTY,
             this.excluded
         ).toSet();
@@ -47,22 +50,5 @@ public class StatisticsCaseWithoutSources implements StatisticsCase {
             }
         }
         return stat;
-    }
-
-    @Override
-    public List<CSVCell> cells() {
-        return Stream.concat(
-            Stream.of(new CSVCell("Application", this.title)),
-            this.statistics().cells().stream()
-        ).collect(Collectors.toList());
-    }
-
-    @Override
-    public String toString() {
-        return String.format("StatisticsCaseWithoutSources{title='%s', csv=%s, excluded=%s}",
-            this.title,
-            this.csv,
-            Arrays.toString(this.excluded)
-        );
     }
 }

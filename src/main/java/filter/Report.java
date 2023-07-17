@@ -1,16 +1,17 @@
 package filter;
 
-import java.io.FileWriter;
+import filter.csv.CSVCell;
+import filter.csv.CSVOutput;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVPrinter;
+import java.util.List;
+import java.util.stream.Collectors;
 
-final class Report {
+class Report {
 
     private final Collection<StatisticsCase> cases;
-    private final String filename;
+    private final CSVOutput output;
 
     Report(final String filename, final StatisticsCase... all) {
         this(Arrays.asList(all), filename);
@@ -18,34 +19,31 @@ final class Report {
 
     private Report(final Collection<StatisticsCase> all, final String filename) {
         this.cases = all;
-        this.filename = filename;
+        this.output = new CSVOutput(filename);
     }
 
     void make() throws IOException {
-        final FileWriter appendable = new FileWriter(this.filename);
-        CSVPrinter printer = null;
-        Statistics total = null;
-        for (final StatisticsCase statisticsCase : this.cases) {
-            final Statistics statistics = statisticsCase.statistics();
-            if (printer == null) {
-                printer = new CSVPrinter(
-                    appendable,
-                    CSVFormat.RFC4180.withHeader(statistics.headers())
-                );
-            }
-            if(total == null) {
-                total = statistics;
-            } else {
-                total = total.add(statistics);
-            }
-            System.out.println(statistics);
-            final String title = statisticsCase.title();
-            printer.printRecord(statistics.csvRow(title));
-        }
-        System.out.println("Total:");
-        System.out.println(total);
-        printer.printRecord(total.csvRow("Total"));
-        appendable.flush();
-        appendable.close();
+        final List<List<CSVCell>> table = this.cases.stream()
+            .map(StatisticsCase::cells)
+            .collect(Collectors.toList());
+        this.output.print(Report.headers(table));
+        table.stream().map(Report::values).forEach(this.output::print);
+        this.output.close();
+    }
+
+    private static List<String> headers(List<? extends List<CSVCell>> table) {
+        return table.stream()
+            .findFirst()
+            .orElseThrow(
+                () -> new IllegalStateException(String.format("No data found in table %s", table))
+            ).stream()
+            .map(CSVCell::header)
+            .collect(Collectors.toList());
+    }
+
+    private static List<Object> values(List<? extends CSVCell> cells) {
+        return cells.stream()
+            .map(CSVCell::value)
+            .collect(Collectors.toList());
     }
 }
