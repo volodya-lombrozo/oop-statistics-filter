@@ -9,23 +9,23 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
-public class RemoteCSV implements CSV {
+public class CSVRemote implements CSV {
 
     private static final String DEFAULT_PATH = "https://raw.githubusercontent.com/volodya-lombrozo/cost-of-oop/main/src/main/profiling/";
 
     private final URL url;
 
-    public RemoteCSV(final String subpath) {
-        this(RemoteCSV.http(subpath));
+    public CSVRemote(final String subpath) {
+        this(CSVRemote.http(subpath));
     }
 
-    private RemoteCSV(final URL url) {
+    private CSVRemote(final URL url) {
         this.url = url;
     }
 
     private static URL http(final String subpath) {
         try {
-            return new URL(String.format("%s%s", RemoteCSV.DEFAULT_PATH, subpath));
+            return new URL(String.format("%s%s", CSVRemote.DEFAULT_PATH, subpath));
         } catch (final MalformedURLException ex) {
             throw new IllegalStateException(
                 String.format("Malformed URL %s", subpath),

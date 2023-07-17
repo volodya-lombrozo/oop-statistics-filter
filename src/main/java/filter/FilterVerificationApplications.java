@@ -1,7 +1,7 @@
 package filter;
 
-import filter.app.GitHubApplication;
-import filter.csv.RemoteCSV;
+import filter.app.AppGitHub;
+import filter.csv.CSVRemote;
 import filter.statistics.StatisticsCaseWithModifiers;
 import java.io.IOException;
 
@@ -17,8 +17,8 @@ public class FilterVerificationApplications {
             "verification.csv",
             new StatisticsCaseWithModifiers(
                 "Verification Half",
-                new RemoteCSV("verification-half/method-list-cpu.csv"),
-                new GitHubApplication(
+                new CSVRemote("verification-half/method-list-cpu.csv"),
+                new AppGitHub(
                     "https://github.com/volodya-lombrozo/cost-of-oop.git",
                     "main"
                 ),
@@ -26,8 +26,8 @@ public class FilterVerificationApplications {
             ),
             new StatisticsCaseWithModifiers(
                 "Verification Instance",
-                new RemoteCSV("verification-instance/method-list-cpu.csv"),
-                new GitHubApplication(
+                new CSVRemote("verification-instance/method-list-cpu.csv"),
+                new AppGitHub(
                     "https://github.com/volodya-lombrozo/cost-of-oop.git",
                     "main"
                 ),
@@ -35,8 +35,8 @@ public class FilterVerificationApplications {
             ),
             new StatisticsCaseWithModifiers(
                 "Verification Statics",
-                new RemoteCSV("verification-static/method-list-cpu.csv"),
-                new GitHubApplication(
+                new CSVRemote("verification-static/method-list-cpu.csv"),
+                new AppGitHub(
                     "https://github.com/volodya-lombrozo/cost-of-oop.git",
                     "main"
                 ),

@@ -13,14 +13,14 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class RemoteZipApplication implements Application {
+public class AppRemoteZip implements Application {
 
     private static final int TIMEOUT = 30;
     private static final String DEFAULT_FILENAME = "sources.zip";
 
     private final String url;
 
-    public RemoteZipApplication(final String url) {
+    public AppRemoteZip(final String url) {
         this.url = url;
     }
 
@@ -42,7 +42,7 @@ public class RemoteZipApplication implements Application {
                 );
             Runtime runtime = Runtime.getRuntime();
             final Process download = runtime.exec(this.download(destination));
-            download.waitFor(RemoteZipApplication.TIMEOUT, TimeUnit.SECONDS);
+            download.waitFor(AppRemoteZip.TIMEOUT, TimeUnit.SECONDS);
             final int exitValue = download.exitValue();
             if (exitValue != 0 && exitValue != 1) {
                 throw new IllegalStateException(
@@ -57,7 +57,7 @@ public class RemoteZipApplication implements Application {
                 );
             }
             final Process unzip = runtime.exec(this.unzip(destination));
-            if (!unzip.waitFor(RemoteZipApplication.TIMEOUT, TimeUnit.SECONDS)) {
+            if (!unzip.waitFor(AppRemoteZip.TIMEOUT, TimeUnit.SECONDS)) {
                 throw new IllegalStateException(
                     String.format(
                         "Timeout during unzipping, command is '%s', log is '%s'",
@@ -116,7 +116,7 @@ public class RemoteZipApplication implements Application {
         return new String[]{
             "wget",
             "-O",
-            RemoteZipApplication.path(destination),
+            AppRemoteZip.path(destination),
             this.url
         };
     }
@@ -125,7 +125,7 @@ public class RemoteZipApplication implements Application {
         return new String[]{
             "unzip",
             "-q",
-            RemoteZipApplication.path(destination),
+            AppRemoteZip.path(destination),
             "-d",
             destination.toAbsolutePath().toString()
         };
@@ -133,6 +133,6 @@ public class RemoteZipApplication implements Application {
 
     private static String path(final Path destination) {
         return destination.resolve(
-            RemoteZipApplication.DEFAULT_FILENAME).toAbsolutePath().toString();
+            AppRemoteZip.DEFAULT_FILENAME).toAbsolutePath().toString();
     }
 }

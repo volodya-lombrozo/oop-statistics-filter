@@ -7,15 +7,15 @@ import java.io.Reader;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class LocalCSV implements CSV {
+public class CSVLocal implements CSV {
 
     private final Path csv;
 
-    public LocalCSV(final String path) {
+    public CSVLocal(final String path) {
         this(Paths.get(path));
     }
 
-    private LocalCSV(final Path path) {
+    private CSVLocal(final Path path) {
         this.csv = path;
     }
 

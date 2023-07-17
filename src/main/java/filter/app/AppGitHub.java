@@ -9,13 +9,13 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
 
-public class GitHubApplication implements Application {
+public class AppGitHub implements Application {
 
     private static final int TIMEOUT = 30;
     private final String url;
     private final String tag;
 
-    public GitHubApplication(
+    public AppGitHub(
         final String http,
         final String tag
     ) {
@@ -39,7 +39,7 @@ public class GitHubApplication implements Application {
                 );
             Runtime runtime = Runtime.getRuntime();
             final Process process = runtime.exec(this.command(destination));
-            process.waitFor(GitHubApplication.TIMEOUT, TimeUnit.SECONDS);
+            process.waitFor(AppGitHub.TIMEOUT, TimeUnit.SECONDS);
             final int exitValue = process.exitValue();
             if (exitValue != 0) {
                 throw new IllegalStateException(

@@ -4,9 +4,9 @@ import filter.Application;
 import filter.CSV;
 import filter.Statistics;
 import filter.StatisticsCase;
-import filter.app.LocalApplication;
+import filter.app.AppLocal;
 import filter.csv.CSVRows;
-import filter.csv.LocalCSV;
+import filter.csv.CSVLocal;
 import filter.csv.ParsedCSVRow;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -32,7 +32,7 @@ public final class StatisticsCaseOld implements StatisticsCase {
         final String project,
         final String... filters
     ) {
-        this(title, new LocalCSV(csv), new LocalApplication(project), filters);
+        this(title, new CSVLocal(csv), new AppLocal(project), filters);
     }
 
     public StatisticsCaseOld(

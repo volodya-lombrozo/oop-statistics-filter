@@ -4,15 +4,15 @@ import filter.Application;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class LocalApplication implements Application {
+public class AppLocal implements Application {
 
     private final Path local;
 
-    public LocalApplication(final String path) {
+    public AppLocal(final String path) {
         this(Paths.get(path));
     }
 
-    private LocalApplication(final Path path) {
+    private AppLocal(final Path path) {
         this.local = path;
     }
 
