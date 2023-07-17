@@ -13,7 +13,7 @@ import java.io.IOException;
  */
 public class FilterVerificationApplications {
     public static void main(final String[] args) throws IOException {
-        new Report(
+        new ReportNew(
             "verification.csv",
             new StatisticsCaseWithModifiers(
                 "Verification Half",

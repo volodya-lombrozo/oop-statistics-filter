@@ -46,6 +46,4 @@ public class ReportNew {
             .map(CSVCell::value)
             .collect(Collectors.toList());
     }
-
-
 }

@@ -2,11 +2,9 @@ package filter.statistics;
 
 import filter.Statistics;
 import filter.csv.CSVCell;
-import filter.csv.CSVOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 public class StatisticsWithoutSources implements Statistics {
@@ -52,9 +50,9 @@ public class StatisticsWithoutSources implements Statistics {
     @Override
     public List<CSVCell> cells() {
         return Arrays.asList(
-            new CSVCell("Total", this.total()),
-            new CSVCell("Methods", this.methods()),
-            new CSVCell("Constructors", this.constructors())
+            new CSVCell("Library Total", this.total()),
+            new CSVCell("Library Methods", this.methods()),
+            new CSVCell("Library Constructors", this.constructors())
         );
     }
 
