@@ -1,7 +1,9 @@
 package filter.statistics;
 
 import filter.Statistics;
+import filter.csv.CSVCell;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -49,6 +51,31 @@ public class StatisticsWithModifiers implements Statistics {
             "Not Found Methods, %",
             "Constructors, %",
         };
+    }
+
+    @Override
+    public List<CSVCell> cells() {
+        return Arrays.asList(
+            new CSVCell("Total", this.total()),
+            new CSVCell("Instance Private Methods", this.instancePrivate()),
+            new CSVCell("Instance Package-Private Methods", this.instancePackagePrivate()),
+            new CSVCell("Instance Public Methods", this.instancePublic()),
+            new CSVCell("Instance Public Overridden Methods", this.instancePublicOverridden()),
+            new CSVCell("Static Private Methods", this.staticPrivate()),
+            new CSVCell("Static Package-Private Methods", this.staticPackagePrivate()),
+            new CSVCell("Static Public Methods", this.staticPublic()),
+            new CSVCell("Not Found Methods", this.notFound()),
+            new CSVCell("Constructors", this.constructors()),
+            new CSVCell("Instance Private Methods, %", this.instancePrivatePercent()),
+            new CSVCell("Instance Package-Private Methods, %", this.instancePackagePrivatePercent()),
+            new CSVCell("Instance Public Methods, %", this.instancePublicPercent()),
+            new CSVCell("Instance Public Overridden Methods, %", this.instancePublicOverriddenPercent()),
+            new CSVCell("Static Private Methods, %", this.staticPrivatePercent()),
+            new CSVCell("Static Package-Private Methods, %", this.staticPackagePrivatePercent()),
+            new CSVCell("Static Public Methods, %", this.staticPublicPercent()),
+            new CSVCell("Not Found Methods, %", this.notFoundPercent()),
+            new CSVCell("Constructors, %", this.constructorsPercent())
+        );
     }
 
     public Object[] csvRow(final String title) {

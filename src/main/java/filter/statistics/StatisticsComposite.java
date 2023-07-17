@@ -1,7 +1,10 @@
 package filter.statistics;
 
 import filter.Statistics;
+import filter.csv.CSVCell;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class StatisticsComposite implements Statistics {
@@ -40,6 +43,14 @@ public class StatisticsComposite implements Statistics {
             Arrays.stream(this.application.headers()),
             Arrays.stream(this.rest.headers())
         ).toArray(String[]::new);
+    }
+
+    @Override
+    public List<CSVCell> cells() {
+        return Stream.concat(
+            this.application.cells().stream(),
+            this.rest.cells().stream()
+        ).collect(Collectors.toList());
     }
 
     @Override

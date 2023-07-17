@@ -1,5 +1,8 @@
 package filter;
 
+import filter.csv.CSVCell;
+import java.util.List;
+
 public interface Statistics {
 
     Statistics add(Statistics statistics);
@@ -7,4 +10,7 @@ public interface Statistics {
     Object[] csvRow(String title);
 
     String[] headers();
+
+    List<CSVCell> cells();
+
 }
