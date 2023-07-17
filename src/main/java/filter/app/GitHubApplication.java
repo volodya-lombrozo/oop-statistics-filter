@@ -1,5 +1,6 @@
-package filter;
+package filter.app;
 
+import filter.Application;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -14,7 +15,7 @@ public class GitHubApplication implements Application {
     private final String url;
     private final String tag;
 
-    GitHubApplication(
+    public GitHubApplication(
         final String http,
         final String tag
     ) {

@@ -1,5 +1,6 @@
 package filter;
 
+import filter.app.GitHubApplication;
 import filter.csv.RemoteCSV;
 import java.io.IOException;
 

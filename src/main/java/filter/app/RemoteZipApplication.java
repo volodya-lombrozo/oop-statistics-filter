@@ -1,5 +1,6 @@
-package filter;
+package filter.app;
 
+import filter.Application;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;

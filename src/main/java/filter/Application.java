@@ -2,6 +2,6 @@ package filter;
 
 import java.nio.file.Path;
 
-interface Application {
+public interface Application {
     Path path();
 }

@@ -1,5 +1,6 @@
 package filter;
 
+import filter.app.LocalApplication;
 import filter.csv.CSVRows;
 import filter.csv.LocalCSV;
 import filter.csv.ParsedCSVRow;

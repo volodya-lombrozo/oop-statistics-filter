@@ -1,5 +1,6 @@
-package filter;
+package filter.app;
 
+import filter.Application;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -7,7 +8,7 @@ public class LocalApplication implements Application {
 
     private final Path local;
 
-    LocalApplication(final String path) {
+    public LocalApplication(final String path) {
         this(Paths.get(path));
     }
 
