@@ -16,15 +16,7 @@ final class Report {
         this(Arrays.asList(all), filename);
     }
 
-    Report(final StatisticsCase... all) {
-        this(Arrays.asList(all));
-    }
-
-    Report(final Collection<StatisticsCase> all) {
-        this(all, "report.csv");
-    }
-
-    Report(final Collection<StatisticsCase> all, final String filename) {
+    private Report(final Collection<StatisticsCase> all, final String filename) {
         this.cases = all;
         this.filename = filename;
     }

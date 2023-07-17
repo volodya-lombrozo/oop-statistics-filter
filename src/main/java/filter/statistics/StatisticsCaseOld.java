@@ -1,5 +1,9 @@
-package filter;
+package filter.statistics;
 
+import filter.Application;
+import filter.CSV;
+import filter.Statistics;
+import filter.StatisticsCase;
 import filter.app.LocalApplication;
 import filter.csv.CSVRows;
 import filter.csv.LocalCSV;
@@ -15,14 +19,14 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-final class StatisticsCaseOld implements StatisticsCase {
+public final class StatisticsCaseOld implements StatisticsCase {
 
     private final String title;
     private final CSV csv;
     private final Application project;
     private final String[] filters;
 
-    StatisticsCaseOld(
+    public StatisticsCaseOld(
         final String title,
         final String csv,
         final String project,
@@ -31,7 +35,7 @@ final class StatisticsCaseOld implements StatisticsCase {
         this(title, new LocalCSV(csv), new LocalApplication(project), filters);
     }
 
-    StatisticsCaseOld(
+    public StatisticsCaseOld(
         final String title,
         final CSV csv,
         final Application project,

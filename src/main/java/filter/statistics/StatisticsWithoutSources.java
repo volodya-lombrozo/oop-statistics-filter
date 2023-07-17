@@ -1,5 +1,6 @@
-package filter;
+package filter.statistics;
 
+import filter.Statistics;
 import java.util.ArrayList;
 import java.util.Collection;
 

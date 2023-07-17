@@ -1,5 +1,7 @@
-package filter;
+package filter.statistics;
 
+import filter.CSV;
+import filter.StatisticsCase;
 import filter.csv.CSVRows;
 import filter.csv.ParsedCSVRow;
 import java.util.Arrays;

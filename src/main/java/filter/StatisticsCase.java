@@ -1,6 +1,6 @@
 package filter;
 
-interface StatisticsCase {
+public interface StatisticsCase {
 
     String title();
 

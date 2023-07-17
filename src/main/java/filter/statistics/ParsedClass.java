@@ -1,4 +1,4 @@
-package filter;
+package filter.statistics;
 
 import com.github.javaparser.ParseProblemException;
 import com.github.javaparser.StaticJavaParser;

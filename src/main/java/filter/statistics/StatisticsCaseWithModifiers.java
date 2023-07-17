@@ -1,5 +1,8 @@
-package filter;
+package filter.statistics;
 
+import filter.Application;
+import filter.CSV;
+import filter.StatisticsCase;
 import filter.csv.CSVRows;
 import filter.csv.ParsedCSVRow;
 import java.io.IOException;
@@ -12,14 +15,14 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-final class StatisticsCaseWithModifiers implements StatisticsCase {
+public final class StatisticsCaseWithModifiers implements StatisticsCase {
 
     private final String title;
     private final CSV csv;
     private final Application project;
     private final String[] filters;
 
-    StatisticsCaseWithModifiers(
+    public StatisticsCaseWithModifiers(
         final String title,
         final CSV csv,
         final Application project,

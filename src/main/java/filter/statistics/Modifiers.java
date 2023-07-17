@@ -1,4 +1,4 @@
-package filter;
+package filter.statistics;
 
 import java.util.Arrays;
 import java.util.Collection;

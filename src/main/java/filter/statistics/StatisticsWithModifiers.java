@@ -1,10 +1,11 @@
-package filter;
+package filter.statistics;
 
+import filter.Statistics;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-class StatisticsWithModifiers implements Statistics {
+public class StatisticsWithModifiers implements Statistics {
 
     private final Collection<MethodStatistics> rows;
 
@@ -172,19 +173,19 @@ class StatisticsWithModifiers implements Statistics {
     }
 
     private String constructorsPercent() {
-        return StatisticsWithModifiers.percent( this.constructors() / (double) this.total());
+        return StatisticsWithModifiers.percent(this.constructors() / (double) this.total());
     }
 
-    private String  notFoundPercent() {
-        return StatisticsWithModifiers.percent( this.notFound() / (double) this.total());
+    private String notFoundPercent() {
+        return StatisticsWithModifiers.percent(this.notFound() / (double) this.total());
     }
 
     private String staticPublicPercent() {
-        return StatisticsWithModifiers.percent( this.staticPublic() / (double) this.total());
+        return StatisticsWithModifiers.percent(this.staticPublic() / (double) this.total());
     }
 
     private String staticPackagePrivatePercent() {
-        return StatisticsWithModifiers.percent( this.staticPackagePrivate() / (double) this.total());
+        return StatisticsWithModifiers.percent(this.staticPackagePrivate() / (double) this.total());
     }
 
     private String staticPrivatePercent() {
@@ -192,15 +193,17 @@ class StatisticsWithModifiers implements Statistics {
     }
 
     private String instancePublicOverriddenPercent() {
-        return StatisticsWithModifiers.percent(this.instancePublicOverridden() / (double) this.total());
+        return StatisticsWithModifiers.percent(
+            this.instancePublicOverridden() / (double) this.total());
     }
 
     private String instancePublicPercent() {
         return StatisticsWithModifiers.percent(this.instancePublic() / (double) this.total());
     }
 
-    private String  instancePackagePrivatePercent() {
-        return StatisticsWithModifiers.percent( this.instancePackagePrivate() / (double) this.total());
+    private String instancePackagePrivatePercent() {
+        return StatisticsWithModifiers.percent(
+            this.instancePackagePrivate() / (double) this.total());
     }
 
     private String instancePrivatePercent() {

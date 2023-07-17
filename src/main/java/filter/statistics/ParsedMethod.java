@@ -1,4 +1,4 @@
-package filter;
+package filter.statistics;
 
 import com.github.javaparser.ast.body.MethodDeclaration;
 import java.util.HashSet;

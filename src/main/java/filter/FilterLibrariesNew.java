@@ -3,6 +3,7 @@ package filter;
 import filter.app.GitHubApplication;
 import filter.app.RemoteZipApplication;
 import filter.csv.RemoteCSV;
+import filter.statistics.StatisticsCaseWithModifiers;
 import java.io.IOException;
 
 /**
