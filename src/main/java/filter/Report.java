@@ -36,7 +36,7 @@ final class Report {
             if(total == null) {
                 total = statistics;
             } else {
-                total = total.sum(statistics);
+                total = total.add(statistics);
             }
             System.out.println(statistics);
             final String title = statisticsCase.title();

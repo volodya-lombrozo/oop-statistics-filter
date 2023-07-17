@@ -72,6 +72,7 @@ public final class ParsedCSVRow {
         return this.record.get("Method");
     }
 
+    @Deprecated
     public double getOwnTime() {
         final String raw = this.record.get("Own Time (ms)");
         final double res;

@@ -70,10 +70,10 @@ public final class StatisticsCaseWithModifiers implements StatisticsCase {
      * @return Map of methods.
      */
     private Map<String, Modifiers> methods() {
-        final Map<String, ParsedClass> all = this.parseClasses();
-        return all.values().stream().flatMap(parsed -> parsed.methods().stream())
-            .collect(
-                Collectors.toMap(ParsedMethod::name, ParsedMethod::modifiers, (a, b) -> a));
+        return this.parseClasses().values()
+            .stream()
+            .flatMap(parsed -> parsed.methods().stream())
+            .collect(Collectors.toMap(ParsedMethod::name, ParsedMethod::modifiers, (a, b) -> a));
     }
 
     private Map<String, ParsedClass> parseClasses() {

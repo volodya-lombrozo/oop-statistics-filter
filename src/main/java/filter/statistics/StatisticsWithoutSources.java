@@ -17,7 +17,7 @@ public class StatisticsWithoutSources implements Statistics {
     }
 
     @Override
-    public Statistics sum(final Statistics statistics) {
+    public Statistics add(final Statistics statistics) {
         StatisticsWithoutSources other = (StatisticsWithoutSources) statistics;
         final Collection<MethodStatistics> res = new ArrayList<>(this.statistics);
         res.addAll(other.statistics);

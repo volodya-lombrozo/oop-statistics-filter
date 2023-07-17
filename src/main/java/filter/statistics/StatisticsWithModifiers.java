@@ -18,7 +18,7 @@ public class StatisticsWithModifiers implements Statistics {
     }
 
     @Override
-    public Statistics sum(final Statistics original) {
+    public Statistics add(final Statistics original) {
         StatisticsWithModifiers other = (StatisticsWithModifiers) original;
         final List<MethodStatistics> res = new ArrayList<>(this.rows);
         res.addAll(other.rows);

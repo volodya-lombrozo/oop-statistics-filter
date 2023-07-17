@@ -18,11 +18,11 @@ public class StatisticsComposite implements Statistics {
     }
 
     @Override
-    public Statistics sum(final Statistics statistics) {
+    public Statistics add(final Statistics statistics) {
         StatisticsComposite other = (StatisticsComposite) statistics;
         return new StatisticsComposite(
-            (StatisticsWithModifiers) other.application.sum(this.application),
-            (StatisticsWithoutSources) other.rest.sum(this.rest)
+            (StatisticsWithModifiers) other.application.add(this.application),
+            (StatisticsWithoutSources) other.rest.add(this.rest)
         );
     }
 

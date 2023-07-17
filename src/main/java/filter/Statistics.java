@@ -2,7 +2,7 @@ package filter;
 
 public interface Statistics {
 
-    Statistics sum(Statistics statistics);
+    Statistics add(Statistics statistics);
 
     Object[] csvRow(String title);
 
