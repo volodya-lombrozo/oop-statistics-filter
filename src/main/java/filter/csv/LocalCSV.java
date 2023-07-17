@@ -1,5 +1,6 @@
-package filter;
+package filter.csv;
 
+import filter.CSV;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.Reader;
@@ -10,11 +11,11 @@ public class LocalCSV implements CSV {
 
     private final Path csv;
 
-    LocalCSV(final String path) {
+    public LocalCSV(final String path) {
         this(Paths.get(path));
     }
 
-    LocalCSV(final Path path) {
+    private LocalCSV(final Path path) {
         this.csv = path;
     }
 

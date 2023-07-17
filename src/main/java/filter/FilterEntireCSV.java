@@ -1,5 +1,6 @@
 package filter;
 
+import filter.csv.RemoteCSV;
 import java.io.IOException;
 
 public class FilterEntireCSV {

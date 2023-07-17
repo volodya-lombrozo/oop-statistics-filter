@@ -1,5 +1,8 @@
 package filter;
 
+import filter.csv.CSVRows;
+import filter.csv.LocalCSV;
+import filter.csv.ParsedCSVRow;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;

@@ -1,5 +1,6 @@
-package filter;
+package filter.csv;
 
+import filter.CSV;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -14,11 +15,11 @@ public class RemoteCSV implements CSV {
 
     private final URL url;
 
-    RemoteCSV(final String subpath) {
+    public RemoteCSV(final String subpath) {
         this(RemoteCSV.http(subpath));
     }
 
-    RemoteCSV(final URL url) {
+    private RemoteCSV(final URL url) {
         this.url = url;
     }
 

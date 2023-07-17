@@ -1,11 +1,11 @@
-package filter;
+package filter.csv;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.apache.commons.csv.CSVRecord;
 
-final class ParsedCSVRow {
+public final class ParsedCSVRow {
 
     private final CSVRecord record;
 
@@ -21,11 +21,11 @@ final class ParsedCSVRow {
         return this.fullMethodName().startsWith(pckg);
     }
 
-    boolean isConstructor() {
+    public boolean isConstructor() {
         return this.fullMethodName().contains("<init>");
     }
 
-    String shortMethodName() {
+    public String shortMethodName() {
         final String full = this.fullMethodName();
         final int endIndex = full.lastIndexOf(" ");
         if (endIndex == -1) {
@@ -41,7 +41,7 @@ final class ParsedCSVRow {
      *  ognl.OgnlRuntime.isTypeCompatible(Class, Class, int, ArgsCompatbilityReport)
      * @return
      */
-    String shortMethodNameWithoutFQNForParameters() {
+    public String shortMethodNameWithoutFQNForParameters() {
         final String full = this.fullMethodName();
         final int endIndex = full.lastIndexOf(" ");
         if (endIndex == -1) {
@@ -68,11 +68,11 @@ final class ParsedCSVRow {
     }
 
 
-    String fullMethodName() {
+    public String fullMethodName() {
         return this.record.get("Method");
     }
 
-    double getOwnTime() {
+    public double getOwnTime() {
         final String raw = this.record.get("Own Time (ms)");
         final double res;
         if (raw.contains("<")) {
@@ -83,7 +83,7 @@ final class ParsedCSVRow {
         return res;
     }
 
-    long getCount() {
+    public long getCount() {
         return Long.valueOf(this.record.get("Count"));
     }
 }

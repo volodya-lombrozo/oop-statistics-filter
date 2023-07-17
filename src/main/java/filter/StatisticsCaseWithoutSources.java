@@ -1,5 +1,7 @@
 package filter;
 
+import filter.csv.CSVRows;
+import filter.csv.ParsedCSVRow;
 import java.util.Arrays;
 import java.util.Set;
 

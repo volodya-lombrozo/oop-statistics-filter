@@ -1,12 +1,13 @@
-package filter;
+package filter.csv;
 
+import filter.CSV;
 import java.io.IOException;
 import java.util.Set;
 import java.util.stream.Collectors;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 
-final class CSVRows {
+public final class CSVRows {
 
     private static final String[] EMPTY = {};
     private final CSV csv;
@@ -14,17 +15,17 @@ final class CSVRows {
 
     private final String[] excluded;
 
-    CSVRows(final CSV csv, final String[] filters) {
+    public CSVRows(final CSV csv, final String[] filters) {
         this(csv, filters, CSVRows.EMPTY);
     }
 
-    CSVRows(final CSV csv, final String[] filters, final String[] excluded) {
+    public CSVRows(final CSV csv, final String[] filters, final String[] excluded) {
         this.csv = csv;
         this.filters = filters;
         this.excluded = excluded;
     }
 
-    Set<ParsedCSVRow> toSet() {
+    public Set<ParsedCSVRow> toSet() {
         try {
             final CSVParser parse = CSVFormat.RFC4180.withHeader(
                 "Method",
