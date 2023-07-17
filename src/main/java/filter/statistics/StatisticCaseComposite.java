@@ -4,10 +4,14 @@ import filter.Application;
 import filter.CSV;
 import filter.Statistics;
 import filter.StatisticsCase;
+import filter.csv.CSVCell;
 import filter.statistics.StatisticsCaseWithModifiers;
 import filter.statistics.StatisticsCaseWithoutSources;
 import filter.statistics.StatisticsComposite;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class StatisticCaseComposite implements StatisticsCase {
 
@@ -48,6 +52,14 @@ public class StatisticCaseComposite implements StatisticsCase {
                 this.filters
             ).statistics()
         );
+    }
+
+    @Override
+    public List<CSVCell> cells() {
+        return Stream.concat(
+            Stream.of(new CSVCell("Application", this.title)),
+            this.statistics().cells().stream()
+        ).collect(Collectors.toList());
     }
 
     @Override

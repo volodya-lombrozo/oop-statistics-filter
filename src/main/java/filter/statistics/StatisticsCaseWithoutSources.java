@@ -2,10 +2,14 @@ package filter.statistics;
 
 import filter.CSV;
 import filter.StatisticsCase;
+import filter.csv.CSVCell;
 import filter.csv.CSVRows;
 import filter.csv.ParsedCSVRow;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class StatisticsCaseWithoutSources implements StatisticsCase {
 
@@ -43,6 +47,14 @@ public class StatisticsCaseWithoutSources implements StatisticsCase {
             }
         }
         return stat;
+    }
+
+    @Override
+    public List<CSVCell> cells() {
+        return Stream.concat(
+            Stream.of(new CSVCell("Application", this.title)),
+            this.statistics().cells().stream()
+        ).collect(Collectors.toList());
     }
 
     @Override

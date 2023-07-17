@@ -3,12 +3,14 @@ package filter.statistics;
 import filter.Application;
 import filter.CSV;
 import filter.StatisticsCase;
+import filter.csv.CSVCell;
 import filter.csv.CSVRows;
 import filter.csv.ParsedCSVRow;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -63,6 +65,14 @@ public final class StatisticsCaseWithModifiers implements StatisticsCase {
             }
         }
         return stats;
+    }
+
+    @Override
+    public List<CSVCell> cells() {
+        return Stream.concat(
+            Stream.of(new CSVCell("Application", this.title)),
+            this.statistics().cells().stream()
+        ).collect(Collectors.toList());
     }
 
     /**
