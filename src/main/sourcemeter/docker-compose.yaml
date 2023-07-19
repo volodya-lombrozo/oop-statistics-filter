@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  sourcemeter-app:
+    container_name: sourcemeter-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: sourcemeter-app:latest
+    volumes:
+      - ./cache:/app
