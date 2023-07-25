@@ -29,4 +29,19 @@ RUN tar -xzf SourceMeter-10.2.0-x64-Linux.tgz
 RUN rm SourceMeter-10.2.0-x64-Linux.tgz
 
 # Run the SourceMeter Java analyzer
-ENTRYPOINT ["/app/SourceMeter-10.2.0-x64-Linux/Java/AnalyzerJava", "-projectName=source-meter", "-projectBaseDir=/workdir", "-resultsDir=/workdir/source-meter", "-runFB=false", "-runSQ=false", "-runAndroidHunter=false", "-runVulnerabilityHunter=false", "-runFaultHunter=false", "-runRTEHunter=false", "-runDCF=false"]
+ENTRYPOINT [ \
+"/app/SourceMeter-10.2.0-x64-Linux/Java/AnalyzerJava", \
+"-projectName=source-meter", \
+"-projectBaseDir=/workdir", \
+"-resultsDir=/workdir/source-meter", \
+ "-runPMD=false", \
+"-runLIM2Patterns=false", \
+"-runFB=false", \
+"-runUDM=false", \
+"-runDCF=false", \
+"-runMetricHunter=false", \
+"-runAndroidHunter=false", \
+"-runVulnerabilityHunter=false", \
+"-runFaultHunter=false", \
+"-runRTEHunter=false" \
+]
