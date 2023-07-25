@@ -5,6 +5,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: sourcemeter-app:latest
+    image: lombrozo/sourcemeter-app:latest
     volumes:
       - ./cache:/app
