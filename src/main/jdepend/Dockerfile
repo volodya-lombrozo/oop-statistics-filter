@@ -6,9 +6,14 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
+# Install required packages (curl and tar)
+RUN apt-get update && apt-get install -y \
+    unzip \
+    && rm -rf /var/lib/apt/lists/*
+
 # Install necessary packages (including OpenJDK 11)
 RUN apt-get update && apt-get install -y \
-    openjdk-11-jdk \
+    openjdk-17-jdk \
     && rm -rf /var/lib/apt/lists/*
 
 # Set Java environment variables (optional)
@@ -20,28 +25,21 @@ ENV PATH $PATH:$JAVA_HOME/bin
 WORKDIR /app
 
 # Download the SourceMeter archive
-RUN curl -LO https://www.sourcemeter.com/static/SourceMeter-10.2.0-x64-Linux.tgz
+RUN curl -LO https://github.com/clarkware/jdepend/releases/download/2.10/jdepend-2.10.zip
 
 # Unarchive the downloaded file
-RUN tar -xzf SourceMeter-10.2.0-x64-Linux.tgz
+RUN unzip jdepend-2.10.zip
 
 # Cleanup - remove the downloaded archive
-RUN rm SourceMeter-10.2.0-x64-Linux.tgz
+RUN rm jdepend-2.10.zip
 
-# Run the SourceMeter Java analyzer
+# Run the Jdepend Java analyzer
 ENTRYPOINT [ \
-"/app/SourceMeter-10.2.0-x64-Linux/Java/AnalyzerJava", \
-"-projectName=source-meter", \
-"-projectBaseDir=/workdir", \
-"-resultsDir=/workdir/source-meter", \
-"-runPMD=false", \
-"-runLIM2Patterns=false", \
-"-runFB=false", \
-"-runUDM=false", \
-"-runDCF=false", \
-"-runMetricHunter=false", \
-"-runAndroidHunter=false", \
-"-runVulnerabilityHunter=false", \
-"-runFaultHunter=false", \
-"-runRTEHunter=false" \
+"java", \
+"-cp", \
+"/app/jdepend-2.10/lib/jdepend-2.10.jar", \
+"jdepend.xmlui.JDepend", \
+"-file", \
+"/workdir/jdepend.report.xml", \
+"/workdir" \
 ]

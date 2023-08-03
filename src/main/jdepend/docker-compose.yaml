@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  jdepend-app:
+    container_name: jdepend-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: lombrozo/jdepend-app:latest
+    volumes:
+      - ./cache:/app

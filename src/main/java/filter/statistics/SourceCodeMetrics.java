@@ -13,13 +13,13 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-public class MetricsStatistics implements Statistics {
+public class SourceCodeMetrics implements Statistics {
 
     private static final long TIMEOUT = 60;
 
     private final Path repository;
 
-    public MetricsStatistics(final Path repository) {
+    public SourceCodeMetrics(final Path repository) {
         this.repository = repository;
     }
 
@@ -55,7 +55,7 @@ public class MetricsStatistics implements Statistics {
             Runtime runtime = Runtime.getRuntime();
             final Process docker;
             docker = runtime.exec(this.dockerCommand());
-            docker.waitFor(MetricsStatistics.TIMEOUT, TimeUnit.SECONDS);
+            docker.waitFor(SourceCodeMetrics.TIMEOUT, TimeUnit.SECONDS);
             final int exitValue = docker.exitValue();
             if (exitValue != 0 && exitValue != 1) {
                 throw new IllegalStateException(
