@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
     unzip \
     && rm -rf /var/lib/apt/lists/*
 
-# Install necessary packages (including OpenJDK 11)
+# Install necessary packages (including OpenJDK 17)
 RUN apt-get update && apt-get install -y \
     openjdk-17-jdk \
     && rm -rf /var/lib/apt/lists/*
