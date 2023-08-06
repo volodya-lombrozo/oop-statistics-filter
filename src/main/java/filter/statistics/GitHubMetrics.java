@@ -1,8 +1,10 @@
 package filter.statistics;
 
 import com.jcabi.github.Coordinates;
+import com.jcabi.github.Github;
 import com.jcabi.github.RepositoryStatistics;
 import com.jcabi.github.RtGithub;
+import com.jcabi.log.Logger;
 import filter.Statistics;
 import filter.csv.CSVCell;
 import java.io.IOException;
@@ -25,7 +27,7 @@ public class GitHubMetrics implements Statistics {
     public List<CSVCell> cells() {
         try {
             final RepositoryStatistics.Smart stat = new RepositoryStatistics
-                .Smart(new RtGithub().repos().get(this.coordinates));
+                .Smart(this.github().repos().get(this.coordinates));
             return Arrays.asList(
                 new CSVCell("GitHub Forks", stat.forks()),
                 new CSVCell("GitHub Issues", stat.openIssues()),
@@ -42,5 +44,22 @@ public class GitHubMetrics implements Statistics {
                 ex
             );
         }
+    }
+
+    private Github github() {
+        final Github result;
+        final String token = System.getenv("GITHUB_TOKEN");
+        if (token != null) {
+            Logger.info(this, "Use token for making github requests");
+            result = new RtGithub(token);
+        } else {
+            Logger.warn(
+                this,
+                "Use default github WITHOUT token! Please, pay attention to this, since it could lead to crashes"
+            );
+            result = new RtGithub();
+        }
+
+        return result;
     }
 }
