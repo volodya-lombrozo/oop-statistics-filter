@@ -1,39 +1,46 @@
 package filter.statistics;
 
 import com.jcabi.github.Coordinates;
-import com.jcabi.github.Github;
-import com.jcabi.github.Repo;
-import com.jcabi.github.Repos;
+import com.jcabi.github.RepositoryStatistics;
 import com.jcabi.github.RtGithub;
-import com.jcabi.github.Stars;
 import filter.Statistics;
 import filter.csv.CSVCell;
-import java.net.URISyntaxException;
-import java.net.URL;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import org.cactoos.scalar.Unchecked;
 
 public class GitHubMetrics implements Statistics {
 
-    private final URL repo;
+    private final Coordinates coordinates;
 
     public GitHubMetrics(final String url) {
-        this(new Unchecked<>(() -> new URL(url)).value());
+        this(new Coordinates.Https(url));
     }
 
-    public GitHubMetrics(final URL url) {
-        this.repo = url;
+    public GitHubMetrics(final Coordinates coordinates) {
+        this.coordinates = coordinates;
     }
 
     @Override
     public List<CSVCell> cells() {
-        final Repos repos = new RtGithub().repos();
-        final Repo.Smart smart = new Repo.Smart(
-            repos.get(new Coordinates.Simple("apache", "tomcat")));
-        final Stars stars = smart.stars();
-        return Arrays.asList(
-            new CSVCell("", 10)
-        );
+        try {
+            final RepositoryStatistics.Smart stat = new RepositoryStatistics
+                .Smart(new RtGithub().repos().get(this.coordinates));
+            return Arrays.asList(
+                new CSVCell("GitHub Forks", stat.forks()),
+                new CSVCell("GitHub Issues", stat.openIssues()),
+                new CSVCell("GitHub Stargazers", stat.stargazers()),
+                new CSVCell("GitHub Watchers", stat.watchers()),
+                new CSVCell("GitHub Size", stat.size())
+            );
+        } catch (final IOException ex) {
+            throw new IllegalStateException(
+                String.format(
+                    "Can't get statistics from from repo %s",
+                    this.coordinates
+                ),
+                ex
+            );
+        }
     }
 }
