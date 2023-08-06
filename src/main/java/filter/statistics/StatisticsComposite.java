@@ -1,6 +1,7 @@
 package filter.statistics;
 
 import filter.Statistics;
+import filter.StatisticsCase;
 import filter.csv.CSVCell;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,12 +11,12 @@ import lombok.ToString;
 @ToString
 public class StatisticsComposite implements Statistics {
 
-    private final StatisticsWithModifiers application;
-    private final StatisticsWithoutSources rest;
+    private final StatisticsCase application;
+    private final Statistics rest;
 
     StatisticsComposite(
-        final StatisticsWithModifiers application,
-        final StatisticsWithoutSources rest
+        final StatisticsCaseWithModifiers application,
+        final Statistics rest
     ) {
         this.application = application;
         this.rest = rest;

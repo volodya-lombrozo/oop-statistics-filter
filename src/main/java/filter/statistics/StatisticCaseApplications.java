@@ -5,24 +5,20 @@ import filter.CSV;
 import filter.Statistics;
 import filter.StatisticsCase;
 import filter.csv.CSVCell;
-import filter.statistics.StatisticsCaseWithModifiers;
-import filter.statistics.StatisticsCaseWithoutSources;
-import filter.statistics.StatisticsComposite;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lombok.ToString;
 
 @ToString
-public class StatisticCaseComposite implements StatisticsCase {
+public class StatisticCaseApplications implements StatisticsCase {
 
     private final String title;
     private final CSV csv;
     private final Application project;
     private final String[] filters;
 
-    public StatisticCaseComposite(
+    public StatisticCaseApplications(
         final String title,
         final CSV csv,
         final Application project,
@@ -49,7 +45,7 @@ public class StatisticCaseComposite implements StatisticsCase {
                 this.csv,
                 this.project,
                 this.filters
-            ).statistics(),
+            ),
             new StatisticsCaseWithoutSources(
                 this.title,
                 this.csv,

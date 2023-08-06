@@ -4,7 +4,7 @@ import filter.app.AppGitHub;
 import filter.app.AppRemoteZip;
 import filter.csv.CSVRemote;
 import filter.statistics.SoftMetrics;
-import filter.statistics.StatisticCaseComposite;
+import filter.statistics.StatisticCaseApplications;
 import filter.statistics.StatisticsCollection;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -15,7 +15,7 @@ public class FilterApplications {
         new Report(
             "entire.csv",
             new StatisticsCollection(
-                new StatisticCaseComposite(
+                new StatisticCaseApplications(
                     "Apache Derby 10.16.1.1",
                     new CSVRemote("derby/method-list-cpu.csv"),
                     new AppRemoteZip(
@@ -27,7 +27,7 @@ public class FilterApplications {
                 new SoftMetrics(0, LocalDate.of(2000, 1, 1), 0, 0)
             ),
             new StatisticsCollection(
-                new StatisticCaseComposite(
+                new StatisticCaseApplications(
                     "Apache Kafka 3.4.0",
                     new CSVRemote("kafka/method-list-cpu.csv"),
                     new AppGitHub(
@@ -40,7 +40,7 @@ public class FilterApplications {
                 new SoftMetrics(0, LocalDate.of(2011, 1, 1), 1030, 25400)
             ),
             new StatisticsCollection(
-                new StatisticCaseComposite(
+                new StatisticCaseApplications(
                     "Apache Tomcat 10.1.8",
                     new CSVRemote("tomcat/method-list-cpu.csv"),
                     new AppGitHub(
@@ -53,7 +53,7 @@ public class FilterApplications {
                 new SoftMetrics(0, LocalDate.of(2011, 1, 1), 1030, 25400)
             ),
             new StatisticsCollection(
-                new StatisticCaseComposite(
+                new StatisticCaseApplications(
                     "Spring Framework 5.3.27",
                     new CSVRemote("spring-mvc/method-list-cpu.csv"),
                     new AppGitHub(
@@ -66,7 +66,7 @@ public class FilterApplications {
                 new SoftMetrics(0, LocalDate.of(2011, 1, 1), 1030, 25400)
             ),
             new StatisticsCollection(
-                new StatisticCaseComposite(
+                new StatisticCaseApplications(
                     "Takes 1.24.4",
                     new CSVRemote("takes/method-list-cpu.csv"),
                     new AppGitHub(
@@ -79,7 +79,7 @@ public class FilterApplications {
                 new SoftMetrics(0, LocalDate.of(2011, 1, 1), 1030, 25400)
             ),
             new StatisticsCollection(
-                new StatisticCaseComposite(
+                new StatisticCaseApplications(
                     "Struts 6.1.2",
                     new CSVRemote("struts/method-list-cpu.csv"),
                     new AppGitHub(
@@ -92,7 +92,7 @@ public class FilterApplications {
                 new SoftMetrics(0, LocalDate.of(2000, 1, 1), 0, 0)
             ),
             new StatisticsCollection(
-                new StatisticCaseComposite(
+                new StatisticCaseApplications(
                     "Micronaut 3.9.3",
                     new CSVRemote("micronaut/method-list-cpu.csv"),
                     new AppGitHub(

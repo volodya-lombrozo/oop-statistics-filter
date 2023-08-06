@@ -67,6 +67,11 @@ public class AppGitHub implements Application {
         }
     }
 
+    @Override
+    public String githubUrl() {
+        return this.url;
+    }
+
     private void markDownloadedFilesForDelete(final Path destination) {
         destination.toFile().deleteOnExit();
         try (final Stream<Path> walk = Files.walk(destination)) {

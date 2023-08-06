@@ -21,10 +21,10 @@ import lombok.ToString;
 @ToString
 public final class StatisticsCaseWithModifiers implements StatisticsCase {
 
-    private final String title;
-    private final CSV csv;
-    private final Application project;
-    private final String[] filters;
+        private final String title;
+        private final CSV csv;
+        private final Application project;
+        private final String[] filters;
 
     public StatisticsCaseWithModifiers(
         final String title,

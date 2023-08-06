@@ -3,7 +3,7 @@ package filter;
 import filter.app.AppGitHub;
 import filter.app.AppRemoteZip;
 import filter.csv.CSVRemote;
-import filter.statistics.StatisticsCaseWithModifiers;
+import filter.statistics.StatisticsCaseLibrary;
 import java.io.IOException;
 
 /**
@@ -15,15 +15,16 @@ public class FilterLibraries {
     public static void main(final String[] args) throws IOException {
         new Report(
             "libraries-new.csv",
-            new StatisticsCaseWithModifiers(
+            new StatisticsCaseLibrary(
                 "Apache Derby 10.16.1.1",
                 new CSVRemote("derby/method-list-cpu.csv"),
                 new AppRemoteZip(
-                    "https://dlcdn.apache.org//db/derby/db-derby-10.16.1.1/db-derby-10.16.1.1-src.zip"
+                    "https://dlcdn.apache.org//db/derby/db-derby-10.16.1.1/db-derby-10.16.1.1-src.zip",
+                        "https://github.com/apache/derby.git"
                 ),
                 "org.apache.derby"
             ),
-            new StatisticsCaseWithModifiers(
+            new StatisticsCaseLibrary(
                 "Apache Kafka 3.4.0",
                 new CSVRemote("kafka/method-list-cpu.csv"),
                 new AppGitHub(
@@ -32,7 +33,7 @@ public class FilterLibraries {
                 ),
                 "org.apache.kafka"
             ),
-            new StatisticsCaseWithModifiers(
+            new StatisticsCaseLibrary(
                 "Apache Tomcat 10.1.8",
                 new CSVRemote("tomcat/method-list-cpu.csv"),
                 new AppGitHub(
@@ -41,7 +42,7 @@ public class FilterLibraries {
                 ),
                 "org.apache.tomcat"
             ),
-            new StatisticsCaseWithModifiers(
+            new StatisticsCaseLibrary(
                 "Apache Catalina 10.1.8",
                 new CSVRemote("tomcat/method-list-cpu.csv"),
                 new AppGitHub(
@@ -50,7 +51,7 @@ public class FilterLibraries {
                 ),
                 "org.apache.catalina"
             ),
-            new StatisticsCaseWithModifiers(
+            new StatisticsCaseLibrary(
                 "Apache Coyote 10.1.8",
                 new CSVRemote("tomcat/method-list-cpu.csv"),
                 new AppGitHub(
@@ -59,7 +60,7 @@ public class FilterLibraries {
                 ),
                 "org.apache.coyote"
             ),
-            new StatisticsCaseWithModifiers(
+            new StatisticsCaseLibrary(
                 "Spring Framework 5.3.27",
                 new CSVRemote("spring-mvc/method-list-cpu.csv"),
                 new AppGitHub(
@@ -68,7 +69,7 @@ public class FilterLibraries {
                 ),
                 "org.springframework"
             ),
-            new StatisticsCaseWithModifiers(
+            new StatisticsCaseLibrary(
                 "Jackson Databind 2.13.5",
                 new CSVRemote("spring-mvc/method-list-cpu.csv"),
                 new AppGitHub(
@@ -77,7 +78,7 @@ public class FilterLibraries {
                 ),
                 "com.fasterxml.jackson.databind"
             ),
-            new StatisticsCaseWithModifiers(
+            new StatisticsCaseLibrary(
                 "Jackson Core 2.13.5",
                 new CSVRemote("spring-mvc/method-list-cpu.csv"),
                 new AppGitHub(
@@ -86,7 +87,7 @@ public class FilterLibraries {
                 ),
                 "com.fasterxml.jackson.core"
             ),
-            new StatisticsCaseWithModifiers(
+            new StatisticsCaseLibrary(
                 "Apache Tomcat 9.0.75",
                 new CSVRemote("spring-mvc/method-list-cpu.csv"),
                 new AppGitHub(
@@ -95,7 +96,7 @@ public class FilterLibraries {
                 ),
                 "org.apache.tomcat"
             ),
-            new StatisticsCaseWithModifiers(
+            new StatisticsCaseLibrary(
                 "Apache Catalina 9.0.75",
                 new CSVRemote("spring-mvc/method-list-cpu.csv"),
                 new AppGitHub(
@@ -104,7 +105,7 @@ public class FilterLibraries {
                 ),
                 "org.apache.catalina"
             ),
-            new StatisticsCaseWithModifiers(
+            new StatisticsCaseLibrary(
                 "Apache Coyote 9.0.75",
                 new CSVRemote("spring-mvc/method-list-cpu.csv"),
                 new AppGitHub(
@@ -113,7 +114,7 @@ public class FilterLibraries {
                 ),
                 "org.apache.coyote"
             ),
-            new StatisticsCaseWithModifiers(
+            new StatisticsCaseLibrary(
                 "Takes 1.24.4",
                 new CSVRemote("takes/method-list-cpu.csv"),
                 new AppGitHub(
@@ -122,7 +123,7 @@ public class FilterLibraries {
                 ),
                 "org.takes"
             ),
-            new StatisticsCaseWithModifiers(
+            new StatisticsCaseLibrary(
                 "Cactoos 0.54.0",
                 new CSVRemote("takes/method-list-cpu.csv"),
                 new AppGitHub(
@@ -131,7 +132,7 @@ public class FilterLibraries {
                 ),
                 "org.cactoos"
             ),
-            new StatisticsCaseWithModifiers(
+            new StatisticsCaseLibrary(
                 "Opensymphony 2.4.2",
                 new CSVRemote("struts/method-list-cpu.csv"),
                 new AppGitHub(
@@ -140,7 +141,7 @@ public class FilterLibraries {
                 ),
                 "com.opensymphony"
             ),
-            new StatisticsCaseWithModifiers(
+            new StatisticsCaseLibrary(
                 "Jetty 10.0.15",
                 new CSVRemote("struts/method-list-cpu.csv"),
                 new AppGitHub(
@@ -149,7 +150,7 @@ public class FilterLibraries {
                 ),
                 "org.eclipse.jetty"
             ),
-            new StatisticsCaseWithModifiers(
+            new StatisticsCaseLibrary(
                 "Struts 6.1.2",
                 new CSVRemote("struts/method-list-cpu.csv"),
                 new AppGitHub(
@@ -158,7 +159,7 @@ public class FilterLibraries {
                 ),
                 "org.apache.struts2"
             ),
-            new StatisticsCaseWithModifiers(
+            new StatisticsCaseLibrary(
                 "OGNL 3.3.4",
                 new CSVRemote("struts/method-list-cpu.csv"),
                 new AppGitHub(
@@ -167,7 +168,7 @@ public class FilterLibraries {
                 ),
                 "ognl"
             ),
-            new StatisticsCaseWithModifiers(
+            new StatisticsCaseLibrary(
                 "Project Reactor 3.5.0",
                 new CSVRemote("micronaut/method-list-cpu.csv"),
                 new AppGitHub(
@@ -176,7 +177,7 @@ public class FilterLibraries {
                 ),
                 "reactor.core"
             ),
-            new StatisticsCaseWithModifiers(
+            new StatisticsCaseLibrary(
                 "Netty 4.1.92.Final",
                 new CSVRemote("micronaut/method-list-cpu.csv"),
                 new AppGitHub(
@@ -185,7 +186,7 @@ public class FilterLibraries {
                 ),
                 "io.netty"
             ),
-            new StatisticsCaseWithModifiers(
+            new StatisticsCaseLibrary(
                 "Micronaut 3.9.3",
                 new CSVRemote("micronaut/method-list-cpu.csv"),
                 new AppGitHub(
