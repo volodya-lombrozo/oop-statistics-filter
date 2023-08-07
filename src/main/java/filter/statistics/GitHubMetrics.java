@@ -8,6 +8,8 @@ import com.jcabi.log.Logger;
 import filter.Statistics;
 import filter.csv.CSVCell;
 import java.io.IOException;
+import java.time.Duration;
+import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,7 +35,11 @@ public class GitHubMetrics implements Statistics {
                 new CSVCell("GitHub Issues", stat.openIssues()),
                 new CSVCell("GitHub Stargazers", stat.stargazers()),
                 new CSVCell("GitHub Watchers", stat.watchers()),
-                new CSVCell("GitHub Size", stat.size())
+                new CSVCell("GitHub Size", stat.size()),
+                new CSVCell(
+                    "GitHub Age (ms)",
+                    Duration.between(stat.created(), ZonedDateTime.now()).toMillis()
+                )
             );
         } catch (final IOException ex) {
             throw new IllegalStateException(
