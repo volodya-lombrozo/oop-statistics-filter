@@ -60,9 +60,15 @@ public class CorrelationCSV {
     private void calculatePearsonCorrelation() {
         final List<String> headers = new ArrayList<>(this.columns.keySet());
         for (int i = 0; i < headers.size(); i++) {
-            for (int j = i + 1; j < headers.size(); j++) {
-                final String first = headers.get(i);
+            final String first = headers.get(i);
+            if (!first.contains("GitHub")) {
+                continue;
+            }
+            for (int j = 0; j < headers.size(); j++) {
                 final String second = headers.get(j);
+                if (second.contains("GitHub") || second.contains("%")) {
+                    continue;
+                }
                 final double correlation = this.correlation(
                     this.columns.get(first),
                     this.columns.get(second)
@@ -73,8 +79,8 @@ public class CorrelationCSV {
                     second,
                     correlation
                 );
-
             }
+            System.out.println("__________________________________");
         }
     }
 
