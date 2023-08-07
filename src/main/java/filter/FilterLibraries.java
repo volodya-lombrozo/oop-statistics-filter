@@ -20,7 +20,7 @@ public class FilterLibraries {
                 new CSVRemote("derby/method-list-cpu.csv"),
                 new AppRemoteZip(
                     "https://dlcdn.apache.org//db/derby/db-derby-10.16.1.1/db-derby-10.16.1.1-src.zip",
-                        "https://github.com/apache/derby.git"
+                    "https://github.com/apache/derby.git"
                 ),
                 "org.apache.derby"
             ),
