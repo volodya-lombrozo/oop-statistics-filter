@@ -32,10 +32,9 @@ public class GitHubMetrics implements Statistics {
                 .Smart(this.github().repos().get(this.coordinates));
             return Arrays.asList(
                 new CSVCell("GitHub Forks", stat.forks()),
-                new CSVCell("GitHub Issues", stat.openIssues()),
-                new CSVCell("GitHub Stargazers", stat.stargazers()),
-                new CSVCell("GitHub Watchers", stat.watchers()),
-                new CSVCell("GitHub Size", stat.size()),
+                new CSVCell("GitHub Stars", stat.stargazers()),
+                new CSVCell("GitHub Open Issues", stat.openIssues()),
+                new CSVCell("GitHub Size (KB)", stat.size()),
                 new CSVCell(
                     "GitHub Age (ms)",
                     Duration.between(stat.created(), ZonedDateTime.now()).toMillis()
