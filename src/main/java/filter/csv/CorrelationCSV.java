@@ -2,6 +2,7 @@ package filter.csv;
 
 import filter.CSV;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,6 +12,7 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.math3.stat.correlation.PearsonsCorrelation;
+import static java.math.RoundingMode.HALF_UP;
 
 public class CorrelationCSV {
 
@@ -67,7 +69,9 @@ public class CorrelationCSV {
             row.add(rowHeader);
             for (final String columnHeader : columnHeaders) {
                 final Double value = this.pearson.get(columnHeader).get(rowHeader);
-                row.add(value);
+                BigDecimal bd = BigDecimal.valueOf(value);
+                bd = bd.setScale(2, HALF_UP);
+                row.add(bd.doubleValue());
             }
             output.print(row);
         }
