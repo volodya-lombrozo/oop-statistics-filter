@@ -16,18 +16,24 @@ public class CorrelationCSV {
 
     private final CSV csv;
 
-    private Map<String, List<Double>> columns;
+    private final Map<String, List<Double>> columns;
+
+    private final Map<String, Map<String, Double>> pearson;
 
     public CorrelationCSV(final CSV csv) {
         this.csv = csv;
         this.columns = new HashMap<>();
+        this.pearson = new HashMap<>();
     }
 
     public void report() {
         try {
             final CSVParser parse = CSVFormat.DEFAULT.parse(csv.reader());
             final List<CSVRecord> records = parse.getRecords();
-            final List<String> headers = records.get(0).stream().collect(Collectors.toList());
+            final List<String> headers = records.get(0)
+                .stream()
+                .sorted()
+                .collect(Collectors.toList());
             for (int i = 1; i < records.size(); i++) {
                 final CSVRecord record = records.get(i);
                 for (int j = 1; j < record.size(); j++) {
@@ -37,22 +43,40 @@ public class CorrelationCSV {
                     this.columns.get(header).add(value);
                 }
             }
-            this.printCurrentColumns();
             this.calculatePearsonCorrelation();
+            this.printPearsonCorrelation();
         } catch (IOException ex) {
             throw new IllegalStateException("Can't count correlation", ex);
         }
     }
 
-    private void printCurrentColumns() {
-        for (final Map.Entry<String, List<Double>> entry : this.columns.entrySet()) {
-            final String values = entry.getValue().stream()
-                .map(String::valueOf)
-                .collect(Collectors.joining(","));
-            System.out.printf(
-                "%s: %s%n",
-                entry.getKey(),
-                values
+    private void printPearsonCorrelation() {
+        final CSVOutput output = new CSVOutput("correlation.csv");
+        final List<String> columnHeaders = this.pearson.keySet().stream()
+            .sorted().collect(Collectors.toList());
+        final List<String> leftColumnHeader = this.pearson.values().iterator().next().keySet()
+            .stream().sorted().collect(Collectors.toList());
+
+        List<String> headers = new ArrayList<>();
+        headers.add("N/A");
+        headers.addAll(columnHeaders);
+        output.print(headers);
+
+        for (final String rowHeader : leftColumnHeader) {
+            List<Object> row = new ArrayList<>();
+            row.add(rowHeader);
+            for (final String columnHeader : columnHeaders) {
+                final Double value = this.pearson.get(columnHeader).get(rowHeader);
+                row.add(value);
+            }
+            output.print(row);
+        }
+        try {
+            output.close();
+        } catch (final IOException ex) {
+            throw new IllegalStateException(
+                "Something strange is happened with closing output CSV",
+                ex
             );
         }
     }
@@ -73,6 +97,7 @@ public class CorrelationCSV {
                     this.columns.get(first),
                     this.columns.get(second)
                 );
+                setPearsonCell(first, second, correlation);
                 System.out.format(
                     "'%s' <-------> '%s' ========== %.2f%n",
                     first,
@@ -89,6 +114,12 @@ public class CorrelationCSV {
             first.stream().mapToDouble(a -> a).toArray(),
             second.stream().mapToDouble(a -> a).toArray()
         );
+    }
+
+    private void setPearsonCell(final String first, final String second, final double pearson) {
+        this.pearson.putIfAbsent(first, new HashMap<>());
+        final Map<String, Double> column = this.pearson.get(first);
+        column.put(second, pearson);
     }
 
 }
