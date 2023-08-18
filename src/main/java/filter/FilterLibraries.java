@@ -257,6 +257,17 @@ public class FilterLibraries {
                     )
                 ),
                 "io.netty"
+            ),
+            new StatisticsCaseLibrary(
+                "Jackson Core 2.15.0",
+                new CSVRemote("vertx/method-list-cpu.csv"),
+                new CachedApp(
+                    new AppGitHub(
+                        "https://github.com/FasterXML/jackson-core.git",
+                        "jackson-core-2.15.0"
+                    )
+                ),
+                "com.fasterxml.jackson.core"
             )
         ).make();
     }

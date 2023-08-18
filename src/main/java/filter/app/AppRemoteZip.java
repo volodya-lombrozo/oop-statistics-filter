@@ -122,7 +122,7 @@ public class AppRemoteZip implements Application {
 
     @Override
     public String version() {
-        return null;
+        return this.version;
     }
 
     private void markDownloadedFilesForDelete(final Path destination) {
