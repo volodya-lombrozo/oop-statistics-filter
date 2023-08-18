@@ -1,10 +1,12 @@
 package filter.app;
 
 import filter.Application;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 public class CachedApp implements Application {
 
@@ -28,11 +30,12 @@ public class CachedApp implements Application {
             final Path cachedPath = CachedApp.DEFAULT_CACHE_PATH
                 .resolve(name)
                 .resolve(this.version());
-            if (Files.exists(cachedPath)) {
+            if (Files.exists(cachedPath) && cachedPath.toFile().listFiles().length > 0) {
                 return cachedPath;
             } else {
+                Files.createDirectories(cachedPath);
                 final Path path = this.original.path();
-                Files.move(path, cachedPath);
+                Files.move(path, cachedPath, StandardCopyOption.REPLACE_EXISTING);
                 return cachedPath;
             }
         } catch (final IOException exception) {

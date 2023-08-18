@@ -268,6 +268,86 @@ public class FilterLibraries {
                     )
                 ),
                 "com.fasterxml.jackson.core"
+            ),
+            new StatisticsCaseLibrary(
+//TODO: HIGH PERCENT OF NOT FOUND METHODS ~69. Some problems with that library.
+                "Dropwizard 4.0.1",
+                new CSVRemote("dropwizard/method-list-cpu.csv"),
+                new CachedApp(
+                    new AppGitHub(
+                        "https://github.com/dropwizard/dropwizard.git",
+                        "v4.0.1"
+                    )
+                ),
+                "io.dropwizard"
+            ),
+            new StatisticsCaseLibrary(
+                "Jetty 11.0.15",
+                new CSVRemote("dropwizard/method-list-cpu.csv"),
+                new CachedApp(
+                    new CachedApp(
+                        new AppGitHub(
+                            "https://github.com/eclipse/jetty.project.git",
+                            "jetty-11.0.15"
+                        )
+                    )
+                ),
+                "org.eclipse.jetty"
+            ),
+            new StatisticsCaseLibrary(
+                "Jackson Core 2.15.2",
+                new CSVRemote("dropwizard/method-list-cpu.csv"),
+                new CachedApp(
+                    new AppGitHub(
+                        "https://github.com/FasterXML/jackson-core.git",
+                        "jackson-core-2.15.2"
+                    )
+                ),
+                "com.fasterxml.jackson.core"
+            ),
+            new StatisticsCaseLibrary(
+                "Jackson Databind 2.15.2",
+                new CSVRemote("dropwizard/method-list-cpu.csv"),
+                new CachedApp(
+                    new AppGitHub(
+                        "https://github.com/FasterXML/jackson-databind.git",
+                        "jackson-databind-2.15.2"
+                    )
+                ),
+                "com.fasterxml.jackson.databind"
+            ),
+            new StatisticsCaseLibrary(
+                "Logback 1.4.8",
+                new CSVRemote("dropwizard/method-list-cpu.csv"),
+                new CachedApp(
+                    new AppGitHub(
+                        "https://github.com/qos-ch/logback.git",
+                        "v_1.4.8"
+                    )
+                ),
+                "ch.qos.logback"
+            ),
+            new StatisticsCaseLibrary(
+                "Dropwizard Metrics 4.2.19",
+                new CSVRemote("dropwizard/method-list-cpu.csv"),
+                new CachedApp(
+                    new AppGitHub(
+                        "https://github.com/dropwizard/metrics.git",
+                        "v4.2.19"
+                    )
+                ),
+                "com.codahale.metrics"
+            ),
+            new StatisticsCaseLibrary(
+                "Jakarta Servlet 5.0.0",
+                new CSVRemote("dropwizard/method-list-cpu.csv"),
+                new CachedApp(
+                    new AppGitHub(
+                        "https://github.com/jakartaee/servlet.git",
+                        "5.0.0-RELEASE"
+                    )
+                ),
+                "jakarta.servlet"
             )
         ).make();
     }

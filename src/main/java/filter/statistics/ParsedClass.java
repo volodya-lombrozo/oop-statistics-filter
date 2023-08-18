@@ -1,6 +1,7 @@
 package filter.statistics;
 
 import com.github.javaparser.ParseProblemException;
+import com.github.javaparser.ParserConfiguration;
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.TypeDeclaration;
@@ -34,6 +35,7 @@ final class ParsedClass {
 
     static Stream<ParsedClass> parse(final Path path) {
         try {
+            StaticJavaParser.getConfiguration().setLanguageLevel(ParserConfiguration.LanguageLevel.JAVA_17);
             return ParsedClass.classes(StaticJavaParser.parse(path));
         } catch (final ParseProblemException | IOException ex) {
             Logger.getLogger("PARSER").warning(
