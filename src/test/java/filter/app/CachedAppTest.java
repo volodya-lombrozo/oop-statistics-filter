@@ -31,7 +31,9 @@ class CachedAppTest {
                 "4.4.4"
             )
         ).path();
-        final Path expected = CachedApp.DEFAULT_CACHE_PATH.resolve("vert.x.git");
+        final Path expected = CachedApp.DEFAULT_CACHE_PATH
+            .resolve("vert.x.git")
+            .resolve("4.4.4");
         Assertions.assertEquals(
             expected,
             actual,

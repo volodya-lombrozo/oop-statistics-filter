@@ -6,4 +6,6 @@ public interface Application {
     Path path();
 
     String githubUrl();
+
+    String version();
 }

@@ -246,6 +246,17 @@ public class FilterLibraries {
                     )
                 ),
                 "io.vertx"
+            ),
+            new StatisticsCaseLibrary(
+                "Netty 4.1.94.Final",
+                new CSVRemote("vertx/method-list-cpu.csv"),
+                new CachedApp(
+                    new AppGitHub(
+                        "https://github.com/netty/netty.git",
+                        "netty-4.1.92.Final"
+                    )
+                ),
+                "io.netty"
             )
         ).make();
     }

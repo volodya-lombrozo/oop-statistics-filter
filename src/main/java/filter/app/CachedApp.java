@@ -25,7 +25,9 @@ public class CachedApp implements Application {
                 Files.createDirectories(CachedApp.DEFAULT_CACHE_PATH);
             }
             final String name = this.folderName();
-            final Path cachedPath = CachedApp.DEFAULT_CACHE_PATH.resolve(name);
+            final Path cachedPath = CachedApp.DEFAULT_CACHE_PATH
+                .resolve(name)
+                .resolve(this.version());
             if (Files.exists(cachedPath)) {
                 return cachedPath;
             } else {
@@ -41,6 +43,11 @@ public class CachedApp implements Application {
     @Override
     public String githubUrl() {
         return this.original.githubUrl();
+    }
+
+    @Override
+    public String version() {
+        return this.original.version();
     }
 
     String folderName() {

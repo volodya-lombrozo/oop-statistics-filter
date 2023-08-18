@@ -22,13 +22,24 @@ public class AppRemoteZip implements Application {
 
     private final String githubUrl;
 
+    private final String version;
+
     public AppRemoteZip(final String url) {
-        this(url, null);
+        this(url, "undefined");
     }
 
     public AppRemoteZip(final String url, final String githubUrl) {
+        this(url, githubUrl, "undefined");
+    }
+
+    public AppRemoteZip(
+        final String url,
+        final String githubUrl,
+        final String version
+    ) {
         this.url = url;
         this.githubUrl = githubUrl;
+        this.version = version;
     }
 
     @Override
@@ -107,6 +118,11 @@ public class AppRemoteZip implements Application {
     @Override
     public String githubUrl() {
         return this.githubUrl;
+    }
+
+    @Override
+    public String version() {
+        return null;
     }
 
     private void markDownloadedFilesForDelete(final Path destination) {
