@@ -51,22 +51,22 @@ public final class StatisticsCaseWithModifiers implements StatisticsCase {
         final Map<String, Modifiers> methods = this.methods();
         StatisticsWithModifiers stats = new StatisticsWithModifiers();
         for (final ParsedCSVRow row : csvRows) {
-            final long total = row.getCount();
+            final long count = row.getCount();
             if (row.isConstructor()) {
-                stats.add(new MethodStatistics(total, Modifier.CONSTRUCTOR));
+                stats.add(new MethodStatistics(count, Modifier.CONSTRUCTOR));
             } else if (!methods.containsKey(row.shortMethodName())) {
                 final String alternative = row.shortMethodNameWithoutFQNForParameters();
                 if (methods.containsKey(alternative)) {
-                    stats.add(new MethodStatistics(total, methods.get(alternative)));
+                    stats.add(new MethodStatistics(count, methods.get(alternative)));
                 } else {
                     Logger.getLogger("PARSER")
                         .warning(
                             () -> String.format("Method not found: %s", row.fullMethodName())
                         );
-                    stats.add(new MethodStatistics(total, Modifier.NOT_FOUND));
+                    stats.add(new MethodStatistics(count, Modifier.NOT_FOUND));
                 }
             } else if (methods.containsKey(row.shortMethodName())) {
-                stats.add(new MethodStatistics(total, methods.get(row.shortMethodName())));
+                stats.add(new MethodStatistics(count, methods.get(row.shortMethodName())));
             }
         }
         return stats;

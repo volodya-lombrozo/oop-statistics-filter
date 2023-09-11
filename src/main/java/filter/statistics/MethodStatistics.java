@@ -2,27 +2,27 @@ package filter.statistics;
 
 class MethodStatistics {
 
-    private final long total;
+    private final long count;
 
     private final Modifiers modifiers;
 
     MethodStatistics(
-        final long total,
+        final long count,
         final Modifier... modifier
     ) {
-        this(total, new Modifiers(modifier));
+        this(count, new Modifiers(modifier));
     }
 
     MethodStatistics(
-        final long total,
+        final long count,
         final Modifiers modifiers
     ) {
-        this.total = total;
+        this.count = count;
         this.modifiers = modifiers;
     }
 
-    long total() {
-        return this.total;
+    long count() {
+        return this.count;
     }
 
     boolean isInstancePrivate() {
@@ -59,5 +59,9 @@ class MethodStatistics {
 
     public boolean isNotFound() {
         return this.modifiers.isNotFound();
+    }
+
+    public boolean isProtected() {
+        return this.modifiers.isProtected();
     }
 }

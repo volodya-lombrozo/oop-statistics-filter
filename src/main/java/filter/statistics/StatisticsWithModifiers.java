@@ -25,6 +25,7 @@ public class StatisticsWithModifiers implements Statistics {
             new CSVCell("Total", this.total()),
             new CSVCell("Instance Private Methods", this.instancePrivate()),
             new CSVCell("Instance Package-Private Methods", this.instancePackagePrivate()),
+            new CSVCell("Instance Protected", this.instanceProtected()),
             new CSVCell("Instance Public Methods", this.instancePublic()),
             new CSVCell("Instance Public Overridden Methods", this.instancePublicOverridden()),
             new CSVCell("Static Private Methods", this.staticPrivate()),
@@ -33,9 +34,14 @@ public class StatisticsWithModifiers implements Statistics {
             new CSVCell("Not Found Methods", this.notFound()),
             new CSVCell("Constructors", this.constructors()),
             new CSVCell("Instance Private Methods, %", this.instancePrivatePercent()),
-            new CSVCell("Instance Package-Private Methods, %", this.instancePackagePrivatePercent()),
+            new CSVCell("Instance Package-Private Methods, %",
+                this.instancePackagePrivatePercent()
+            ),
+            new CSVCell("Instance Protected Methods, %", this.instanceProctectedPercent()),
             new CSVCell("Instance Public Methods, %", this.instancePublicPercent()),
-            new CSVCell("Instance Public Overridden Methods, %", this.instancePublicOverriddenPercent()),
+            new CSVCell("Instance Public Overridden Methods, %",
+                this.instancePublicOverriddenPercent()
+            ),
             new CSVCell("Static Private Methods, %", this.staticPrivatePercent()),
             new CSVCell("Static Package-Private Methods, %", this.staticPackagePrivatePercent()),
             new CSVCell("Static Public Methods, %", this.staticPublicPercent()),
@@ -44,98 +50,80 @@ public class StatisticsWithModifiers implements Statistics {
         );
     }
 
-    public Object[] csvRow(final String title) {
-        return new Object[]{
-            title,
-            this.total(),
-            this.instancePrivate(),
-            this.instancePackagePrivate(),
-            this.instancePublic(),
-            this.instancePublicOverridden(),
-            this.staticPrivate(),
-            this.staticPackagePrivate(),
-            this.staticPublic(),
-            this.notFound(),
-            this.constructors(),
-            this.instancePrivatePercent(),
-            this.instancePackagePrivatePercent(),
-            this.instancePublicPercent(),
-            this.instancePublicOverriddenPercent(),
-            this.staticPrivatePercent(),
-            this.staticPackagePrivatePercent(),
-            this.staticPublicPercent(),
-            this.notFoundPercent(),
-            this.constructorsPercent(),
-        };
-    }
-
     StatisticsWithModifiers add(final MethodStatistics statistics) {
         this.rows.add(statistics);
         return this;
     }
 
     private long total() {
-        return this.rows.stream().mapToLong(MethodStatistics::total).sum();
+        return this.rows.stream().mapToLong(MethodStatistics::count).sum();
     }
 
     private long notFound() {
         return this.rows.stream()
             .filter(MethodStatistics::isNotFound)
-            .mapToLong(MethodStatistics::total).sum();
+            .mapToLong(MethodStatistics::count).sum();
     }
 
     private long instancePrivate() {
         return this.rows.stream()
             .filter(MethodStatistics::isInstancePrivate)
-            .mapToLong(MethodStatistics::total).sum();
+            .mapToLong(MethodStatistics::count).sum();
     }
 
     private long instancePackagePrivate() {
         return this.rows.stream()
             .filter(MethodStatistics::isInstancePackagePrivate)
-            .mapToLong(MethodStatistics::total)
+            .mapToLong(MethodStatistics::count)
+            .sum();
+    }
+
+    private long instanceProtected() {
+        return this.rows.stream()
+            .filter(MethodStatistics::isProtected)
+            .mapToLong(MethodStatistics::count)
             .sum();
     }
 
     private long instancePublicOverridden() {
         return this.rows.stream()
             .filter(MethodStatistics::isInstancePublicOverridden)
-            .mapToLong(MethodStatistics::total)
+            .mapToLong(MethodStatistics::count)
             .sum();
     }
 
     private long instancePublic() {
         return this.rows.stream()
             .filter(MethodStatistics::isInstancePublic)
-            .mapToLong(MethodStatistics::total)
+            .mapToLong(MethodStatistics::count)
             .sum();
     }
 
     private long staticPrivate() {
         return this.rows.stream()
             .filter(MethodStatistics::isStaticPrivate)
-            .mapToLong(MethodStatistics::total)
+            .mapToLong(MethodStatistics::count)
             .sum();
     }
 
     private long staticPackagePrivate() {
         return this.rows.stream()
             .filter(MethodStatistics::isStaticPackagePrivate)
-            .mapToLong(MethodStatistics::total)
+            .mapToLong(MethodStatistics::count)
             .sum();
     }
 
     private long staticPublic() {
         return this.rows.stream()
             .filter(MethodStatistics::isStaticPublic)
-            .mapToLong(MethodStatistics::total)
+            .mapToLong(MethodStatistics::count)
             .sum();
     }
 
     private long constructors() {
         return this.rows.stream()
             .filter(MethodStatistics::isConstructor)
-            .mapToLong(MethodStatistics::total)
+            .mapToLong(MethodStatistics::count)
             .sum();
     }
 
@@ -183,6 +171,10 @@ public class StatisticsWithModifiers implements Statistics {
 
     private String staticPrivatePercent() {
         return StatisticsWithModifiers.percent(this.staticPrivate() / (double) this.total());
+    }
+
+    private String instanceProctectedPercent() {
+        return StatisticsWithModifiers.percent(this.instanceProtected() / (double) this.total());
     }
 
     private String instancePublicOverriddenPercent() {

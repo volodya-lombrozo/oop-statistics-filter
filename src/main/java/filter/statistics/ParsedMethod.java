@@ -39,13 +39,11 @@ final class ParsedMethod {
             modifiers.add(Modifier.PUBLIC);
         } else if (this.method.isPrivate()) {
             modifiers.add(Modifier.PRIVATE);
+        } else if(this.method.isProtected()){
+            modifiers.add(Modifier.PROTECTED);
         } else {
             modifiers.add(Modifier.PACKAGE_PRIVATE);
         }
         return new Modifiers(modifiers);
-    }
-
-    boolean isStatic() {
-        return this.modifiers().isStatic();
     }
 }

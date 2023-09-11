@@ -15,10 +15,6 @@ public class Modifiers {
         this.modifiers = modifiers;
     }
 
-    public boolean isStatic() {
-        return this.modifiers.contains(Modifier.STATIC);
-    }
-
     boolean isInstancePrivate() {
         return this.modifiers.contains(Modifier.PRIVATE)
             && this.modifiers.contains(Modifier.INSTANCE);
@@ -61,5 +57,9 @@ public class Modifiers {
 
     boolean isNotFound() {
         return this.modifiers.contains(Modifier.NOT_FOUND);
+    }
+
+    public boolean isProtected() {
+        return this.modifiers.contains(Modifier.PROTECTED);
     }
 }

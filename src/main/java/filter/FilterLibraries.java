@@ -269,18 +269,18 @@ public class FilterLibraries {
                 ),
                 "com.fasterxml.jackson.core"
             ),
-            new StatisticsCaseLibrary(
+//            new StatisticsCaseLibrary(
 //TODO: HIGH PERCENT OF NOT FOUND METHODS ~69. Some problems with that library.
-                "Dropwizard 4.0.1",
-                new CSVRemote("dropwizard/method-list-cpu.csv"),
-                new CachedApp(
-                    new AppGitHub(
-                        "https://github.com/dropwizard/dropwizard.git",
-                        "v4.0.1"
-                    )
-                ),
-                "io.dropwizard"
-            ),
+//                "Dropwizard 4.0.1",
+//                new CSVRemote("dropwizard/method-list-cpu.csv"),
+//                new CachedApp(
+//                    new AppGitHub(
+//                        "https://github.com/dropwizard/dropwizard.git",
+//                        "v4.0.1"
+//                    )
+//                ),
+//                "io.dropwizard"
+//            ),
             new StatisticsCaseLibrary(
                 "Jetty 11.0.15",
                 new CSVRemote("dropwizard/method-list-cpu.csv"),
@@ -337,18 +337,19 @@ public class FilterLibraries {
                     )
                 ),
                 "com.codahale.metrics"
-            ),
-            new StatisticsCaseLibrary(
-                "Jakarta Servlet 5.0.0",
-                new CSVRemote("dropwizard/method-list-cpu.csv"),
-                new CachedApp(
-                    new AppGitHub(
-                        "https://github.com/jakartaee/servlet.git",
-                        "5.0.0-RELEASE"
-                    )
-                ),
-                "jakarta.servlet"
             )
+//            ,
+//            new StatisticsCaseLibrary(
+//                "Jakarta Servlet 5.0.0",
+//                new CSVRemote("dropwizard/method-list-cpu.csv"),
+//                new CachedApp(
+//                    new AppGitHub(
+//                        "https://github.com/jakartaee/servlet.git",
+//                        "5.0.0-RELEASE"
+//                    )
+//                ),
+//                "jakarta.servlet"
+//            )
         ).make();
     }
 

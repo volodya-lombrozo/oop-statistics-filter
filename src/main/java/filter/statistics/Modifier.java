@@ -7,6 +7,9 @@ public enum Modifier {
 
     PRIVATE,
     PACKAGE_PRIVATE,
+
+    PROTECTED,
+
     PUBLIC,
     INSTANCE,
     STATIC,

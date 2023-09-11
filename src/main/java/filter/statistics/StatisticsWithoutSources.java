@@ -35,20 +35,20 @@ public class StatisticsWithoutSources implements Statistics {
     }
 
     private long total() {
-        return this.statistics.stream().mapToLong(MethodStatistics::total).sum();
+        return this.statistics.stream().mapToLong(MethodStatistics::count).sum();
     }
 
     private long methods() {
         return this.statistics.stream()
             .filter(method -> !method.isConstructor())
-            .mapToLong(MethodStatistics::total)
+            .mapToLong(MethodStatistics::count)
             .sum();
     }
 
     private long constructors() {
         return this.statistics.stream()
             .filter(MethodStatistics::isConstructor)
-            .mapToLong(MethodStatistics::total)
+            .mapToLong(MethodStatistics::count)
             .sum();
     }
 }
