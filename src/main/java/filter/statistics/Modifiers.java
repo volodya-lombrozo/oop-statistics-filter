@@ -27,7 +27,8 @@ public class Modifiers {
 
     boolean isInstanceProtected() {
         return this.modifiers.contains(Modifier.PROTECTED)
-            && this.modifiers.contains(Modifier.INSTANCE);
+            && this.modifiers.contains(Modifier.INSTANCE)
+            && !this.modifiers.contains(Modifier.OVERRIDDEN);
     }
 
     boolean isInstancePublic() {
@@ -36,9 +37,16 @@ public class Modifiers {
             && !this.modifiers.contains(Modifier.OVERRIDDEN);
     }
 
-    boolean isInstanceOverridden() {
-        return this.modifiers.contains(Modifier.OVERRIDDEN)
-            && this.modifiers.contains(Modifier.INSTANCE);
+    boolean isInstancePublicOverridden() {
+        return this.modifiers.contains(Modifier.PUBLIC)
+            && this.modifiers.contains(Modifier.INSTANCE)
+            && this.modifiers.contains(Modifier.OVERRIDDEN);
+    }
+
+    boolean isInstanceProtectedOverridden() {
+        return this.modifiers.contains(Modifier.PROTECTED)
+            && this.modifiers.contains(Modifier.INSTANCE)
+            && this.modifiers.contains(Modifier.OVERRIDDEN);
     }
 
     boolean isStaticPrivate() {

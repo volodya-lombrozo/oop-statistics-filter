@@ -26,6 +26,9 @@ public class StatisticsWithModifiers implements Statistics {
             new CSVCell("Instance Private Methods", this.instancePrivate()),
             new CSVCell("Instance Package-Private Methods", this.instancePackagePrivate()),
             new CSVCell("Instance Protected", this.instanceProtected()),
+            new CSVCell("Instance Protected Overridden Methods",
+                this.instanceProtectedOverridden()
+            ),
             new CSVCell("Instance Public Methods", this.instancePublic()),
             new CSVCell("Instance Public Overridden Methods", this.instancePublicOverridden()),
             new CSVCell("Static Private Methods", this.staticPrivate()),
@@ -39,6 +42,7 @@ public class StatisticsWithModifiers implements Statistics {
                 this.instancePackagePrivatePercent()
             ),
             new CSVCell("Instance Protected Methods, %", this.instanceProctectedPercent()),
+            new CSVCell("Instance Protected Overridden, %", this.instanceProtectedOverriddenPercent()),
             new CSVCell("Instance Public Methods, %", this.instancePublicPercent()),
             new CSVCell("Instance Public Overridden Methods, %",
                 this.instancePublicOverriddenPercent()
@@ -87,6 +91,13 @@ public class StatisticsWithModifiers implements Statistics {
     private long instanceProtected() {
         return this.rows.stream()
             .filter(MethodStatistics::isInstanceProtected)
+            .mapToLong(MethodStatistics::count)
+            .sum();
+    }
+
+    private long instanceProtectedOverridden() {
+        return this.rows.stream()
+            .filter(MethodStatistics::isInstanceProtectedOverridden)
             .mapToLong(MethodStatistics::count)
             .sum();
     }
@@ -188,6 +199,10 @@ public class StatisticsWithModifiers implements Statistics {
 
     private String staticProtectedPercent() {
         return StatisticsWithModifiers.percent(this.staticProtected() / (double) this.total());
+    }
+
+    private String instanceProtectedOverriddenPercent() {
+        return StatisticsWithModifiers.percent(this.instanceProtectedOverridden() / (double) this.total());
     }
 
     private String instancePublicOverriddenPercent() {

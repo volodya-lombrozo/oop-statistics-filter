@@ -34,7 +34,7 @@ class MethodStatistics {
     }
 
     boolean isInstancePublicOverridden() {
-        return this.modifiers.isInstanceOverridden();
+        return this.modifiers.isInstancePublicOverridden();
     }
 
     boolean isInstancePublic() {
@@ -67,5 +67,9 @@ class MethodStatistics {
 
     public boolean isStaticProtected() {
         return this.modifiers.isStaticProtected();
+    }
+
+    public boolean isInstanceProtectedOverridden() {
+        return this.modifiers.isInstanceProtectedOverridden();
     }
 }
