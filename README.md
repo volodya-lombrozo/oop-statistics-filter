@@ -1,25 +1,86 @@
 # Statistics of application methods profiling
 
-Here is the latest statics of application methods:
+This repository contains the code that aggregates the profiling results received
+during the profiling of different applications (
+see [cost-of-oop](https://github.com/volodya-lombrozo/cost-of-oop) for profiling
+scripts and applications). The final results of method usage is presented in the
+following histogram:
 
-|Application            |Total Methods|Static Methods|Instance Methods|Constructors|Not Found Methods (lambdas)|Total Time (ms)|Time in Static Methods (ms)|Time in Intense Methods (ms)|Time in Constructors Methods (ms)|Percent of Static Methods|Percent of Instance Methods|Percent of Constructors|Percent Not Found Methods|Percent Dirty Static Methods|Percent Dirty Instance Methods|
-|-----------------------|-------------|--------------|----------------|------------|---------------------------|---------------|---------------------------|----------------------------|---------------------------------|-------------------------|---------------------------|-----------------------|-------------------------|----------------------------|------------------------------|
-|Apache Derby           |33362560     |852885        |31858497        |117895      |533283                     |164890.0       |3203.9                     |158729.9                    |587.8                            |2.56                     |95.49                      |0.35                   |1.60                     |4.15                        |97.09                         |
-|Apache Kafka           |148029       |8107          |58994           |16902       |64026                      |1209.5         |64.1                       |328.9                       |75.4                             |5.48                     |39.85                      |11.42                  |43.25                    |48.73                       |83.11                         |
-|Apache Tomcat          |529440       |36674         |417282          |5907        |69577                      |2994.4         |455.4                      |2025.6                      |30.3                             |6.93                     |78.82                      |1.12                   |13.14                    |20.07                       |91.96                         |
-|Spring Framework 5.3.27|421179       |45361         |263994          |40378       |71446                      |3729.2         |327.0                      |2368.0                      |329.0                            |10.77                    |62.68                      |9.59                   |16.96                    |27.73                       |79.64                         |
-|Takes Framework        |234240       |80628         |35557           |101358      |16697                      |3147.7         |1354.0                     |175.8                       |309.9                            |34.42                    |15.18                      |43.27                  |7.13                     |41.55                       |22.31                         |
+![image](statistics.data.histogram.jpg)
 
-Where
+On the X axis you can see the list of libraries that was analysed.
+On the Y axis you can see the percent of methods that were used in the
+application in the corresponding library.
+
+If you need aggregated data for the future analysis you can download the raw
+CSV file [here](libraries-new.csv). The columns of the CSV file are:
 
 - **Application** - the name of the tested application
-- **Total Methods** - total number of methods that were counted during
+- **Total** - total number of methods that were counted during
   profiling (
   including lambdas, constructors, static/instance methods)
+- **Instance Private Methods** - total number of private instance methods that
+  were counted during profiling
+- **Instance Package-Private Methods** - total number of package-private
+  instance methods that were counted during profiling
+- **Instance Protected Methods** - total number of protected instance methods
+  that were counted during profiling
+- **Instance Protected Overridden Methods** - total number of protected
+  instance methods that were counted during profiling that were overridden in
+  the subclasses
+- **Instance Public Methods** - total number of public instance methods that
+  were counted during profiling
+- **Instance Public Overridden Methods** - total number of public instance
+  methods that were counted during profiling that were overridden in the
+  subclasses
+- **Static Private Methods** - total number of private static methods that
+  were counted during profiling
+- **Static Package-Private Methods** - total number of package-private static
+  methods that were counted during profiling
+- **Static Protected Methods** - total number of protected static methods that
+  were counted during profiling
+- **Static Public Methods** - total number of public static methods that were
+  counted during profiling
+- **Not Found Methods** - total number of methods that were not found in the
+  source code (labdas, or methods in the inner classes).
+- **Constructors** - total number of constructors that were counted during
+  profiling
+- **Instance Private Methods, %** - percent of private instance methods
+  (Instance Private Methods / Total)
+- **Instance Package-Private Methods, %** - percent of package-private instance
+  methods (Instance Package-Private Methods / Total)
+- **Instance Protected Methods, %** - percent of protected instance methods (
+  Instance Protected Methods / Total)
+- **Instance Protected Overridden, %** - percent of protected instance methods
+  that were overridden in the subclasses (Instance Protected Overridden Methods
+  / Total)
+- **Instance Public Methods, %** - percent of public instance methods
+  (Instance Public Methods / Total)
+- **Instance Public Overridden Methods, %** - percent of public instance
+  methods that were overridden in the subclasses (Instance Public Overridden
+  Methods / Total)
+- **Static Private Methods, %** - percent of private static methods (
+  Static Private Methods / Total)
+- **Static Package-Private Methods, %** - percent of package-private static
+  methods (Static Package-Private Methods / Total)
+- **Static Protected, %** - percent of protected static methods (
+  Static Protected Methods / Total)
+- **Static Public Methods, %** - percent of public static methods (
+  Static Public Methods / Total)
+- **Not Found Methods, %** - percent of methods that were not found in the
+  source code (labdas, or methods in the inner classes) (
+  Not Found Methods / Total)
+- **Constructors, %** - percent of constructors (Constructors / Total)
+- **GitHub Forks** - number of forks of the application repository on GitHub
+- **GitHub Stars** - number of stars of the application repository on GitHub
+- **GitHub Open Issues** - number of open issues of the application repository
+  on GitHub
+- **GitHub Size (KB)** - size of the application repository on GitHub
+- **GitHub Age (ms)** - age of the application repository on GitHub
+
+-
 - **Static Methods** - total number of static methods that were counted during
   profiling
-- **Instance Methods** - total number of instance methods that were counted
-  during profiling
 - **Constructors** - total number of constructors that were counted during
   profiling
 - **Not Found Methods (lambdas)** - total number of methods that were not found
@@ -36,10 +97,11 @@ Where
   Constructors / Total Methods)
 - **Percent Not Found Methods** - percent of time spent in not found methods (
   Not Found Methods / Total Methods)
-- **Percent Dirty Static Methods** - percent of time spent in static methods plus not found methods ( (Static Methods + Not Found Methods) / Total Methods)
-- **Percent Dirty Instance Methods** - percent of time spent in instance methods plus not found methods ( (Instance Methods + Not Found Methods) / Total Methods)
-
-The CSV file with final statics is [here](report.csv).
+- **Percent Dirty Static Methods** - percent of time spent in static methods
+  plus not found methods ( (Static Methods + Not Found Methods) / Total Methods)
+- **Percent Dirty Instance Methods** - percent of time spent in instance methods
+  plus not found methods ( (Instance Methods + Not Found Methods) / Total
+  Methods)
 
 The raw profiling results by methods you can
 get [here](https://github.com/volodya-lombrozo/cost-of-oop/tree/main/results)
