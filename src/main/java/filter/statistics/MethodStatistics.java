@@ -61,7 +61,11 @@ class MethodStatistics {
         return this.modifiers.isNotFound();
     }
 
-    public boolean isProtected() {
-        return this.modifiers.isProtected();
+    public boolean isInstanceProtected() {
+        return this.modifiers.isInstanceProtected();
+    }
+
+    public boolean isStaticProtected() {
+        return this.modifiers.isStaticProtected();
     }
 }

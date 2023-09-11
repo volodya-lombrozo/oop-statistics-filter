@@ -30,6 +30,7 @@ public class StatisticsWithModifiers implements Statistics {
             new CSVCell("Instance Public Overridden Methods", this.instancePublicOverridden()),
             new CSVCell("Static Private Methods", this.staticPrivate()),
             new CSVCell("Static Package-Private Methods", this.staticPackagePrivate()),
+            new CSVCell("Static Protected", this.staticProtected()),
             new CSVCell("Static Public Methods", this.staticPublic()),
             new CSVCell("Not Found Methods", this.notFound()),
             new CSVCell("Constructors", this.constructors()),
@@ -44,6 +45,7 @@ public class StatisticsWithModifiers implements Statistics {
             ),
             new CSVCell("Static Private Methods, %", this.staticPrivatePercent()),
             new CSVCell("Static Package-Private Methods, %", this.staticPackagePrivatePercent()),
+            new CSVCell("Static Protected, %", this.staticProtectedPercent()),
             new CSVCell("Static Public Methods, %", this.staticPublicPercent()),
             new CSVCell("Not Found Methods, %", this.notFoundPercent()),
             new CSVCell("Constructors, %", this.constructorsPercent())
@@ -78,16 +80,13 @@ public class StatisticsWithModifiers implements Statistics {
             .sum();
     }
 
-    private long instanceProtected() {
-        return this.rows.stream()
-            .filter(MethodStatistics::isProtected)
-            .mapToLong(MethodStatistics::count)
-            .sum();
+    private String instanceProctectedPercent() {
+        return StatisticsWithModifiers.percent(this.instanceProtected() / (double) this.total());
     }
 
-    private long instancePublicOverridden() {
+    private long instanceProtected() {
         return this.rows.stream()
-            .filter(MethodStatistics::isInstancePublicOverridden)
+            .filter(MethodStatistics::isInstanceProtected)
             .mapToLong(MethodStatistics::count)
             .sum();
     }
@@ -95,6 +94,13 @@ public class StatisticsWithModifiers implements Statistics {
     private long instancePublic() {
         return this.rows.stream()
             .filter(MethodStatistics::isInstancePublic)
+            .mapToLong(MethodStatistics::count)
+            .sum();
+    }
+
+    private long instancePublicOverridden() {
+        return this.rows.stream()
+            .filter(MethodStatistics::isInstancePublicOverridden)
             .mapToLong(MethodStatistics::count)
             .sum();
     }
@@ -109,6 +115,13 @@ public class StatisticsWithModifiers implements Statistics {
     private long staticPackagePrivate() {
         return this.rows.stream()
             .filter(MethodStatistics::isStaticPackagePrivate)
+            .mapToLong(MethodStatistics::count)
+            .sum();
+    }
+
+    private long staticProtected() {
+        return this.rows.stream()
+            .filter(MethodStatistics::isStaticProtected)
             .mapToLong(MethodStatistics::count)
             .sum();
     }
@@ -173,8 +186,8 @@ public class StatisticsWithModifiers implements Statistics {
         return StatisticsWithModifiers.percent(this.staticPrivate() / (double) this.total());
     }
 
-    private String instanceProctectedPercent() {
-        return StatisticsWithModifiers.percent(this.instanceProtected() / (double) this.total());
+    private String staticProtectedPercent() {
+        return StatisticsWithModifiers.percent(this.staticProtected() / (double) this.total());
     }
 
     private String instancePublicOverriddenPercent() {

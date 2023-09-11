@@ -25,8 +25,8 @@ public class Modifiers {
             && this.modifiers.contains(Modifier.INSTANCE);
     }
 
-    boolean isInstanceOverridden() {
-        return this.modifiers.contains(Modifier.OVERRIDDEN)
+    boolean isInstanceProtected() {
+        return this.modifiers.contains(Modifier.PROTECTED)
             && this.modifiers.contains(Modifier.INSTANCE);
     }
 
@@ -36,18 +36,28 @@ public class Modifiers {
             && !this.modifiers.contains(Modifier.OVERRIDDEN);
     }
 
+    boolean isInstanceOverridden() {
+        return this.modifiers.contains(Modifier.OVERRIDDEN)
+            && this.modifiers.contains(Modifier.INSTANCE);
+    }
+
+    boolean isStaticPrivate() {
+        return this.modifiers.contains(Modifier.PRIVATE)
+            && this.modifiers.contains(Modifier.STATIC);
+    }
+
     boolean isStaticPackagePrivate() {
         return this.modifiers.contains(Modifier.PACKAGE_PRIVATE)
             && this.modifiers.contains(Modifier.STATIC);
     }
 
-    boolean isStaticPublic() {
-        return this.modifiers.contains(Modifier.PUBLIC)
+    boolean isStaticProtected() {
+        return this.modifiers.contains(Modifier.PROTECTED)
             && this.modifiers.contains(Modifier.STATIC);
     }
 
-    boolean isStaticPrivate() {
-        return this.modifiers.contains(Modifier.PRIVATE)
+    boolean isStaticPublic() {
+        return this.modifiers.contains(Modifier.PUBLIC)
             && this.modifiers.contains(Modifier.STATIC);
     }
 
@@ -57,9 +67,5 @@ public class Modifiers {
 
     boolean isNotFound() {
         return this.modifiers.contains(Modifier.NOT_FOUND);
-    }
-
-    public boolean isProtected() {
-        return this.modifiers.contains(Modifier.PROTECTED);
     }
 }
